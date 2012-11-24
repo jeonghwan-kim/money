@@ -4,14 +4,27 @@
 	<title>My Money - Write</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=euc-kr" />
 	<link href="style.css" rel="stylesheet" type="text/css">
+	<meta name="viewport" content="user-scalable=no, width=device-width" />
 	<script type="text/javascript" src="write.js"></script>
 	<script type="text/javascript" src="get-xml-filename.js"></script>
 </head>
 <body>
-	일시: <input id="date" type="text" /><br />
-	항목: <input id="item" type="text" /><br />
-	내용: <input id="text" type="text" /><br />
-	금액: <input id="money" type="text" /><br />
-	<input id="save" type="button" value="저장" />
+<div id="wrapper">
+	<div id="top">
+		<h1>My Money</h1>
+	</div>
+	
+	<div id="middle">
+		<div id="editor">
+			일시: <input id="date" type="text" /><br />
+			항목: <input id="item" type="text" /><br />
+			내용: <input id="text" type="text" /><br />
+			금액: <input id="money" type="text" /><br />
+			<div id="save">
+				<input type="button" value="저장" />
+			</div>
+		</div>
+	</div>
+</div>
 </body>
 </html>

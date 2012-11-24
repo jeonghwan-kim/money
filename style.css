@@ -1,3 +1,95 @@
-h4 {
+* { 
+	padding:0;
+	margin:0;
+}
+body {
+	background-color: white;
+	font-family: Helvetica;  
+}	
+#wrapper{
+	margin: 0 auto;
+	max-width: 480px;
+}
+
+/* top */
+#middle {
+	margin: 0 0 20px 0;
+}
+#top {
+	text-align: center;
+	padding: 10px 0;
+	border-bottom: solid 1px #ddd;	
+}
+
+/* middle */
+#middle {
+	margin: 0 0 20px 0;
+}
+#middle {
+	padding: 10px 0;
+}
+#summary {
+	text-align: center;	
+	border-bottom: solid 1px #ddd;
+	padding: 0 0 10px 0;
+}
+
+#total_amount {
+	margin: 0 0 10px 0;
+}
+
+#summary input {
+	height: 50px;
+	width: 100px;
+}
+#contents {
+	padding: 10px;
+	line-height: 1.5em;
+}
+#contents h4 {
 	color: grey;
+	font-size: 120%;
+}
+#contents p {
+	color: black;
+	padding: 0 0 0 10px;
+}
+#morebtn {
+	text-align: center;
+}
+#morebtn  input{
+	height: 50px;
+	width: 100px;
+}
+
+/* middle */
+#footer {
+	text-align: center;
+	font-size: 80%;
+	color: #aaa;
+}
+
+/* write.html */
+#editor {
+	margin: 0 10px;
+}
+#date, #item, #text, #money {
+	height: 30px;
+	margin: 0 0 10px;
+}
+#date {
+	width: 80px;
+}
+#item {
+	width: 80px;
+}
+#text {
+	width: 80%;
+}
+#save {
+	text-align: center;
+}
+#save  input{
+	height: 50px;
+	width: 100px;
 }
