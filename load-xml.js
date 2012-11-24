@@ -33,7 +33,7 @@ window.onload = function() {
 			var sum = 0;
 			for (var i = 0; i < entries.length; i++) 
 				sum += entries[i].money;
-			document.getElementById("total_amount").innerHTML = sum + "원";
+			document.getElementById("total_amount").innerHTML = "총지출: " + sum + "원";
 			
 			// 최근 1일치 정보만 출력
 						
