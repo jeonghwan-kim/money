@@ -5,49 +5,56 @@
 body {
 	background-color: white;
 	font-family: Helvetica;  
-}	
+}
+
+/* 버튼 스타일 정의 */
+.btn{
+	padding: 8px 20px;
+	border: none;
+	background-color: #493227;
+	color: white;
+	border-radius: 8px;
+	font-size: 100%;
+    transition: .2s;
+    -webkit-transition: .2s;
+    -moz-transition: .2s;
+    -o-transition: .2s;
+}
+.btn:hover {
+    background-color: #7F3227;
+}
+	
 #wrapper{
 	margin: 0 auto;
 	max-width: 480px;
 }
 
 /* top */
-#middle {
-	margin: 0 0 20px 0;
-}
 #top {
 	text-align: center;
-	padding: 10px 0;
-	border-bottom: solid 1px #ddd;	
+	padding: 20px 0;
+	background-color: #493227;
+	color: white;
 }
 
 /* middle */
-#middle {
-	margin: 0 0 20px 0;
-}
-#middle {
-	padding: 10px 0;
-}
 #summary {
 	text-align: center;	
-	border-bottom: solid 1px #ddd;
-	padding: 0 0 10px 0;
+	padding: 15px;
+	background-color: #C18E44;
 }
 
 #total_amount {
 	margin: 0 0 10px 0;
 }
 
-#summary input {
-	height: 50px;
-	width: 100px;
-}
 #contents {
 	padding: 10px;
-	line-height: 1.5em;
+	line-height: 2em;
+	background-color: #E0D0AA;
 }
-#contents h4 {
-	color: grey;
+#contents h4 { /* 날짜 */
+	color: #8DA893;
 	font-size: 120%;
 }
 #contents p {
@@ -56,10 +63,8 @@ body {
 }
 #morebtn {
 	text-align: center;
-}
-#morebtn  input{
-	height: 50px;
-	width: 100px;
+    background-color: #E0D0AA;
+    padding: 20px;
 }
 
 /* middle */
@@ -67,29 +72,25 @@ body {
 	text-align: center;
 	font-size: 80%;
 	color: #aaa;
+	padding: 10px;
 }
 
 /* write.html */
 #editor {
-	margin: 0 10px;
+	background-color: #E0D0AA;
+	padding: 20px 20px;
 }
 #date, #item, #text, #money {
 	height: 30px;
-	margin: 0 0 10px;
+	margin: 0 0 10px 0;
+	font-size: 110%
 }
-#date {
-	width: 80px;
-}
-#item {
-	width: 80px;
+#date, #item, #money {
+	width: 120px;
 }
 #text {
 	width: 80%;
 }
 #save {
 	text-align: center;
-}
-#save  input{
-	height: 50px;
-	width: 100px;
 }

@@ -1,35 +1,35 @@
-// ÆäÀÌÁö ·Îµù½Ã ÀÛ¾÷ ÇÔ¼ö
+// í˜ì´ì§€ ë¡œë”©ì‹œ ì‘ì—… í•¨ìˆ˜
 window.onload = function() {
-	document.getElementById("date").value = new Date(); // ¿À´Ã ³¯Â¥ ÀÚµ¿ÀÔ·Â
+	document.getElementById("date").value = new Date(); // ì˜¤ëŠ˜ ë‚ ì§œ ìë™ì…ë ¥
 	document.getElementById("text").focus();
-	document.getElementById("save").onclick = saveFileToXml; // ÇÔ¼ö ¿¬°á
+	document.getElementById("save").onclick = saveFileToXml; // í•¨ìˆ˜ ì—°ê²°
 }
 
-// Date.toString ÇÔ¼ö ÀçÁ¤ÀÇ
+// Date.toString í•¨ìˆ˜ ì¬ì •ì˜
 Date.prototype.toString = function() {
 	return this.getFullYear() + "-" + (this.getMonth() + 1) + "-" + this.getDate();
 }
 
-// ¹öÆ°Å¬¸¯½Ã: phpÇÔ¼ö È£Ãâ(µ¥ÀÌÅÍ¸¦ post·Î ³Ñ°Ü xml ÆÄÀÏ¿¡ ÀúÀå)
+// ë²„íŠ¼í´ë¦­ì‹œ: phpí•¨ìˆ˜ í˜¸ì¶œ(ë°ì´í„°ë¥¼ postë¡œ ë„˜ê²¨ xml íŒŒì¼ì— ì €ì¥)
 function saveFileToXml() {
-	// ÀÔ·Â°ª->º¯¼ö·Î ÀúÀå
+	// ì…ë ¥ê°’->ë³€ìˆ˜ë¡œ ì €ì¥
 	var date  = document.getElementById("date").value;
 	var item  = document.getElementById("item").value;
 	var text  = document.getElementById("text").value;
 	var money = document.getElementById("money").value;
 	var xml_filename = getXmlFilename();
-	
+
 	//alert(xml_filename);
 
-	// write.phpÇÔ¼ö È£Ãâ
+	// write.phpí•¨ìˆ˜ í˜¸ì¶œ
 	var xmlhttp = new XMLHttpRequest();
 	xmlhttp.open("post", "write.php", true);
 	xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=euc-kr");
 	xmlhttp.send("date=" + date + "&item=" + item + "&text=" + text + "&money=" + money + "&xml_filename=" + xml_filename);	
 	xmlhttp.onreadystatechange = function() {		
-		// write.php Á¤»ó È£ÃâµÉ °æ¿ì
+		// write.php ì •ìƒ í˜¸ì¶œë  ê²½ìš°
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {			
-			window.location='./'; // ÆäÀÌÁö ÀÌµ¿
+			window.location='./'; // í˜ì´ì§€ ì´ë™
 		}
 	}
 }
