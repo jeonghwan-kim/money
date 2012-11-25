@@ -9,17 +9,17 @@ function Expense(no, date, item, text, money) {
 var entries = new Array();
 
 window.onload = function() {
-	
-	// xml ¹®¼­ È£Ãâ
+
+	// xml ë¬¸ì„œ í˜¸ì¶œ
 	var httpReq = new XMLHttpRequest();
 	httpReq.open("get", getXmlFilename(), true);
 	httpReq.send();
 	httpReq.onreadystatechange = function() {
 		if (httpReq.readyState == 4 && httpReq.status == 200) {
-			var entry = httpReq.responseXML.getElementsByTagName("entry"); // xml ¹®¼­
+			var entry = httpReq.responseXML.getElementsByTagName("entry"); // xml ë¬¸ì„œ
 			var contents_elem = document.getElementById("contents"); // html element
-			
-			// xml ¹®¼­ -> array·Î ÀúÀå
+
+			// xml ë¬¸ì„œ -> arrayë¡œ ì €ì¥
 			for (var i = 0; i < entry.length; i++) {
 				entries.push( new Expense(getText(entry[i].getElementsByTagName("no")[0]), 
 							 getText(entry[i].getElementsByTagName("date")[0]),
@@ -28,19 +28,19 @@ window.onload = function() {
 							 getText(entry[i].getElementsByTagName("money")[0]))
 							);
 			}
-				
-			// ÃÑ¾× °è»ê ¹× Ãâ·Â
+
+			// ì´ì•¡ ê³„ì‚° ë° ì¶œë ¥
 			var sum = 0;
 			for (var i = 0; i < entries.length; i++) 
 				sum += entries[i].money;
-			document.getElementById("total_amount").innerHTML = "ÃÑÁöÃâ: " + sum + "¿ø";
-			
-			// ÃÖ±Ù 1ÀÏÄ¡ Á¤º¸¸¸ Ãâ·Â
-						
-			// array¿¡ ÀúÀåµÈ Á¤º¸¸¦ html ¹®¼­·Î º¯È¯
+			document.getElementById("total_amount").innerHTML = "ì´ì§€ì¶œ: " + sum + "ì›";
+
+			// ìµœê·¼ 1ì¼ì¹˜ ì •ë³´ë§Œ ì¶œë ¥
+
+			// arrayì— ì €ì¥ëœ ì •ë³´ë¥¼ html ë¬¸ì„œë¡œ ë³€í™˜
 			for (var i = 0; i < entries.length; i++) {
 				if ((i == 0) || (i > 0 && entries[i].date != entries[i-1].date)){ 
-					// ³¯Â¥°¡ º¯°æµÉ °æ¿ì: ³¯Â¥ Ãâ·Â				
+					// ë‚ ì§œê°€ ë³€ê²½ë  ê²½ìš°: ë‚ ì§œ ì¶œë ¥				
 					contents_elem.innerHTML += "<h4>" + entries[i].date + "</h4>";
 				}
 				contents_elem.innerHTML += "<p>(" + entries[i].item + 	") " + "" + entries[i].text + " " + entries[i].money + "</p>";
@@ -49,8 +49,8 @@ window.onload = function() {
 	}
 }
 
-// element ·Î ºÎÅÍ nodeValue ¾ò¾î³»´Â ÇÔ¼ö
-// ¾øÀ¸¸é "" ¹İÈ¯
+// element ë¡œ ë¶€í„° nodeValue ì–»ì–´ë‚´ëŠ” í•¨ìˆ˜
+// ì—†ìœ¼ë©´ "" ë°˜í™˜
 function getText(elem) {
     var text = "";
     if (elem) {
