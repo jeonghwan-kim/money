@@ -29,6 +29,9 @@ window.onload = function() {
 							);
 			}
 
+            // 최근 시간순으로 array 정렬
+            entries.reverse();
+            
 			// 총액 계산 및 출력
 			var sum = 0;
 			for (var i = 0; i < entries.length; i++) 
