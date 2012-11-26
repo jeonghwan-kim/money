@@ -25,11 +25,36 @@ function saveFileToXml() {
 	var xmlhttp = new XMLHttpRequest();
 	xmlhttp.open("post", "write.php", true);
 	xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=euc-kr");
-	xmlhttp.send("date=" + date + "&item=" + item + "&text=" + text + "&money=" + money + "&xml_filename=" + xml_filename);	
+    var url = "date=" + date + "&item=" + item + "&text=" + text + "&money=" + money 
+	    + "&xml_filename=" + xml_filename + "&dummy=" + (new Date).getTime();
+	xmlhttp.send(url);	
+	    
 	xmlhttp.onreadystatechange = function() {		
 		// write.php 정상 호출될 경우
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {			
-			window.location='./'; // 페이지 이동
+ 			window.location='./index.html?dummy=' + (new Date).getTime(); // 페이지 이동
 		}
 	}
 }
+
+function loadXml() {
+	var httpReq = new XMLHttpRequest();
+	httpReq.open("get", getXmlFilename(), true);
+	httpReq.send();
+	httpReq.onreadystatechange = function() {
+		if (httpReq.readyState == 4 && httpReq.status == 200) {
+			// xml 문서 -> array로 저장
+			var entries = new Array();
+			var entry = httpReq.responseXML.getElementsByTagName("entry"); // xml 문서
+			for (var i = 0; i < entry.length; i++) {
+				entries.push( new Expense(getText(entry[i].getElementsByTagName("no")[0]), 
+							 getText(entry[i].getElementsByTagName("date")[0]),
+							 getText(entry[i].getElementsByTagName("item")[0]),
+							 getText(entry[i].getElementsByTagName("text")[0]),
+							 getText(entry[i].getElementsByTagName("money")[0]))
+							);
+			}
+		}
+	}
+}
+
