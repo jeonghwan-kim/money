@@ -28,8 +28,6 @@ function saveFileToXml() {
         exit;
     }
     xmlhttp.abort(); // kill the previous request
-
- 	xmlhttp.abort();
 	xmlhttp.open("post", "write.php", true);
 	xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=euc-kr");
     var url = "date=" + date + "&item=" + item + "&text=" + text + "&money=" + money 

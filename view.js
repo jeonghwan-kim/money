@@ -1,3 +1,7 @@
+// ==================================================
+// Class Definition: Expens
+// ==================================================
+
 function Expense(no, date, item, text, money) {
 	this.no = no;
 	this.date = date;
@@ -10,6 +14,16 @@ Expense.prototype.toString = function() {
     var text = "<p>(" + this.item + ") " + this.text + " " + this.money + "</p>";
     return text;
 }
+
+// ==================================================
+// Global varialbles
+// ==================================================
+
+var entries = new Array(); // xml문서 내용을 담는 배열
+
+// ==================================================
+// Functions
+// ==================================================
 
 window.onload = function() {
     loadXml();
@@ -29,7 +43,6 @@ function loadXml() {
     httpReq.onreadystatechange = function() {
         if (httpReq.readyState == 4 && httpReq.status == 200) {
             // xml 문서 -> array로 저장
-            var entries = new Array();
             var entry = httpReq.responseXML.getElementsByTagName("entry"); // xml 문서
             for (var i = 0; i < entry.length; i++) {
                 entries.push( new Expense(getText(entry[i].getElementsByTagName("no")[0]), 
@@ -49,21 +62,42 @@ function loadXml() {
                 sum += entries[i].money;
             document.getElementById("total_amount").innerHTML = "총지출: " + sum + "원";
 
-            // 최근 1일치 정보만 출력
-            { }
-
             // array에 저장된 정보를 html 문서로 변환
-            var contents_elem = document.getElementById("contents"); // html element
-            contents_elem.innerHTML = ""; // 내용 초기화
-            for (var i = 0; i < entries.length; i++) {
-                if ((i == 0) || (i > 0 && entries[i].date != entries[i - 1].date)){ 
-                    // 날짜가 변경될 경우: 날짜 출력				
-                    contents_elem.innerHTML += "<h4>" + entries[i].date + "</h4>";
-                }
-                contents_elem.innerHTML += entries[i]; // (항목) 내용, 금액 출력
-            }
+            loadRecentText('recent');
         } // end of if
     } // end of function()
+}
+
+// array에 저장된 정보를 html 문서로 변환
+function loadRecentText() {
+    var contents_elem = document.getElementById("contents"); // html element
+    var recent_date = entries[0].date; // 최신 날짜
+    
+    for (var i = 0; i < entries.length; i++) {
+        if (entries[i].date != recent_date) // 최신 날짜가 아니면 break
+            break;
+        if ((i == 0) || (i > 0 && entries[i].date != entries[i - 1].date)){ 
+            // 날짜가 변경될 경우: 날짜 출력				
+            contents_elem.innerHTML += "<h4>" + entries[i].date + "</h4>";
+        }
+        contents_elem.innerHTML += entries[i]; // (항목) 내용, 금액 출력
+    }
+}
+
+// array에 저장된 정보를 html 문서로 변환
+function loadText() {
+    var contents_elem = document.getElementById("contents"); // html element
+    var recent_date = entries[0].date; // 최신 날짜
+   
+    for (var i = 0; i < entries.length; i++) {
+        if (entries[i].date == recent_date) // 최신 날짜는 스킵 (이미 출력했으므로)
+            continue;
+        if ((i == 0) || (i > 0 && entries[i].date != entries[i - 1].date)){ 
+            // 날짜가 변경될 경우: 날짜 출력				
+            contents_elem.innerHTML += "<h4>" + entries[i].date + "</h4>";
+        }
+        contents_elem.innerHTML += entries[i]; // (항목) 내용, 금액 출력
+    }
 }
 
 // element 로 부터 nodeValue 얻어내는 함수
