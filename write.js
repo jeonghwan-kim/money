@@ -19,8 +19,6 @@ function saveFileToXml() {
 	var money = document.getElementById("money").value;
 	var xml_filename = getXmlFilename();
 
-	//alert(xml_filename);
-
 	// write.php함수 호출
 	var xmlhttp = new XMLHttpRequest();
     if (!xmlhttp) {

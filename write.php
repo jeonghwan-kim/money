@@ -1,5 +1,5 @@
 <?php
-// ÆÄÀÏ ¿­±â (¾øÀ¸¸é »õ·Î »ý¼º)
+// íŒŒì¼ ì—´ê¸° (ì—†ìœ¼ë©´ ìƒˆë¡œ ìƒì„±)
 $filename = $_REQUEST["xml_filename"];
 
 if (file_exists($filename)) {
@@ -12,14 +12,14 @@ if (file_exists($filename)) {
 
 $xml = new simpleXmlElement($data);
 
-// xml¿¡ µ¥ÀÌÅÍ Ãß°¡ÇÏ±â
+// xmlì— ë°ì´í„° ì¶”ê°€í•˜ê¸°
 $new_entry = $xml->addChild("entry");
 $new_entry->addChild("date", $_REQUEST["date"]);
 $new_entry->addChild("item", $_REQUEST["item"]);
 $new_entry->addChild("text", $_REQUEST["text"]);
 $new_entry->addChild("money", $_REQUEST["money"]);
 
-// ÆÄÀÏ ÀúÀå
+// íŒŒì¼ ì €ìž¥
 $file = fopen($filename, 'w');
 fwrite($file, $xml->asXML());
 fclose($file);
