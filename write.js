@@ -37,7 +37,7 @@ function saveFileToXml() {
 	xmlhttp.onreadystatechange = function() {		
 		// write.php 정상 호출될 경우
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {			
- 			window.location='./index.html?dummy=' + (new Date).getTime(); // 페이지 이동
+ 			window.location='./?dummy=' + (new Date).getTime(); // 페이지 이동
 		}
 	}
 }

@@ -13,7 +13,7 @@
 로딩
 ----
 * index.html: 문서 구조를 나타낸다.
-* load-xml.js: xml파일을 로딩하고 이를 index.html의 element에 할당한다.
+* view.js: xml파일을 로딩하고 이를 index.html의 element에 할당한다.
 
 기타
 ----

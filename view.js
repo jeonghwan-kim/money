@@ -98,6 +98,9 @@ function loadText() {
         }
         contents_elem.innerHTML += entries[i]; // (항목) 내용, 금액 출력
     }
+    
+    // 버보기 버튼 제거
+    document.getElementById("morebtn").innerHTML = "";
 }
 
 // element 로 부터 nodeValue 얻어내는 함수
