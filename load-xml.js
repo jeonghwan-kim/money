@@ -52,7 +52,7 @@ function loadXml() {
 			for (var i = 0; i < entries.length; i++) {
 				if ((i == 0) || (i > 0 && entries[i].date != entries[i - 1].date)){ 
 					// 날짜가 변경될 경우: 날짜 출력				
-					contents_elem.innerHTML = "<h4>" + entries[i].date + "</h4>";
+					contents_elem.innerHTML += "<h4>" + entries[i].date + "</h4>";
 				}
 				contents_elem.innerHTML += entries[i]; // (항목) 내용, 금액 출력
 			}
