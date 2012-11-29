@@ -18,6 +18,10 @@
 * index.html: 문서 구조를 나타낸다.
 * view.js: xml파일을 로딩하고 이를 index.html의 element에 할당한다.
 
+삭제
+----
+* delete.php: view.js의 delete_no()함수가 httpreauest를 이용하여 delete.php를 호출한다.
+
 기타
 ----
 * get-xml-filename.js: 해당 월에 대한 파일명을 리턴한다. 
