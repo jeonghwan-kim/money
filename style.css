@@ -63,13 +63,18 @@ body {
 	color: black;
 	padding: 0 0 0 10px;
 }
+#delete {
+	border: none;
+	color: #C18E44;
+	font-size: 60%;
+	background-color: #E0D0AA;
+}
 #morebtn {
 	text-align: center;
     background-color: #E0D0AA;
     padding: 20px;
 }
 
-/* middle */
 #footer {
 	text-align: center;
 	font-size: 80%;
