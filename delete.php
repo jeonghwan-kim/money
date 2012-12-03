@@ -1,6 +1,6 @@
 <?php
 // get 파라메터 받기 (id)
-$filename = '2012-11.xml';
+$filename = $_REQUEST["filename"];
 $delete_id = $_REQUEST["delete_id"];
 
 // 파일열기
