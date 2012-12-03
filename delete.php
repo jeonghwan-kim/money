@@ -15,13 +15,12 @@ if (file_exists($filename)) {
 $xml = new simpleXmlElement($data);
 
 // 해당 id의 element를 삭제
-$i = 0;
 foreach ($xml->entry as $entry) {
 	if ($entry->id == $delete_id) {
 		$dom = dom_import_simplexml($entry);
 		$dom->parentNode->removeChild($dom);
+		break;
 	}	
-	$i++;
 }
 
 // 파일 저장
