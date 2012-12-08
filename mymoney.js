@@ -33,9 +33,16 @@ Date.prototype.toString = function() {
 // Functions
 // ==================================================
 
-window.onload = function() {
+$(document).ready(function() {
+    $("#write").click( function() {
+        window.location='write.html';
+    });
+    $("#more").click( function() {
+        loadAllText();
+    });
+
     loadXml();
-}
+});
 
 // xml 문서 호출
 function loadXml() {
@@ -74,22 +81,28 @@ function loadXml() {
 
             // array에 저장된 정보를 html 문서로 변환
             loadRecentText();
+            
+            // 더보기 버튼 숨기기/보이기
+
         } // end of if
     } // end of function()
+    if (entries.length == 0) {
+        document.getElementById("morebtn").display = "none";
+    }
 }
 
+// 총액 출력
 function totalAmount() {
     var sum = 0;
     for (var i = 0; i < entries.length; i++) {
         sum += entries[i].money;
     }
-    document.getElementById("total_amount").innerHTML = "총지출: " + sum + "원";
+    $("#total_amount").text("총지출: " + sum + "원");
 }
 
-// array에 저장된 정보를 html 문서로 변환
+// array에 저장된 정보를 html 문서로 변환 (최근 정보만 출력)
 function loadRecentText() {
-    var contents_elem = document.getElementById("contents"); // html element
-    contents_elem.innerHTML = "";
+    $("#contents").empty();
     var recent_date = entries[0].date.getDate(); // 최신 날짜
     
     for (var i = 0; i < entries.length; i++) {
@@ -98,15 +111,14 @@ function loadRecentText() {
         }
         if ((i == 0) || (i > 0 && entries[i].date.getDate() != entries[i - 1].date.getDate())){ 
             // 날짜가 변경될 경우: 날짜 출력				
-            contents_elem.innerHTML += "<h4>" + entries[i].date + "</h4>";
+            $("#contents").append("<h4>" + entries[i].date + "</h4>");
         }
-        contents_elem.innerHTML += entries[i]; // (항목) 내용, 금액 출력
+        $("#contents").append("<p>" + entries[i] + "</p>"); // (항목) 내용, 금액 출력
     }
 }
 
-// 더보기 버튼 이벤트 핸들러
 // array에 저장된 정보를 html 문서로 변환 
-function loadText() {
+function loadAllText() {
     var contents_elem = document.getElementById("contents"); // html element
     var recent_date = entries[0].date.getDate(); // 최신 날짜
    
@@ -120,7 +132,7 @@ function loadText() {
         contents_elem.innerHTML += entries[i]; // (항목) 내용, 금액 출력
     }
 
-    // 버보기 버튼 제거
+    // 더보기 버튼 제거
     document.getElementById("morebtn").innerHTML = "";
 }
 
@@ -166,7 +178,8 @@ function delete_node(delete_id) {
                 }
 
                 // 화면 표시에서 삭제
-                document.getElementById(delete_id).innerHTML = "";
+                $("#" + delete_id).empty();
+                
                 // 만약 해당 날짜의 데이터가 모두 삭제된 경우: 날짜 출력도 삭제함
 
                 // 변경된 총 지출액 출력
@@ -176,6 +189,7 @@ function delete_node(delete_id) {
     } 
 }
 
+// 배열에서 특정 인덱스(혹은 구간) 삭제
 Array.prototype.remove = function(from, to) {
     var rest = this.slice((to || from) + 1 || this.length);
     this.length = from < 0 ? this.length + from : from;
