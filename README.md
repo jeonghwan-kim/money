@@ -22,7 +22,3 @@
 ----
 * delete.php: view.js의 delete_no()함수가 httpreauest를 이용하여 delete.php를 호출한다.
 
-기타
-----
-* get-xml-filename.js: 해당 월에 대한 파일명을 리턴한다. 
-  저장, 로딩시 호출되는 함수다.
