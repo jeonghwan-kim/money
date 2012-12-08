@@ -90,6 +90,8 @@ $(document).ready(function() {
         entries.toHtml(false);
     });
 
+    $("#middle").add("<p id='loadmsg'>loading...</p>"); // 로딩중 메제지
+    
     // xml 문서 호출
     if (!httpReq) {
         alert('XMLHttpRequest() error'); 
@@ -121,6 +123,9 @@ function loadXml() {
                 getText(entry[i].getElementsByTagName("money")[0]))
             );
         }
+     
+        $("#loadmsg").remove(); // 로딩중 메세지 제거
+        
         entries.sort(function(a, b){return b.written_order - a.written_order;}); // 최근 시간순으로 array 정렬
         entries.totalAmount(); // 총액 출력
         entries.toHtml(true); // 배열 내용을 html로 출력 (true: 최근 일자만 출력)
