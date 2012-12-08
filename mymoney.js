@@ -11,23 +11,67 @@ function Expense(id, date, item, text, money) {
     this.written_order = new Number(this.date.getDate()) + new Number(this.id);
 }
 
-Expense.prototype.toString = function() {
+Expense.prototype.toHtml = function() {
     var text = "<p id='" + this.id + "'>(" + this.item + ") " + this.text + " " + this.money 
     + " <input id='delete' type='button' value='삭제' onclick='delete_node("+this.id+")'; />"+ "</p>";
     return text;
 }
+
+Expense.prototype.getDate = function() {
+    return this.date.getDate();
+}
+
+// Date.toString 함수 재정의
+Date.prototype.toString = function() {
+    return this.getFullYear() + "-" + (this.getMonth() + 1) + "-" + this.getDate();
+}
+
+// 배열에서 특정 인덱스(혹은 구간) 삭제
+Array.prototype.remove = function(from, to) {
+    var rest = this.slice((to || from) + 1 || this.length);
+    this.length = from < 0 ? this.length + from : from;
+    return this.push.apply(this, rest);
+};
+
+// array에 저장된 정보를 html 문서로 변환
+Array.prototype.toHtml = function(is_only_recent) {
+    var recent_date = this[0].getDate(); // 최신 날짜
+    
+    for (var i = 0; i < this.length; i++) {
+        // 최신날짜 출력할 경우: 최신날짜가 아니면 break
+        if ((is_only_recent == true) && (this[i].getDate() != recent_date))
+            break;
+        // 최신 날짜 출력이 아닐 경우: 최신날짜이면 continue
+        if ((is_only_recent == false) && (this[i].getDate() == recent_date))
+            continue;
+        if ((i == 0) || (i > 0 && this[i].getDate() != this[i - 1].getDate())){ 
+            // 날짜가 변경될 경우: 날짜 출력				
+            $("#contents").append("<h4>" + this[i].date + "</h4>");
+        }
+        $("#contents").append(this[i].toHtml()); // (항목) 내용, 금액 출력
+    }
+    
+    if (is_only_recent == false)
+        $("#morebtn").remove();    
+}
+
+// 총액 출력
+Array.prototype.totalAmount = function() {
+    var sum = 0;
+    for (var i = 0; i < this.length; i++) {
+        sum += this[i].money;
+    }
+    $("#total_amount").text("총지출: " + sum + "원");
+}
+
 
 
 // ==================================================
 // Global varialbles
 // ==================================================
 
-var entries = new Array(); // xml문서 내용을 담는 배열
-
-// Date.toString 함수 재정의
-Date.prototype.toString = function() {
-    return this.getFullYear() + "-" + (this.getMonth() + 1) + "-" + this.getDate();
-}
+var entries = new Array(); // xml문서 내용을 파싱하여 담는 배열
+var httpReq = new XMLHttpRequest(); 
 
 // ==================================================
 // Functions
@@ -38,106 +82,48 @@ $(document).ready(function() {
         window.location='write.html';
     });
     $("#more").click( function() {
-        loadAllText();
+        entries.toHtml(false);
     });
 
-    loadXml();
-});
-
-// xml 문서 호출
-function loadXml() {
-    httpReq = new XMLHttpRequest();
+    // xml 문서 호출
     if (!httpReq) {
-        alert('XMLHttpRequest() error');
-        exit;
+        alert('XMLHttpRequest() error'); 
+        return;
     }
     httpReq.abort(); // kill the previous request
     var url = getXmlFilename() + "?dummy=" + new Date().getTime(); // to override cach
     httpReq.open("get", url, true);
     httpReq.send();
-    httpReq.onreadystatechange = function() {
-        if (httpReq.readyState == 4 && httpReq.status == 200) {
-            // xml 문서 -> array로 저장
-            var entry = httpReq.responseXML.getElementsByTagName("entry"); // xml 문서
-            for (var i = 0; i < entry.length; i++) {
-                var date_string = getText(entry[i].getElementsByTagName("date")[0]).split('-');
-                var year = date_string[0];
-                var month = date_string[1];
-                var date = date_string[2];
-                entries.push( new Expense(
-                    getText(entry[i].getElementsByTagName("id")[0]),
-                    new Date(year, month, date),
-                    getText(entry[i].getElementsByTagName("item")[0]),
-                    getText(entry[i].getElementsByTagName("text")[0]),
-                    getText(entry[i].getElementsByTagName("money")[0]))
-                );
-            }
-
-            // 최근 시간순으로 array 정렬
-            entries.sort(function(a, b){return b.written_order - a.written_order;});
-
-            // 총액 출력
-            totalAmount();
-
-            // array에 저장된 정보를 html 문서로 변환
-            loadRecentText();
-            
-            // 더보기 버튼 숨기기/보이기
-
-        } // end of if
-    } // end of function()
-    if (entries.length == 0) {
-        document.getElementById("morebtn").display = "none";
-    }
-}
-
-// 총액 출력
-function totalAmount() {
-    var sum = 0;
-    for (var i = 0; i < entries.length; i++) {
-        sum += entries[i].money;
-    }
-    $("#total_amount").text("총지출: " + sum + "원");
-}
-
-// array에 저장된 정보를 html 문서로 변환 (최근 정보만 출력)
-function loadRecentText() {
-    $("#contents").empty();
-    var recent_date = entries[0].date.getDate(); // 최신 날짜
+    httpReq.onreadystatechange = loadXml;
     
-    for (var i = 0; i < entries.length; i++) {
-        if (entries[i].date.getDate() != recent_date) {// 최신 날짜가 아니면 break
-            break;
+});
+
+// xml 요청 응답함수: xml->객체 저장, 정렬, html 출력
+function loadXml() {
+    if (httpReq.readyState == 4 && httpReq.status == 200) {
+        // xml 문서 -> array로 저장
+        var entry = httpReq.responseXML.getElementsByTagName("entry"); // xml 문서
+        for (var i = 0; i < entry.length; i++) {
+            var date_string = getText(entry[i].getElementsByTagName("date")[0]).split('-');
+            var year = date_string[0];
+            var month = date_string[1];
+            var date = date_string[2];
+            entries.push( new Expense(
+                getText(entry[i].getElementsByTagName("id")[0]),
+                new Date(year, month, date),
+                getText(entry[i].getElementsByTagName("item")[0]),
+                getText(entry[i].getElementsByTagName("text")[0]),
+                getText(entry[i].getElementsByTagName("money")[0]))
+            );
         }
-        if ((i == 0) || (i > 0 && entries[i].date.getDate() != entries[i - 1].date.getDate())){ 
-            // 날짜가 변경될 경우: 날짜 출력				
-            $("#contents").append("<h4>" + entries[i].date + "</h4>");
-        }
-        $("#contents").append("<p>" + entries[i] + "</p>"); // (항목) 내용, 금액 출력
-    }
+        entries.sort(function(a, b){return b.written_order - a.written_order;}); // 최근 시간순으로 array 정렬
+        entries.totalAmount(); // 총액 출력
+        entries.toHtml(true); // 배열 내용을 html로 출력 (true: 최근 일자만 출력)
+    } // endh of if
 }
 
-// array에 저장된 정보를 html 문서로 변환 
-function loadAllText() {
-    var contents_elem = document.getElementById("contents"); // html element
-    var recent_date = entries[0].date.getDate(); // 최신 날짜
-   
-    for (var i = 0; i < entries.length; i++) {
-        if (entries[i].date.getDate() == recent_date) // 최신 날짜는 스킵 (이미 출력했으므로)
-            continue;
-        if ((i == 0) || (i > 0 && entries[i].date.getDate() != entries[i - 1].date.getDate())){ 
-            // 날짜가 변경될 경우: 날짜 출력				
-            contents_elem.innerHTML += "<h4>" + entries[i].date + "</h4>";
-        }
-        contents_elem.innerHTML += entries[i]; // (항목) 내용, 금액 출력
-    }
 
-    // 더보기 버튼 제거
-    document.getElementById("morebtn").innerHTML = "";
-}
-
-// element 로 부터 nodeValue 얻어내는 함수
-// 없으면 "" 반환
+// element 로 부터 nodeValue 얻어내는 함수 (없으면 "" 반환)
 function getText(elem) {
     var text = "";
     if (elem) {
@@ -183,15 +169,15 @@ function delete_node(delete_id) {
                 // 만약 해당 날짜의 데이터가 모두 삭제된 경우: 날짜 출력도 삭제함
 
                 // 변경된 총 지출액 출력
-                totalAmount();
+                entries.totalAmount();
             }           
         }
     } 
 }
 
-// 배열에서 특정 인덱스(혹은 구간) 삭제
-Array.prototype.remove = function(from, to) {
-    var rest = this.slice((to || from) + 1 || this.length);
-    this.length = from < 0 ? this.length + from : from;
-    return this.push.apply(this, rest);
-};
+// "2012-12.xml" 형태의 파일명 얻는 함수
+function getXmlFilename() {	
+	var today = new Date();
+	var xmlFilename = today.getFullYear() + "-" + (today.getMonth() + 1) + ".xml";
+	return xmlFilename;
+}

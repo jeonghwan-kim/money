@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="euc-kr"?>
-<expense><entry><id>0</id><date>2012-12-8</date><item></item><text>test</text><money>123</money></entry></expense>
+<expense><entry><id>0</id><date>2012-12-8</date><item/><text>test</text><money>123</money></entry><entry><id>1</id><date>2012-12-8</date><item/><text>asdf</text><money>1234</money></entry><entry><id>2</id><date>2012-12-7</date><item/><text>jkl;</text><money>12345</money></entry><entry><id>4</id><date>2012-12-8</date><item/><text>asdf</text><money>23030</money></entry></expense>
