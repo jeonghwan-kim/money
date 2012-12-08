@@ -13,7 +13,7 @@ function Expense(id, date, item, text, money) {
 
 Expense.prototype.toHtml = function() {
     var text = "<p id='" + this.id + "'>(" + this.item + ") " + this.text + " " + this.money 
-    + " <input id='delete' type='button' value='삭제' onclick='delete_node("+this.id+")'; />"+ "</p>";
+    + " <input id='delete' type='button' value='삭제' onclick='deleteNode("+this.id+")'; />"+ "</p>";
     return text;
 }
 
@@ -35,8 +35,13 @@ Array.prototype.remove = function(from, to) {
 
 // array에 저장된 정보를 html 문서로 변환
 Array.prototype.toHtml = function(is_only_recent) {
+    if (this.length == 0) return;
+    
     var recent_date = this[0].getDate(); // 최신 날짜
     
+    if (is_only_recent == true) // 최근 날짜만 출력할 경우 현제 데이테 삭제(갱신시 활용)
+        $("#contents").empty();
+        
     for (var i = 0; i < this.length; i++) {
         // 최신날짜 출력할 경우: 최신날짜가 아니면 break
         if ((is_only_recent == true) && (this[i].getDate() != recent_date))
@@ -119,6 +124,8 @@ function loadXml() {
         entries.sort(function(a, b){return b.written_order - a.written_order;}); // 최근 시간순으로 array 정렬
         entries.totalAmount(); // 총액 출력
         entries.toHtml(true); // 배열 내용을 html로 출력 (true: 최근 일자만 출력)
+        if (entries.length == 0) // 배열 내용이 없을 경우 더보기 버튼 감추기
+            $("#morebtn").css("display", "none");
     } // endh of if
 }
 
@@ -136,7 +143,7 @@ function getText(elem) {
 }
 
 // 노드 삭제하기
-function delete_node(delete_id) {
+function deleteNode(delete_id) {
     var response = confirm("Delete?");
     
     if (response) {
@@ -162,15 +169,11 @@ function delete_node(delete_id) {
                         entries.remove(i); 
                     }
                 }
-
-                // 화면 표시에서 삭제
-                $("#" + delete_id).empty();
-                
-                // 만약 해당 날짜의 데이터가 모두 삭제된 경우: 날짜 출력도 삭제함
-
-                // 변경된 총 지출액 출력
-                entries.totalAmount();
-            }           
+                $("#" + delete_id).remove(); // 화면 표시에서 삭제
+                entries.totalAmount(); // 변경된 총 지출액 출력
+                if (entries.length == 0) // 배열 내용이 없을 경우 더보기 버튼 감추기
+                    $("#morebtn").css("display", "none");
+                }           
         }
     } 
 }
