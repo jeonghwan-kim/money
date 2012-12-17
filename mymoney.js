@@ -8,12 +8,21 @@ function Expense(id, date, item, text, money) {
     this.item = item;
     this.text = text;
     this.money = new Number(money);
-    this.written_order = new Number(this.date.getDate()) + new Number(this.id);
+    this.written_order = new Number(this.date.getDate()) * 1000 + new Number(this.id);
+    // *1000은 날짜에 비중을 더 주기 위함
 }
 
 Expense.prototype.toHtml = function() {
-    var text = "<p id='" + this.id + "'>(" + this.item + ") " + this.text + " " + this.money 
-    + " <input id='delete' type='button' value='삭제' onclick='deleteNode("+this.id+")'; />"+ "</p>";
+    
+    var text = "<p id='" + this.id + "'>";  
+    
+    if (this.item != "") // 항목이 있을 경우
+        text += "(" + this.item + ") ";
+        
+    text += this.text + " " + this.money 
+    + " <input id='delete' type='button' value='삭제' onclick='deleteNode(" + this.id + ")'; />" 
+    + "</p>";
+
     return text;
 }
 
