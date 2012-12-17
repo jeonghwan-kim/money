@@ -139,7 +139,7 @@ function loadXml() {
             var date = date_string[2];
             entries.push( new Expense(
                 getText(entry[i].getElementsByTagName("id")[0]),
-                new Date(year, month, date),
+                new Date(year, month - 1, date),
                 getText(entry[i].getElementsByTagName("item")[0]),
                 getText(entry[i].getElementsByTagName("text")[0]),
                 getText(entry[i].getElementsByTagName("money")[0]))
