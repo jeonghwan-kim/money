@@ -19,7 +19,7 @@ Expense.prototype.toHtml = function() {
     if (this.item != "") // 항목이 있을 경우
         text += "(" + this.item + ") ";
         
-    text += this.text + " " + this.money 
+    text += this.text + " " + this.money.formatMoney() 
     + " <input id='delete' type='button' value='삭제' onclick='deleteNode(" + this.id + ")'; />" 
     + "</p>";
 
@@ -34,6 +34,19 @@ Expense.prototype.getDate = function() {
 Date.prototype.toString = function() {
     return this.getFullYear() + "-" + (this.getMonth() + 1) + "-" + this.getDate();
 }
+
+// Number를 금액 형식으로 출력
+Number.prototype.formatMoney = function(c, d, t){
+    var n = this;
+    var c = isNaN(c = Math.abs(c)) ? 2 : c;
+    var t = ",";
+    var s = n < 0 ? "-" : "";
+    var i = parseInt(n = Math.abs(+n || 0).toFixed(c)) + "";
+    var j = (j = i.length) > 3 ? j % 3 : 0;
+    return s 
+        + (j ? i.substr(0, j) + t : "") 
+        + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t);
+ };
 
 // 배열에서 특정 인덱스(혹은 구간) 삭제
 Array.prototype.remove = function(from, to) {
@@ -75,7 +88,7 @@ Array.prototype.totalAmount = function() {
     for (var i = 0; i < this.length; i++) {
         sum += this[i].money;
     }
-    $("#total_amount").text("총지출: " + sum + "원");
+    $("#total_amount").text("총지출: " + sum.formatMoney() + "원");
 }
 
 
