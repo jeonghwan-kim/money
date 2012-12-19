@@ -104,10 +104,18 @@ var httpReq = new XMLHttpRequest();
 // Functions
 // ==================================================
 
+// 페이지 로딩시 작업들
 $(document).ready(function() {
-    $("#write").click( function() {
-        window.location='write.html';
+    $("#title").click( function() {
+        $('#view_page').css("display", "block"); // view 보이기
+        $('#write_page').css("display", "none"); // write 숨기기
     });
+    
+    $("#writebtn").click( function() {
+        $('#view_page').css("display", "none"); // view 숨기기
+        $('#write_page').css("display", "block"); // write 보이기
+    });
+
     $("#more").click( function() {
         entries.toHtml(false);
     });

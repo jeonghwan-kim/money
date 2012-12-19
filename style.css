@@ -7,6 +7,10 @@ body {
 	font-family: Helvetica;  
 	font-size: 22px;
 }
+a {
+    text-decoration: none;
+    color: white;
+}
 
 /* 버튼 스타일 정의 */
 .btn{
@@ -39,7 +43,11 @@ body {
 	font-size: 90%;
 }
 
-/* middle */
+/* view page */
+#view_page {
+    display: block;
+}
+
 #summary {
 	text-align: center;	
 	padding: 15px;
@@ -82,7 +90,10 @@ body {
 	padding: 10px;
 }
 
-/* write.html */
+/* write page */
+#write_page {
+    display: none;
+}
 #editor {
 	background-color: #E0D0AA;
 	padding: 20px 20px;
@@ -93,10 +104,10 @@ body {
 	font-size: 110%
 }
 #date, #item, #money {
-	width: 120px;
+	width: 160px;
 }
 #text {
-	width: 70%;
+	width: 80%;
 }
 #save {
 	text-align: center;
