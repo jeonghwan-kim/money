@@ -107,7 +107,7 @@ a {
 	width: 160px;
 }
 #text {
-	width: 80%;
+	width: 70%; /* 모바일에 최적화된 길이 */
 }
 #save {
 	text-align: center;
