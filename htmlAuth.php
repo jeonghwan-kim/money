@@ -1,6 +1,6 @@
 <?php
-	$username = 'mymoney'; 
-	$password = 'MyMoney';
+	$username = ''; 
+	$password = '';
 	$range = 'mymoney';
 	
 	if (!isset($_SERVER['PHP_AUTH_USER']) || 
