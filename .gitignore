@@ -164,3 +164,7 @@ pip-log.txt
 
 # javascript
 .xml
+
+
+node_modules/
+routes/config.json

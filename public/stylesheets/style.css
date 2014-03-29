@@ -1,0 +1,34 @@
+body {
+  /*padding-top: 70px;*/
+}
+.list-group .active a {
+  color: #fff;
+}
+#control-btn {
+  display: none;
+}
+.search-result {
+  background: #fcf8e3;
+  border-radius: 10px;
+  padding: 3px;
+}
+@media (min-width: 992px) {
+  #control {
+    display: block !important;
+  }
+}
+@media (max-width: 992px) {
+  #control-btn {
+    display: block;
+  }
+}
+@media (max-width: 768px) {
+  .category {
+    display: none;
+  }
+}
+@media (max-width: 480px) {
+  .total {
+    display: none;
+  }
+}

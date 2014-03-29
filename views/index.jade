@@ -1,0 +1,46 @@
+extends layout
+
+block content
+	.container
+		h2.page-header
+			a(href='#') Money
+		.row
+			//- 월 목록
+			.col-md-4.collapse#control
+				.panel.panel-info
+					.panel-headingMonthly
+					.panel-body
+						ul.nav.nav-pills
+							| 월 리스트
+			//- 지출 내용
+			.col-md-8
+				p
+					a.btn.btn-default(href="#write-expense" role="button" data-toggle="modal")
+						span.glyphicon.glyphicon-pencil
+						| 새로운 지출
+				p
+					.input-group
+						input.form-control(type="text" placeholder="검색")
+						span.input-group-btn
+							button.btn.btn-default(type="button")
+								span.glyphicon.glyphicon-search
+									| 검색
+				//- 총 지출액 출력
+				.alert.alert-warning
+					| 총 지출: #{total} 원
+				//- 지출 내역 출력
+				table.table
+					thead
+						tr#table-header
+							th 날짜
+							th 지출 내용
+							th 금액
+							th
+							- var len = data.length, sum = 0
+							- for (var i = 0; i < len; i++)
+								tr
+									td #{data[i].date}
+									td #{data[i].text}
+									td #{data[i].amount}
+									td
+										a.close(onclick="delete_expense();" href="#") &times;
