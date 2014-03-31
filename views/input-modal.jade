@@ -1,0 +1,28 @@
+.modal.fade#write-expense(tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true")
+	.modal-dialog
+		.modal-content
+			.modal-header
+				button.close(type="button" data-dismiss="modal" aria-hidden="true")
+					| &times;
+				h4.modal-title 새로운 지출
+			.modal-body
+				form.form-horizontal(role="form")
+					.form-group
+						label.col-lg-2.control-label(for="inputDate") 날짜
+						.col-lg-10
+							- var tmp = new Date();
+							- var date = tmp.getFullYear() + '-' + (tmp.getMonth() + 1) + '-' + tmp.getDate();
+							input.form-control#date(type="text" name="날짜" value="#{date}")
+					.form-group
+						label.col-lg-2.control-label 지출 내용
+						.col-lg-10
+							input.form-control#text(type="text" name="text")
+					.form-group
+						label.col-lg-2.control-label 금액
+						.col-lg-10
+							input.form-control#amount(type="text" name="amount")
+			.modal-footer
+				button.btn.btn-default(type="button" data-dismiss="modal")
+					| Close
+				button.btn.btn-primary#save-expense(type="button")
+					| Save

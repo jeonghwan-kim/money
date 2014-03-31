@@ -5,20 +5,13 @@ block content
 		h2.page-header
 			a(href='#') Money
 		.row
-			//- 월 목록
-			.col-md-4.collapse#control
-				.panel.panel-info
-					.panel-headingMonthly
-					.panel-body
-						ul.nav.nav-pills
-							| 월 리스트
 			//- 지출 내용
 			.col-md-8
 				p
 					a.btn.btn-default(href="#write-expense" role="button" data-toggle="modal")
 						span.glyphicon.glyphicon-pencil
 						| 새로운 지출
-				p
+				//- p
 					.input-group
 						input.form-control(type="text" placeholder="검색")
 						span.input-group-btn
@@ -43,4 +36,20 @@ block content
 									td #{data[i].text}
 									td #{data[i].amount}
 									td
-										a.close(onclick="delete_expense();" href="#") &times;
+										a.close(onclick="delete_expense(11921, #{data[i].id});" href="#") &times;
+			//- 월 목록
+			.col-md-4#control
+				.panel.panel-info
+					.panel-headingMonthly
+					.panel-body
+						ul.nav.nav-pills
+							- var len = monthList.length
+							- for (var i = 0; i < len; i++)
+								- if (curMonth === monthList[i].month)
+									li.active
+										a(href="/?uid=#{uid}&yearMonth=#{monthList[i].month}") #{monthList[i].month}
+								- else
+									li
+										a(href="/?uid=#{uid}&yearMonth=#{monthList[i].month}") #{monthList[i].month}
+
+			include input-modal

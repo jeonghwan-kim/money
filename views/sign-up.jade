@@ -1,0 +1,18 @@
+extends layout
+
+block content
+	.container
+		h1.page-header
+			a(href="#")
+				| Money
+		.jumbotron
+			p
+				input.form-control.input-lg#new-email(type="text" placeholder="Email address")
+			p
+				input.form-control.input-lg#new-password(type="password" placeholder="Create password")
+			p
+				a.btn.btn-lg.btn-success#signup-btn(href="#" role="button")
+					| 계정 생성
+			p
+				a(href="/signin")
+					| 로그인
