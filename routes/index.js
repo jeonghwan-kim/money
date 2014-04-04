@@ -12,6 +12,7 @@ var mysqlPool = mysql.createPool({
 
 var self = this;
 
+
 exports.index = function (req, res) {
 	var uid = req.param('uid');
 	var yearMonth = req.param('yearMonth');
