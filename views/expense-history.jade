@@ -36,7 +36,7 @@ block content
 									td #{data[i].text}
 									td #{data[i].amount}
 									td
-										a.close(onclick="delete_expense(11921, #{data[i].id});" href="#") &times;
+										a.close(onclick="deleteExpense(#{data[i].id});" href="#") &times;
 			//- 월 목록
 			.col-md-4#control
 				.panel.panel-info
@@ -45,11 +45,13 @@ block content
 						ul.nav.nav-pills
 							- var len = monthList.length
 							- for (var i = 0; i < len; i++)
-								- if (curMonth === monthList[i].month)
+								- if (curMonth === monthList[i].yearmonth)
 									li.active
-										a(href="/?uid=#{uid}&yearMonth=#{monthList[i].month}") #{monthList[i].month}
+										a(href="/expense/#{uid}/#{monthList[i].yearmonth}")
+											| #{monthList[i].yearmonth}
 								- else
 									li
-										a(href="/?uid=#{uid}&yearMonth=#{monthList[i].month}") #{monthList[i].month}
+										a(href="/expense/#{uid}/#{monthList[i].yearmonth}")
+											| #{monthList[i].yearmonth}
 
 			include input-modal

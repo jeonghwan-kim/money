@@ -1,91 +1,21 @@
 
 /**
- * 초기 로딩시 작업
- */
-$(document).ready(function () {
-	$("#save-expense").click(function () {
-		save_expanse();
-	});
-	$("#signup-btn").click(function () {
-		signup();
-	});
-});
-
-/**
- * 신규 계정 생성
- *
- * @param	{[type]} uid			[description]
- * @param	{[type]} password [description]
- * @return {[type]}					[description]
- */
-function signup() {
-	var newEmail = $("#new-email").val();
-	var newPassword = $("#new-password").val();
-
-	if (!newEmail || !newPassword) {
-		alert('id or password is empty');
-		return;
-	}
-
-	$.ajax({
-		type: "POST",
-		url: '/user',
-		data: {
-			email: newEmail,
-			password: newPassword
-		},
-		success: function(uid) {
-			setCookie('uid', uid);
-			$(location).attr('href', '/?uid=' + uid + '&yearMonth=2014-03');
-		}
-	})
-}
-
-/**
- * 지출항목 저장
- *
- * @return {[type]} [description]
- */
-function save_expanse() {
-	var date = $("#date").val();
-	var text = $("#text").val();
-	var amount = $("#amount").val();
-
-	$.post('/',
-		{
-			uid: 11921,
-			date: date,
-			text: text,
-			amount: amount
-		},
-		function (data, status) {
-			if (data.insertId) // 저장이 완료되면 페이지 이동.
-				$(location).attr('href', '/?uid=11921&yearMonth=2014-03');
-			else
-				alert("save error");
-		});
-}
-
-/**
  * 지출항목 삭제
  *
  * @param	{[type]} id [description]
  * @return {[type]}		[description]
  */
-function delete_expense(uid, expenseId) {
+function deleteExpense(id) {
 	if (confirm('삭제할까요?', true)) {
 		$.ajax({
-			url: "/",
+			url: "/expense",
 			type: 'DELETE',
 			data: {
-				uid: uid,
-				expenseId : expenseId
+				id : id
 			},
 			success: function(data) {
-				console.log(uid, expenseId);
-				console.log(data)
 				if (data.deletedRows === 1)
-					$(location).attr('href', '/?uid=11921&yearMonth=2014-03');
+					$(location).attr('href', '/');
 				else
 					alert("delete error");
 			}
@@ -99,7 +29,7 @@ function delete_expense(uid, expenseId) {
 
 ////////////////////////////////////////////////////////////////////////////////
 //
-// 쿠기 설정 함수
+// 쿠키 설정 함수
 //
 ////////////////////////////////////////////////////////////////////////////////
 

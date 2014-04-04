@@ -6,13 +6,7 @@ block content
 			a(href="#")
 				| Money
 		.jumbotron
-			p
-				input.form-control.input-lg#new-email(type="text" placeholder="Email address")
-			p
-				input.form-control.input-lg#new-password(type="password" placeholder="Create password")
-			p
-				a.btn.btn-lg.btn-success#signup-btn(href="#" role="button")
-					| 계정 생성
-			p
-				a(href="/signin")
-					| 로그인
+			form(method="POST" action="/signup")
+				input.form-control.input-lg(type="email" name="email" placeholder="이메일 주소" required autofocus)
+				input.form-control.input-lg(type="password" name="password" placeholder="비밀번호 생성" required)
+				button.btn.btn-lg.btn-primary(type="submit") 계정생성
