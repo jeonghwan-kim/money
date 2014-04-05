@@ -6,11 +6,15 @@ block content
 			a(href='#') Money
 		.row
 			//- 지출 내용
-			.col-md-8
+			.col-sm-10
 				p
-					a.btn.btn-default(href="#write-expense" role="button" data-toggle="modal")
-						span.glyphicon.glyphicon-pencil
-						| 새로운 지출
+					.form-group
+						a.btn.btn-default(href="#write-expense" role="button" data-toggle="modal")
+							span.glyphicon.glyphicon-pencil
+							| 새로운 지출
+					.form-group
+						a.btn.btn-default(href="/singout")
+							| 로그아웃
 				//- p
 					.input-group
 						input.form-control(type="text" placeholder="검색")
@@ -38,21 +42,17 @@ block content
 									td
 										a.close(onclick="deleteExpense(#{data[i].id});" href="#") &times;
 			//- 월 목록
-			.col-md-4#control
-				.panel.panel-default
-					.panel-headingMonthly
-					.panel-body
-						ul.nav.nav-pills
-							- var len = monthList.length
-							- for (var i = 0; i < len; i++)
-								- if (curMonth === monthList[i].yearmonth)
-									li.active
-										a(href="/expense/#{monthList[i].yearmonth}")
-											| #{monthList[i].yearmonth}
-								- else
-									li
-										a(href="/expense/#{monthList[i].yearmonth}")
-											| #{monthList[i].yearmonth}
-				a.btn.btn-default(href="/singout")
-					| 로그아웃
+			.col-sm-2
+				.bs-docs-sidebar
+					ul.nav.bs-docs-sidenav
+						- var len = monthList.length
+						- for (var i = 0; i < len; i++)
+							- if (curMonth === monthList[i].yearmonth)
+								li.active
+									a(href="/expense/#{monthList[i].yearmonth}")
+										| #{monthList[i].yearmonth}
+							- else
+								li
+									a(href="/expense/#{monthList[i].yearmonth}")
+										| #{monthList[i].yearmonth}
 			include input-modal
