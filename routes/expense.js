@@ -10,7 +10,7 @@ exports.listExpense = function (req, res) {
 		return;
 	}
 
-	var uid = req.params.uid;
+	var uid = req.session.uid;
 	var yearMonth = req.params.yearMonth;
 
 	if (!uid || !yearMonth) {
@@ -57,7 +57,7 @@ exports.insertExpense = function (req, res) {
 			}
 
 			if (data.insertId > 0) {
-				res.redirect('/expense/' + uid + '/' + monthString(date));
+				res.redirect('/expense/' + monthString(date));
 			} else {
 				res.send(500);
 			}

@@ -44,14 +44,14 @@ app.get('/signup', function (req, res) {
 	res.render('sign-up');
 });
 app.post('/signup', user.signup);
+app.get('/expense/:yearMonth', expense.listExpense);
+app.post('/expense', expense.insertExpense);
+app.delete('/expense', expense.deleteExpense);
+
 app.get('/session', function (req, res) {
 	req.session.foo = 'start';
 	res.send(req.session);
 });
-app.get('/expense/:uid/:yearMonth', expense.listExpense);
-app.post('/expense', expense.insertExpense);
-app.delete('/expense', expense.deleteExpense);
-
 
 
 

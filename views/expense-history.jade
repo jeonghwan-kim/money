@@ -47,11 +47,11 @@ block content
 							- for (var i = 0; i < len; i++)
 								- if (curMonth === monthList[i].yearmonth)
 									li.active
-										a(href="/expense/#{uid}/#{monthList[i].yearmonth}")
+										a(href="/expense/#{monthList[i].yearmonth}")
 											| #{monthList[i].yearmonth}
 								- else
 									li
-										a(href="/expense/#{uid}/#{monthList[i].yearmonth}")
+										a(href="/expense/#{monthList[i].yearmonth}")
 											| #{monthList[i].yearmonth}
 
 			include input-modal

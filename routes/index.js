@@ -12,5 +12,5 @@ exports.index = function (req, res) {
 
 	var uid = req.session.uid
 	var yearMonth = monthString();
-	res.redirect('/expense/' + uid + '/' + yearMonth);
+	res.redirect('/expense/' + yearMonth);
 };
