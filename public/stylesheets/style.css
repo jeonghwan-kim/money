@@ -1,6 +1,9 @@
 body {
   /*padding-top: 70px;*/
 }
+footer {
+  height: 40px;
+}
 .list-group .active a {
   color: #fff;
 }

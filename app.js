@@ -43,6 +43,7 @@ app.post('/signin', user.signin);
 app.get('/signup', function (req, res) {
 	res.render('sign-up');
 });
+app.get('/singout', user.signout);
 app.post('/signup', user.signup);
 app.get('/expense/:yearMonth', expense.listExpense);
 app.post('/expense', expense.insertExpense);

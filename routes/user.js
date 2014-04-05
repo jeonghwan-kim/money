@@ -65,6 +65,11 @@ exports.signup = function (req, res) {
 	});
 }
 
+exports.signout = function (req, res) {
+	req.session.uid = null;
+	req.session.isSigned = null;
+	res.redirect('/');
+}
 
 
 function createUser(email, password, cb) {
