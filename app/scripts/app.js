@@ -12,9 +12,13 @@ angular.module('moneyApp', [
         templateUrl: 'partials/main',
         controller: 'MainCtrl'
       })
+      .when('/signin', {
+        templateUrl: 'partials/signin',
+        contorller: 'SigninCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
-      
+
     $locationProvider.html5Mode(true);
   });

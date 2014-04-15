@@ -1,0 +1,13 @@
+.container
+  h1.page-header
+    a(href="/") Money
+  .jumbotron
+    form(ng-submit="submit()" ng-controller="SigninCtrl")
+      .form-group
+        input.form-control.input-lg(type="email" ng-model="email" name="email" placeholder="Email address" required autofocus)
+      .form-group
+        input.form-control.input-lg(type="password" ng-model="password" name="password" placeholder="Password" required)
+      .form-group
+        button.btn.btn-lg.btn-success(type="submit") 로그인
+    a.btn.btn-lg.btn-default#signin-btn(ng-href="/signup" role="button")
+      | 회원가입
