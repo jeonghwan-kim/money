@@ -1,58 +1,14 @@
 'use strict';
 
 angular.module('moneyApp')
-  .controller('MainCtrl', function ($scope, $http) {
-    $http.get('/api/expense').success(function(expense) {
-      $scope.expense = expense;
-      $scope.sum = (function(){
-        var sum = 0, len = expense.length;
-        for (var i = 0; i < len; i++) {
-          sum += expense[i].amount;
-        }
+  .controller('MainCtrl', function ($scope, $http, $location, $cookies) {
+    var uid = $cookies.uid;
 
-        return sum;
-      })(expense);
-    });
-
-    $http.get('/api/yearmonth').success(function(yearmonth) {
-      $scope.yearmonth = yearmonth;
-    })
-
-    $scope.curMonth = getThisMonthString();
-    console.log($scope.curMonth);
+    if (uid) {
+      $http.post('/api/signin2', {uid: uid}).success(function() {
+        $location.url('/expense/' + getThisMonthString());
+      })
+    } else {
+      $location.url('/signin');
+    }
   });
-
-
-function getThisMonthString(date) {
-  if (!date) {
-    // 파라메터가 없을 경우
-    var d = new Date()
-    var year = d.getFullYear();
-    var month = (function (month) {
-      month = month.toString();
-
-      if (month.length === 1) {
-        month = '0' + month;
-      }
-
-      return month;
-    })(d.getMonth() + 1);
-
-    return year + '-' + month;
-  } else if (date.match(/\d{4}-\d+/)) {
-    // 2013-1-10 형태일 경우
-    var date = date.match(/\d{4}-\d+/)[0];
-    var year = date.split('-')[0];
-    var month = (function (month) {
-      month = month.toString();
-
-      if (month.length === 1) {
-        month = '0' + month;
-      }
-
-      return month;
-    })(date.split('-')[1]);
-
-    return year + '-' + month;
-  }
-}

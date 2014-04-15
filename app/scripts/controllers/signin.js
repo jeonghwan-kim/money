@@ -1,11 +1,9 @@
 'use strict';
 
 angular.module('moneyApp')
-  .controller('SigninCtrl', function ($scope, $http) {
-    console.log('signin controller');
+  .controller('SigninCtrl', function ($scope, $http, $location, $cookies) {
 
     $scope.submit = function() {
-      console.log($scope.email, $scope.password);
       var url = '/api/signin';
       var data = {
         email: $scope.email,
@@ -13,17 +11,16 @@ angular.module('moneyApp')
       };
 
       // 서버에 로그인 요청
-      $http.post(url, data).success(function(data) {
-        console.log(data);
-        if (data.uid === -1) {
-          // 로그인 실패
+      $http.post(url, data).
+        success(function(data, status, headers, config) {
+          // 쿠키 저장
+          $cookies.uid = data.uid.toString();
 
-        } else {
-          // 페이지 이동
-          // '/expense/2014-04'
-        }''
-
-      });
-
+          // 주소 이동
+          $location.url('/expense/' + getThisMonthString());
+        }).
+        error(function(data, status, headers, config) {
+          $scope.msg = '아이디나 비밀번호를 다시 확인하세요.';
+        });
     };
   });

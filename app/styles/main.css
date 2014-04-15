@@ -2,6 +2,7 @@ body {
   /*padding-top: 70px;*/
   font-size: 14px;
 }
+
 footer {
   height: 40px;
 }
@@ -13,6 +14,7 @@ footer {
   color: #999;
   padding: 4px 20px;
 }
+
 .bs-docs-sidebar .nav>.active>a,
 .bs-docs-sidebar .nav>.active:hover>a,
 .bs-docs-sidebar .nav>.active:focus>a {
@@ -26,36 +28,44 @@ footer {
 .list-group .active a {
   color: #fff;
 }
+
 #control-btn {
   display: none;
 }
+
 .search-result {
   background: #fcf8e3;
   border-radius: 10px;
   padding: 3px;
 }
+
 @media (min-width: 992px) {
   #control {
     display: block !important;
   }
 }
+
 @media (max-width: 992px) {
   #control-btn {
     display: block;
   }
 }
+
 @media (max-width: 768px) {
   .category {
     display: none;
   }
 }
+
 @media (max-width: 480px) {
   body {
     font-size: 12px;
   }
+
   .date {
     width: 75px;
   }
+
   .total {
     display: none;
   }

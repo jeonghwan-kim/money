@@ -12,9 +12,21 @@ angular.module('moneyApp', [
         templateUrl: 'partials/main',
         controller: 'MainCtrl'
       })
+      .when('/signup', {
+        templateUrl: 'partials/signup',
+        controller: 'SignupCtrl'
+      })
       .when('/signin', {
         templateUrl: 'partials/signin',
-        contorller: 'SigninCtrl'
+        controller: 'SigninCtrl'
+      })
+      .when('/signout', {
+        templateUrl: 'partials/signout',
+        controller: 'SignoutCtrl'
+      })
+      .when('/expense/:yearMonth', {
+        templateUrl: 'partials/expense',
+        controller: 'ExpenseCtrl'
       })
       .otherwise({
         redirectTo: '/'

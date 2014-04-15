@@ -1,0 +1,38 @@
+.container
+  h2.page-header
+    a(href='/') Money
+  .row
+    //- 지출 내용
+    .col-sm-10
+      p
+        .form-group
+          a.btn.btn-default(data-target="#write-modal" role="button" data-toggle="modal")
+            span.glyphicon.glyphicon-pencil 신규지출
+        .form-group
+          a.btn.btn-default(href="/signout") 로그아웃
+      //- 총 지출액 출력
+      .alert.alert-warning
+        | 총 지출: {{sum}} 원
+      //- 지출 내역 출력
+      table.table
+        thead
+          tr#table-header
+            th 날짜
+            th 지출 내용
+            th 금액
+            th
+          tr(ng-repeat="item in expense | orderBy: ['-date', '-id']")
+            td.date {{item.date | date : 'yyyy-MM-dd'}}
+            td {{item.text}}
+            td {{item.amount}}
+            td
+              a.close(ng-click="deleteExpense(item.id)") &times;
+    //- 월 목록
+    .col-sm-2
+      .bs-docs-sidebar
+        ul.nav.bs-docs-sidenav(ng-repeat="month in yearmonth")
+          li.active(ng-if="curMonth == month.yearmonth")
+            a(ng-href="/expense/{{month.yearmonth}}") {{month.yearmonth}}
+          li(ng-if="curMonth != month.yearmonth")
+            a(ng-href="/expense/{{month.yearmonth}}") {{month.yearmonth}}
+    include input-modal
