@@ -9,7 +9,7 @@
           a.btn.btn-default(data-target="#write-modal" role="button" data-toggle="modal")
             span.glyphicon.glyphicon-pencil 신규지출
         .form-group
-          a.btn.btn-default(href="/signout") 로그아웃
+          button.btn.btn-default(ng-click="signout()") 로그아웃
       //- 총 지출액 출력
       .alert.alert-warning
         | 총 지출: {{sum}} 원

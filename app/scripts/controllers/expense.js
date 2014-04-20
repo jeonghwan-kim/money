@@ -1,14 +1,19 @@
 'use strict';
 
 angular.module('moneyApp')
-  .controller('ExpenseCtrl', function ($scope, $http, $routeParams, $route) {
+  .controller('ExpenseCtrl', function ($scope, $http, $routeParams, $route, $location) {
 
-    $http.get('/api/expense/' + $routeParams.yearMonth).success(function(data) {
-      $scope.expense = data.data;
-      $scope.sum = data.total;
-      $scope.curMonth = data.curMonth;
-      $scope.yearmonth = data.monthList;
-    });
+    $http.get('/api/expense/' + $routeParams.yearMonth)
+      .success(function(data) {
+        $scope.expense = data.data;
+        $scope.sum = data.total;
+        $scope.curMonth = data.curMonth;
+        $scope.yearmonth = data.monthList;
+      })
+      .error(function(data, status) {
+        $location.url('/login');
+      });
+    ;
 
     $scope.deleteExpense = function(delId) {
       if (confirm('삭제할까요?', true)) {
@@ -26,4 +31,10 @@ angular.module('moneyApp')
         return false;
       }
     };
+
+    $scope.signout = function() {
+      $http.post('/api/signout').success(function() {
+        $location.url('/signin');
+      });
+    }
   });
