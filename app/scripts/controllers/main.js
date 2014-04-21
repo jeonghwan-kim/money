@@ -2,7 +2,7 @@
 
 angular.module('moneyApp')
   .controller('MainCtrl', function ($scope, $http, $location, $cookies) {
-    var uid = $cookies.uid;
+    var uid = $.cookie('uid');
 
     if (uid) {
       $http.post('/api/signin2', {uid: uid}).success(function() {

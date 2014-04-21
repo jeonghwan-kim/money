@@ -1,8 +1,7 @@
 'use strict';
 
 angular.module('moneyApp')
-  .controller('ExpenseCtrl', function ($scope, $http, $routeParams, $route, $location) {
-
+  .controller('ExpenseCtrl', function ($scope, $http, $routeParams, $route, $location, $cookies) {
     $http.get('/api/expense/' + $routeParams.yearMonth)
       .success(function(data) {
         $scope.expense = data.data;
@@ -33,6 +32,10 @@ angular.module('moneyApp')
     };
 
     $scope.signout = function() {
+      // 쿠키 삭제
+      $.removeCookie('uid');
+
+      // 세션 삭제 요청
       $http.post('/api/signout').success(function() {
         $location.url('/signin');
       });

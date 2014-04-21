@@ -20,10 +20,6 @@ angular.module('moneyApp', [
         templateUrl: 'partials/signin',
         controller: 'SigninCtrl'
       })
-      .when('/signout', {
-        templateUrl: 'partials/signout',
-        controller: 'SignoutCtrl'
-      })
       .when('/expense/:yearMonth', {
         templateUrl: 'partials/expense',
         controller: 'ExpenseCtrl'
