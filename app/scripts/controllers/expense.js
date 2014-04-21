@@ -33,7 +33,7 @@ angular.module('moneyApp')
 
     $scope.signout = function() {
       // 쿠키 삭제
-      $.removeCookie('uid');
+      $.removeCookie('sid');
 
       // 세션 삭제 요청
       $http.post('/api/signout').success(function() {
