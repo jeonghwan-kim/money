@@ -17,11 +17,11 @@ angular.module('moneyApp')
 
       $http.post(url, data)
         .success(function(data, status, headers, config) {
-          $('#write-modal').modal('hide')
+          $('#input-modal').modal('hide')
           $route.reload();
         })
         .error(function(data, status, headers, config) {
-          $('#write-modal').modal('hide')
+          $('#input-modal').modal('hide')
         });
     };
   });

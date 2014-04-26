@@ -1,0 +1,28 @@
+.modal#update-modal(tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true")
+  .modal-dialog
+    .modal-content
+      form.form-horizontal(ng-submit="submit()")
+        .modal-header
+          button.close(type="button" data-dismiss="modal" aria-hidden="true")
+            | &times;
+          h4.modal-title 수정
+        .modal-body
+          .form-group
+            label.col-lg-2.control-label(for="inputDate") 날짜
+            .col-lg-10
+              input.form-control#date(type="text" ng-model="modal.date" name="date")
+          .form-group
+            label.col-lg-2.control-label 지출 내용
+            .col-lg-10
+              input.form-control#text(type="text" ng-model="modal.text" name="text")
+          .form-group
+            label.col-lg-2.control-label 금액
+            .col-lg-10
+              input.form-control#amount(type="text" ng-model="modal.amount" name="amount" value="{{amount}}")
+        .modal-footer
+          button.btn.btn-default(type="button" data-dismiss="modal")
+            | 취소
+          button.btn.btn-danger(type="button" data-dismiss="modal" ng-click="deleteExpense(modal.expenseId)")
+            | 삭제
+          button.btn.btn-primary(type="button" data-dismiss="modal" ng-click="updateExpense()")
+            | 저장

@@ -1,4 +1,4 @@
-.container
+.container(ng-controller="ExpenseCtrl")
   h2.page-header
     a(href='/') Money
   .row
@@ -6,7 +6,7 @@
     .col-sm-10
       p
         .form-group
-          a.btn.btn-default(data-target="#write-modal" role="button" data-toggle="modal")
+          a.btn.btn-default(data-target="#input-modal" role="button" data-toggle="modal")
             span.glyphicon.glyphicon-pencil 신규지출
         .form-group
           button.btn.btn-default(ng-click="signout()") 로그아웃
@@ -22,11 +22,12 @@
             th.text-right 금액
             th
           tr(ng-repeat="item in expense | orderBy: ['-date', '-id']")
-            td.date {{item.date | date : 'yyyy-MM-dd'}}
+            td.date {{item.date | date:'yyyy-MM-dd'}}
             td {{item.text}}
             td.text-right {{item.amount | number}}
-            td
-              a.close(ng-click="deleteExpense(item.id)") &times;
+            td.text-left
+              a(data-toggle="modal" data-target="#update-modal" role="button" ng-click="updateModal(item.date, item.text, item.amount, item.id)")
+                .glyphicon.glyphicon-pencil
     //- 월 목록
     .col-sm-2
       .bs-docs-sidebar
@@ -36,3 +37,4 @@
           li(ng-if="curMonth != month.yearmonth")
             a(ng-href="/expense/{{month.yearmonth}}") {{month.yearmonth}}
     include input-modal
+    include update-modal
