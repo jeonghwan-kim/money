@@ -66,8 +66,8 @@ module.exports = function (grunt) {
         tasks: ['newer:jshint:test', 'karma']
       },
       styles: {
-        files: ['<%= yeoman.app %>/styles/{,*/}*.css'],
-        tasks: ['newer:copy:styles', 'autoprefixer']
+        files: ['<%= yeoman.app %>/styles/{,*/}*.less'],
+        tasks: ['less', 'newer:copy:styles', 'autoprefixer']
       },
       gruntfile: {
         files: ['Gruntfile.js']
@@ -79,7 +79,7 @@ module.exports = function (grunt) {
           '{.tmp,<%= yeoman.app %>}/scripts/{,*//*}*.js',
           '<%= yeoman.app %>/images/{,*//*}*.{png,jpg,jpeg,gif,webp,svg}'
         ],
-      
+
         options: {
           livereload: true
         }
@@ -117,6 +117,20 @@ module.exports = function (grunt) {
           jshintrc: 'test/client/.jshintrc'
         },
         src: ['test/client/spec/{,*/}*.js']
+      }
+    },
+
+   less: {
+      development: {
+        options: {
+          compress: true,
+          yuicompress: true,
+          optimization: 2
+        },
+        files: {
+          // target.css file: source.less file
+          "<%= yeoman.app %>/styles/main.css": "<%= yeoman.app %>/styles/main.less"
+        }
       }
     },
 
@@ -188,7 +202,7 @@ module.exports = function (grunt) {
             nodemon.on('config:update', function () {
               setTimeout(function () {
                 require('open')('http://localhost:8080/debug?port=5858');
-              }, 500);              
+              }, 500);
             });
           }
         }
@@ -486,7 +500,7 @@ module.exports = function (grunt) {
       'test:server',
       'test:client'
     ]);
-  });  
+  });
 
   grunt.registerTask('build', [
     'clean:dist',
