@@ -12,19 +12,19 @@
           button.btn.btn-default(ng-click="signout()") 로그아웃
       //- 총 지출액 출력
       .alert.alert-warning
-        | 총 지출: {{sum}} 원
+        | 총 지출: {{sum | number}} 원
       //- 지출 내역 출력
       table.table
         thead
           tr#table-header
             th 날짜
             th 지출 내용
-            th 금액
+            th.text-right 금액
             th
           tr(ng-repeat="item in expense | orderBy: ['-date', '-id']")
             td.date {{item.date | date : 'yyyy-MM-dd'}}
             td {{item.text}}
-            td {{item.amount}}
+            td.text-right {{item.amount | number}}
             td
               a.close(ng-click="deleteExpense(item.id)") &times;
     //- 월 목록

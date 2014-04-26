@@ -491,8 +491,8 @@ module.exports = function (grunt) {
       return grunt.task.run([
         'clean:server',
         'concurrent:test',
-        'autoprefixer',
-        'karma'
+        'autoprefixer'
+        // 'karma'
       ]);
     }
 
