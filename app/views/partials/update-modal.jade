@@ -1,4 +1,4 @@
-.modal#update-modal(tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true")
+.modal#update-modal(tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ng-controller="UpdateModalCtrl")
   .modal-dialog
     .modal-content
       form.form-horizontal(ng-submit="updateExpense()")
@@ -7,6 +7,7 @@
             | &times;
           h4.modal-title 수정
         .modal-body
+          {{editIdx}}
           .form-group
             label.col-lg-2.control-label(for="inputDate") 날짜
             .col-lg-10

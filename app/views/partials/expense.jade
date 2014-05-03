@@ -25,7 +25,7 @@
             td {{item.text}}
             td.text-right {{item.amount | number}}
             td.text-right
-              a(data-toggle="modal" data-target="#update-modal" role="button" ng-click="updateModal(item.id, $index)")
+              a(data-toggle="modal" data-target="#update-modal" role="button" ng-click="updateModal($index)")
                 .glyphicon.glyphicon-pencil
     //- 월 목록
     .col-sm-2
