@@ -4,14 +4,13 @@
   .row
     //- 지출 내용
     .col-sm-10
-      p
-        .form-group
-          a.btn.btn-default(data-target="#input-modal" role="button" data-toggle="modal")
-            span.glyphicon.glyphicon-pencil 신규지출
-        .form-group
-          button.btn.btn-default(ng-click="signout()") 로그아웃
+      .form-group
+        a.btn.btn-default(data-target="#input-modal" role="button" data-toggle="modal")
+          span.glyphicon.glyphicon-pencil 신규지출
+      .form-group
+        button.btn.btn-default(ng-click="signout()") 로그아웃
       //- 총 지출액 출력
-      .alert.alert-warning
+      .alert.alert-warning(ng-show="sum && sum > 0 && expense.length > 0")
         | 총 지출: {{sum | number}} 원
       //- 지출 내역 출력
       table.table
@@ -25,16 +24,15 @@
             td.date {{item.date | date:'yyyy-MM-dd'}}
             td {{item.text}}
             td.text-right {{item.amount | number}}
-            td.text-left
-              a(data-toggle="modal" data-target="#update-modal" role="button" ng-click="updateModal(item.id)")
+            td.text-right
+              a(data-toggle="modal" data-target="#update-modal" role="button" ng-click="updateModal(item.id, $index)")
                 .glyphicon.glyphicon-pencil
     //- 월 목록
     .col-sm-2
-      .bs-docs-sidebar
-        ul.nav.bs-docs-sidenav(ng-repeat="month in yearmonth")
-          li.active(ng-if="curMonth == month.yearmonth")
-            a(ng-href="/expense/{{month.yearmonth}}") {{month.yearmonth}}
-          li(ng-if="curMonth != month.yearmonth")
-            a(ng-href="/expense/{{month.yearmonth}}") {{month.yearmonth}}
+      .bs-docs-sidebar(ng-if="yearmonth")
+        ul.nav.bs-docs-sidenav
+          li(ng-repeat="month in yearmonth" ng-class="{active: month==curMonth}")
+            a(ng-href="/expense/{{month}}" ng-bind="month")
+
     include input-modal
     include update-modal

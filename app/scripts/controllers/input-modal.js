@@ -15,9 +15,11 @@ angular.module('moneyApp')
         amount: $scope.amount
       };
 
+
+      // 서버 데이터 입력 요청
       $http.post(url, data)
         .success(function(data, status, headers, config) {
-          $('#input-modal').modal('hide')
+          $('#input-modal').modal('hide');
           $route.reload();
         })
         .error(function(data, status, headers, config) {

@@ -14,7 +14,7 @@ angular.module('moneyApp')
       $http.post(url, data).
         success(function(data, status, headers, config) {
           // 쿠키 저장
-          $.cookie('sid', data.sid.toString(), {expires: 7}); // 7일간 저장
+          $.cookie('sid', data.sid.toString(), {expires: 30}); // 30일간 저장
 
           $location.url('/expense/' + getThisMonthString());
         }).

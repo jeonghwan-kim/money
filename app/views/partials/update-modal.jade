@@ -1,7 +1,7 @@
 .modal#update-modal(tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true")
   .modal-dialog
     .modal-content
-      form.form-horizontal(ng-submit="submit()")
+      form.form-horizontal(ng-submit="updateExpense()")
         .modal-header
           button.close(type="button" data-dismiss="modal" aria-hidden="true")
             | &times;
@@ -10,19 +10,19 @@
           .form-group
             label.col-lg-2.control-label(for="inputDate") 날짜
             .col-lg-10
-              input.form-control#date(ui-datetime type="text" ng-model="expense[editExpenseId].date" name="date")
+              input.form-control#date(ui-datetime type="text" ng-model="expense[editIdx].date" name="date")
           .form-group
             label.col-lg-2.control-label 지출 내용
             .col-lg-10
-              input.form-control#text(type="text" ng-model="expense[editExpenseId].text" name="text")
+              input.form-control#text(type="text" ng-model="expense[editIdx].text" name="text")
           .form-group
             label.col-lg-2.control-label 금액
             .col-lg-10
-              input.form-control#amount(type="text" ng-model="expense[editExpenseId].amount" name="amount" )
+              input.form-control#amount(type="text" ng-model="expense[editIdx].amount" name="amount" )
         .modal-footer
           button.btn.btn-default(type="button" data-dismiss="modal")
             | 취소
           button.btn.btn-danger(type="button" data-dismiss="modal" ng-click="deleteExpense()")
             | 삭제
-          button.btn.btn-primary(type="button" data-dismiss="modal" ng-click="updateExpense()")
+          button.btn.btn-primary(type="submit")
             | 저장
