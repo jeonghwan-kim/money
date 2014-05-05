@@ -1,3 +1,5 @@
+'use strict';
+
 function getThisMonthString(date) {
   if (!date) {
     // 파라메터가 없을 경우
@@ -30,4 +32,28 @@ function getThisMonthString(date) {
 
     return year + '-' + month;
   }
+}
+
+/**
+ * 배열에서 expenseId 에 해당하는 지출 정보를 저장한 index를 찾는다.
+ * @param  {Number} editExpenseId [description]
+ * @param  {Array} expense       [description]
+ * @return {Number}               [description]
+ */
+function getExpense(editExpenseId, expense) {
+  if (editExpenseId === null || editExpenseId === undefined) {
+    throw new Error('paramater is undefined');
+  }
+
+  if ((expense instanceof Array) == false) {
+    throw new Error('Paramter expsnes is not an Array');
+  }
+
+  for (var i in expense) {
+    if (expense[i].id === editExpenseId) {
+      return i;
+    }
+  }
+
+  throw new Error('editeExpenseId is not in expense Array');
 }

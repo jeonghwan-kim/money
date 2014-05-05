@@ -7,19 +7,18 @@
             | &times;
           h4.modal-title 수정
         .modal-body
-          {{editIdx}}
           .form-group
             label.col-lg-2.control-label(for="inputDate") 날짜
             .col-lg-10
-              input.form-control#date(ui-datetime type="text" ng-model="expense[editIdx].date" name="date")
+              input.form-control(type="text" ng-model="editDate")
           .form-group
             label.col-lg-2.control-label 지출 내용
             .col-lg-10
-              input.form-control#text(type="text" ng-model="expense[editIdx].text" name="text")
+              input.form-control(type="text" ng-model="editText")
           .form-group
             label.col-lg-2.control-label 금액
             .col-lg-10
-              input.form-control#amount(type="text" ng-model="expense[editIdx].amount" name="amount" )
+              input.form-control(type="text" ng-model="editAmount")
         .modal-footer
           button.btn.btn-default(type="button" data-dismiss="modal")
             | 취소

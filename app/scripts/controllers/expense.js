@@ -38,8 +38,6 @@ angular.module('moneyApp')
       .success(function(data) {
         $scope.expense = data;
         $scope.curMonth = $routeParams.yearMonth;
-
-        console.log($scope.expense);
       })
       .error(function(data, status) {
         $location.url('/login');
@@ -56,8 +54,10 @@ angular.module('moneyApp')
       });
     }
 
-    $scope.updateModal = function(index) {
-      $scope.editIdx = index;
+    $scope.edit = function(expenseId, date, text, amount) {
+      $scope.editDate = date;
+      $scope.editText = text;
+      $scope.editAmount = amount;
+      $scope.editIdx = getExpense(expenseId, $scope.expense);
     };
-
   });

@@ -5,27 +5,25 @@
     //- 지출 내용
     .col-sm-10
       .form-group
+      .form-group
         a.btn.btn-default(data-target="#input-modal" role="button" data-toggle="modal")
           span.glyphicon.glyphicon-pencil 신규지출
-      .form-group
-        button.btn.btn-default(ng-click="signout()") 로그아웃
-      //- 총 지출액 출력
-      .alert.alert-warning(ng-show="sum && sum > 0 && expense.length > 0")
-        | 총 지출: {{sum | number}} 원
-      //- 지출 내역 출력
+        &ensp;
+        a.btn.btn-default(ng-click="signout()") 로그아웃
+      .alert.alert-warning(ng-show="sum && sum > 0 && expense.length > 0") 총 지출: {{sum | number}} 원
       table.table
         thead
           tr#table-header
             th 날짜
             th 지출 내용
             th.text-right 금액
-            th
+            th.edit
           tr(ng-repeat="item in expense | orderBy: ['-date', '-id']")
             td.date {{item.date | date:'yyyy-MM-dd'}}
             td {{item.text}}
             td.text-right {{item.amount | number}}
-            td.text-right
-              a(data-toggle="modal" data-target="#update-modal" role="button" ng-click="updateModal($index)")
+            td.text-right.edit
+              a(data-toggle="modal" data-target="#update-modal" role="button" ng-controller="UpdateModalCtrl" ng-click="edit(item.id, item.date, item.text, item.amount)")
                 .glyphicon.glyphicon-pencil
     //- 월 목록
     .col-sm-2

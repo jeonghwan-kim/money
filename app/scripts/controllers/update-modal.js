@@ -1,25 +1,22 @@
 'use strict';
 
 angular.module('moneyApp')
-  .controller('UpdateModalCtrl', function ($scope, $http, $routeParams, $route, $location, $cookies) {
+  .controller('UpdateModalCtrl', function ($scope, $http) {
 
     $scope.updateExpense = function() {
       if ($scope.editIdx === undefined) {
-        console.log('error1');
+        console.log('edit index is undefined');
         return false;
       }
-      console.log($scope.editIdx);
-      console.log($scope.expense);
-      console.log($scope.expense[0]);
-
-      var url = '/api/expense/' + $scope.expense[$scope.editIdx].id;
-      var data = {
-        date: $scope.expense[$scope.editIdx].date,
-        text: $scope.expense[$scope.editIdx].text,
-        amount: $scope.expense[$scope.editIdx].amount
-      };
 
       // 서버 업데이트 요청
+      var url = '/api/expense/' + $scope.expense[$scope.editIdx].id;
+      var data = {
+        date: $scope.editDate,
+        text: $scope.editText,
+        amount: $scope.editAmount
+      };
+
       $http.put(url, data)
         .success(function(data, status, headers, config) {
           $('#update-modal').modal('hide');
@@ -27,11 +24,16 @@ angular.module('moneyApp')
         .error(function(data, status, headers, config) {
           console.log('update error2');
         });
+
+      // 클라이언트 데이터 업데이트
+      $scope.expense[$scope.editIdx].date = $scope.editDate;
+      $scope.expense[$scope.editIdx].text = $scope.editText;
+      $scope.expense[$scope.editIdx].amount = $scope.editAmount;
     };
 
     $scope.deleteExpense = function(expenseId, index) {
       if ($scope.editIdx === undefined) {
-        console.log('error');
+        console.log('edit index is undefined');
         return false;
       }
 
