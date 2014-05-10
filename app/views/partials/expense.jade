@@ -4,12 +4,14 @@
   .row
     //- 지출 내용
     .col-sm-10
-      .form-group
-      .form-group
-        a.btn.btn-default(data-target="#input-modal" role="button" data-toggle="modal")
-          span.glyphicon.glyphicon-pencil 신규지출
-        &ensp;
-        a.btn.btn-default(ng-click="signout()") 로그아웃
+      ul.list-inline
+        li
+          a.btn.btn-primary.btn-lg(ng-href="/new")
+            span.glyphicon.glyphicon-pencil
+          //- | &ensp;
+        li.pull-right
+          a.btn.btn-default.btn-lg(ng-click="signout()")
+            span.glyphicon.glyphicon-off
       .alert.alert-warning(ng-show="sum && sum > 0 && expense.length > 0") 총 지출: {{sum | number}} 원
       table.table
         thead
@@ -23,7 +25,7 @@
             td {{item.text}}
             td.text-right {{item.amount | number}}
             td.text-right.edit
-              a(data-toggle="modal" data-target="#update-modal" role="button" ng-controller="UpdateModalCtrl" ng-click="edit(item.id, item.date, item.text, item.amount)")
+              a.text-muted(ng-href="/edit/{{item.id}}/{{item.date}}/{{item.text}}/{{item.amount}}")
                 .glyphicon.glyphicon-pencil
     //- 월 목록
     .col-sm-2
@@ -31,6 +33,3 @@
         ul.nav.bs-docs-sidenav
           li(ng-repeat="month in yearmonth" ng-class="{active: month==curMonth}")
             a(ng-href="/expense/{{month}}" ng-bind="month")
-
-    include input-modal
-    include update-modal

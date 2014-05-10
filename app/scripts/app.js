@@ -24,6 +24,14 @@ angular.module('moneyApp', [
         templateUrl: 'partials/expense',
         controller: 'ExpenseCtrl'
       })
+      .when('/new', {
+        templateUrl: 'partials/new',
+        controller: 'NewCtrl'
+      })
+      .when('/edit/:id/:date/:text/:amount', {
+        templateUrl: 'partials/edit',
+        controller: 'EditCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

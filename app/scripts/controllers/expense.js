@@ -7,7 +7,6 @@ angular.module('moneyApp')
     $scope.yearmonth = undefined;
     $scope.curMonth = undefined;
     $scope.sum = undefined;
-    $scope.expenseId = undefined;
     $scope.deleteIdx = undefined;
 
 
@@ -38,11 +37,16 @@ angular.module('moneyApp')
       .success(function(data) {
         $scope.expense = data;
         $scope.curMonth = $routeParams.yearMonth;
+
       })
       .error(function(data, status) {
         $location.url('/login');
       });
 
+
+    $scope.new = function() {
+      $http.get('/new');
+    }
 
     $scope.signout = function() {
       // 쿠키 삭제
@@ -55,9 +59,10 @@ angular.module('moneyApp')
     }
 
     $scope.edit = function(expenseId, date, text, amount) {
-      $scope.editDate = date;
-      $scope.editText = text;
-      $scope.editAmount = amount;
-      $scope.editIdx = getExpense(expenseId, $scope.expense);
+      $scope.tmpDate = date;
+      $scope.tmpText = text;
+      $scope.tmpAmount = amount;
+      $scope.tmpId = expenseId;
+      $location.url('/edit');
     };
   });
