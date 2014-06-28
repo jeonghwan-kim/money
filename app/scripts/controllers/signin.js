@@ -16,6 +16,11 @@ angular.module('moneyApp')
           // 쿠키 저장
           $.cookie('sid', data.sid.toString(), {expires: 30}); // 30일간 저장
 
+          $http.post('/api/log', {
+            type: 100,
+            datetime: new Date().toYYYYMMDDHHMMSS()
+          });
+
           $location.url('/expense/' + getThisMonthString());
         }).
         error(function(data, status, headers, config) {

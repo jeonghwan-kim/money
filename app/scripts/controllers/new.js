@@ -26,6 +26,12 @@ angular.module('moneyApp')
 
       $http.post(url, param)
         .success(function(data, status, headers, config) {
+
+          $http.post('/api/log', {
+            type: 200,
+            datetime: new Date().toYYYYMMDDHHMMSS()
+          });
+
           $location.url('/expense/' + $scope.date.substr(0, 7));
         })
         .error(function(data, status, headers, config) {

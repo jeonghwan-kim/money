@@ -52,6 +52,11 @@ angular.module('moneyApp')
       // 쿠키 삭제
       $.removeCookie('sid');
 
+      $http.post('/api/log', {
+        type: 101,
+        datetime: new Date().toYYYYMMDDHHMMSS()
+      });
+
       // 세션 삭제 요청
       $http.post('/api/signout').success(function() {
         $location.url('/signin');
@@ -65,4 +70,12 @@ angular.module('moneyApp')
       $scope.tmpId = expenseId;
       $location.url('/edit');
     };
+
+    $scope.logMonthly = function(month) {
+      $http.post('/api/log', {
+        type: 203,
+        datetime: new Date().toYYYYMMDDHHMMSS(),
+        comment: month
+      });
+    }
   });

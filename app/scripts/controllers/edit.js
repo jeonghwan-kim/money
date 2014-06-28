@@ -16,9 +16,10 @@ angular.module('moneyApp')
       if (confirm('삭제할까요?', true)) {
         $http.delete('/api/expense/' + $scope.id)
           .success(function(data, status, headers, config) {
-
-            console.log('삭제 성공', '/expense/' + $scope.date.substr(0, 7));
-            console.log(data, status, headers);
+            $http.post('/api/log', {
+              type: 202,
+              datetime: new Date().toYYYYMMDDHHMMSS()
+            });
 
             $location.url('/expense/' + $scope.date.substr(0, 7));
           })
@@ -43,6 +44,11 @@ angular.module('moneyApp')
 
       $http.put(url, data)
         .success(function(data, status, headers, config) {
+          $http.post('/api/log', {
+            type: 201,
+            datetime: new Date().toYYYYMMDDHHMMSS()
+          });
+
           $location.url('/expense/' + $scope.date.substr(0, 7));
         })
         .error(function(data, status, headers, config) {

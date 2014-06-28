@@ -1,6 +1,6 @@
 .container(ng-controller="ExpenseCtrl")
   h2.page-header.text-center
-    a(href='/') Money
+    a(href='/') OMG 가계부
   .row
     //- 지출 내용
     .col-sm-10
@@ -10,7 +10,7 @@
           | &ensp;지출 입력
       div(ng-show="sum && sum > 0 && expense.length > 0")
         h4.text-center
-          span.label.label-primary 총 지출:&ensp;{{sum | number}} 원
+          span.label.label-info 총 지출:&ensp;{{sum | number}} 원
       table.table
         thead
           tr#table-header
@@ -30,7 +30,7 @@
       .bs-docs-sidebar(ng-if="yearmonth")
         ul.nav.bs-docs-sidenav
           li(ng-repeat="month in yearmonth" ng-class="{active: month==curMonth}")
-            a(ng-href="/expense/{{month}}" ng-bind="month")
+            a(ng-href="/expense/{{month}}" ng-bind="month" ng-click="logMonthly(month)")
       .form-group
         a.btn.btn-danger.btn-lg.btn-block(ng-click="signout()")
           span.glyphicon.glyphicon-off
