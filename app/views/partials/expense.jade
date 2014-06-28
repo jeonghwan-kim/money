@@ -1,18 +1,16 @@
 .container(ng-controller="ExpenseCtrl")
-  h2.page-header
+  h2.page-header.text-center
     a(href='/') Money
   .row
     //- 지출 내용
     .col-sm-10
-      ul.list-inline
-        li
-          a.btn.btn-primary.btn-lg(ng-href="/new")
-            span.glyphicon.glyphicon-pencil
-          //- | &ensp;
-        li.pull-right
-          a.btn.btn-default.btn-lg(ng-click="signout()")
-            span.glyphicon.glyphicon-off
-      .alert.alert-warning(ng-show="sum && sum > 0 && expense.length > 0") 총 지출: {{sum | number}} 원
+      .form-group
+        a.btn.btn-primary.btn-lg.btn-block(ng-href="/new")
+          span.glyphicon.glyphicon-pencil
+          | &ensp;지출 입력
+      div(ng-show="sum && sum > 0 && expense.length > 0")
+        h4.text-center
+          span.label.label-primary 총 지출:&ensp;{{sum | number}} 원
       table.table
         thead
           tr#table-header
@@ -33,3 +31,7 @@
         ul.nav.bs-docs-sidenav
           li(ng-repeat="month in yearmonth" ng-class="{active: month==curMonth}")
             a(ng-href="/expense/{{month}}" ng-bind="month")
+      .form-group
+        a.btn.btn-danger.btn-lg.btn-block(ng-click="signout()")
+          span.glyphicon.glyphicon-off
+          | &ensp;로그아웃
