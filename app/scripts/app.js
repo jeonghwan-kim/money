@@ -28,7 +28,7 @@ angular.module('moneyApp', [
         templateUrl: 'partials/new',
         controller: 'NewCtrl'
       })
-      .when('/edit/:id/:date/:text/:amount', {
+      .when('/edit/:id', {
         templateUrl: 'partials/edit',
         controller: 'EditCtrl'
       })

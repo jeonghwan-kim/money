@@ -25,7 +25,7 @@
             td {{item.text}}
             td.text-right {{item.amount | number}}
             td.text-right.edit
-              a.text-muted(ng-href="/edit/{{item.id}}/{{item.date}}/{{item.text}}/{{item.amount}}")
+              a.text-muted(ng-href="/edit/{{item.id}}/?date={{item.date}}&text={{item.text}}&amount={{item.amount}}")
                 .glyphicon.glyphicon-pencil
     //- 월 목록
     .col-sm-2

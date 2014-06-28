@@ -6,7 +6,7 @@ angular.module('moneyApp')
     $scope.id = $routeParams.id;
     $scope.date = $routeParams.date;
     $scope.text = $routeParams.text;
-    $scope.amount = $routeParams.amount;
+    $scope.amount = parseInt($routeParams.amount, 10);
 
     $scope.cancel = function() {
       $location.url('/expense/' + $scope.date.substr(0, 7));
