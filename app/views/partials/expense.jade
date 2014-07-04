@@ -1,19 +1,24 @@
 .container(ng-controller="ExpenseCtrl")
-  h2.page-header.text-center
-    a(href='/') OMG 가계부
+  h1.title
+    a(href="/")
+      | OMG
+      span(style="font-size:95%") 가계부
   .row
-    //- 지출 내용
     .col-sm-10
-      .form-group
+      .jumbotron
+        h3.text-muted
+          span.glyphicon.glyphicon-calendar
+          | &ensp;{{curMonth}} 지출
+        h1
+          span(style="font-size:50%") 총 지출:&ensp;
+          | {{sum | number}}
+          span(style="font-size:50%") &ensp;원
         a.btn.btn-primary.btn-lg.btn-block(ng-href="/new")
-          span.glyphicon.glyphicon-pencil
+          span.glyphicon.glyphicon-plus-sign
           | &ensp;지출 입력
-      div(ng-show="sum && sum > 0 && expense.length > 0")
-        h4.text-center
-          span.label.label-info 총 지출:&ensp;{{sum | number}} 원
       table.table
         thead
-          tr#table-header
+          tr
             th 날짜
             th 지출 내용
             th.text-right 금액
@@ -24,7 +29,7 @@
             td.text-right {{item.amount | number}}
             td.text-right.edit
               a.text-muted(ng-href="/edit/{{item.id}}/?date={{item.date}}&text={{item.text}}&amount={{item.amount}}")
-                .glyphicon.glyphicon-pencil
+                .glyphicon.glyphicon-info-sign
     //- 월 목록
     .col-sm-2
       .bs-docs-sidebar(ng-if="yearmonth")

@@ -1,8 +1,13 @@
 .container
-  h1.page-header
-    | 신규 지출 입력
+  h1.title
+    a(href="/")
+      | OMG
+      span(style="font-size:95%") 가계부
   .jumbotron
-    form.form-horizontal(ng-submit="submit()")
+    h3.text-muted
+      span.glyphicon.glyphicon-plus-sign
+      | &ensp;지출 입력
+    form(ng-submit="submit()")
       .form-group
         input.form-control.input-lg(type="text" ng-model="date" placeholder="날짜" required)
       .form-group
@@ -10,9 +15,14 @@
       .form-group
         input.form-control.input-lg(type="text" ng-model="amount" placeholder="금액" required)
         small: em.text-danger(ng-bind="msg")
+      hr.brand-gray-light
       .form-group
-        .row
-          .col-xs-6
-            button.btn.btn-success.btn-lg.btn-block(type="submit") 저장
-          .col-xs-6
-            button.btn.btn-default.btn-lg.btn-block(ng-click="cancel()") 취소
+        .btn-group.btn-group-justified
+          .btn-group
+            button.btn.btn-default.btn-lg(ng-click="cancel()")
+              span.glyphicon.glyphicon-arrow-left
+              | &ensp;취소
+          .btn-group
+            button.btn.btn-success.btn-lg(type="submit")
+              span.glyphicon.glyphicon-ok
+              | &ensp;저장

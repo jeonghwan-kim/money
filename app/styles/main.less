@@ -1,3 +1,28 @@
+@import "../bower_components/bootstrap/less/bootstrap.less";
+
+@import "long-shadow.less";
+
+
+.title {
+  a {
+    color: @gray-lighter;
+  }
+  a:hover,
+  a:focus {
+    text-decoration: none;
+  }
+  overflow: hidden;
+  .longShadow(@gray, 50);
+}
+
+.brand-gray {
+  border-color: @gray;
+}
+.brand-gray-light {
+  border-color: @gray-light;
+}
+
+
 a {
   cursor: pointer;
 }

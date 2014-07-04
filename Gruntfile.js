@@ -67,7 +67,7 @@ module.exports = function (grunt) {
       },
       styles: {
         files: ['<%= yeoman.app %>/styles/{,*/}*.less'],
-        tasks: ['less', 'newer:copy:styles', 'autoprefixer']
+        tasks: ['less:dev', 'newer:copy:styles', 'autoprefixer']
       },
       gruntfile: {
         files: ['Gruntfile.js']
@@ -121,14 +121,16 @@ module.exports = function (grunt) {
     },
 
    less: {
-      development: {
+      dev: {
+        files: {
+          "<%= yeoman.app %>/styles/main.css": "<%= yeoman.app %>/styles/main.less"
+        }
+      },
+      dist: {
         options: {
-          compress: true,
-          yuicompress: true,
-          optimization: 2
+          cleancss: true
         },
         files: {
-          // target.css file: source.less file
           "<%= yeoman.app %>/styles/main.css": "<%= yeoman.app %>/styles/main.less"
         }
       }
@@ -213,7 +215,8 @@ module.exports = function (grunt) {
     'bower-install': {
       app: {
         html: '<%= yeoman.app %>/views/index.jade',
-        ignorePath: '<%= yeoman.app %>/'
+        ignorePath: '<%= yeoman.app %>/',
+        exclude: [ 'bower_components/bootstrap/dist/css/bootstrap.css' ]
       }
     },
 
@@ -467,6 +470,7 @@ module.exports = function (grunt) {
       'clean:server',
       'bower-install',
       'concurrent:server',
+      'less:dist',
       'autoprefixer',
       'express:dev',
       'open',
@@ -507,6 +511,7 @@ module.exports = function (grunt) {
     'bower-install',
     'useminPrepare',
     'concurrent:dist',
+    'less',
     'autoprefixer',
     'concat',
     'ngmin',

@@ -1,14 +1,23 @@
 .container
-  h1.page-header
-    a(href="/") Money
+  h1.title
+    a(href="/")
+      | OMG
+      span(style="font-size:95%") 가계부
   .jumbotron
+    h3.text-muted
+      span.glyphicon.glyphicon-lock
+      | &ensp;로그인
     form(ng-submit="submit()")
       .form-group
         input.form-control.input-lg(type="email" ng-model="email" name="email" placeholder="이메일 주소" required autofocus)
       .form-group
         input.form-control.input-lg(type="password" ng-model="password" name="password" placeholder="비밀번호" required)
+      hr.brand-gray-light
       .form-group
-        button.btn.btn-lg.btn-primary.btn-block(type="submit") 로그인
-        p.text-danger: small: em  {{msg}}
-    a.btn.btn-lg.btn-info.btn-block#signin-btn(ng-href="/signup" role="button")
-      | 회원가입
+        .btn-group.btn-group-justified
+          .btn-group
+            a.btn.btn-lg.btn-default(ng-href="/signup" role="button")
+              | 회원가입
+          .btn-group
+            button.btn.btn-lg.btn-primary(type="submit") 로그인
+      p.text-danger: small: em  {{msg}}
