@@ -1,9 +1,18 @@
 @import "../bower_components/bootstrap/less/bootstrap.less";
-
 @import "long-shadow.less";
+@import url("http://fonts.googleapis.com/earlyaccess/nanumgothic.css");
 
+body,
+html,
+.title, {
+  font-family: "Nanum Gothic", "Clarendon", "Trade Gothic";
+}
 
 .title {
+  background-color: lighten(@brand-primary, 15%);
+  width: 200px;
+  padding: 15px;
+  margin-top: 10px;
   a {
     color: @gray-lighter;
   }
@@ -12,7 +21,7 @@
     text-decoration: none;
   }
   overflow: hidden;
-  .longShadow(@gray, 50);
+  .longShadow(darken(@brand-primary, 20%), 50);
 }
 
 .brand-gray {
@@ -21,7 +30,6 @@
 .brand-gray-light {
   border-color: @gray-light;
 }
-
 
 a {
   cursor: pointer;
