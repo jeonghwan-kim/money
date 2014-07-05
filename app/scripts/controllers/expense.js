@@ -10,40 +10,6 @@ angular.module('moneyApp')
     $scope.deleteIdx = undefined;
 
 
-    // expnese를 감시하여 총액을 수시로 계산한다.
-    $scope.$watch('expense', function(newVal, oldVal) {
-      $scope.sum = (function(data) {
-        if (data) {
-          var sum = 0;
-          for (var i in data) {
-            sum += parseInt(data[i].amount, 10);
-          }
-          return sum;
-        }
-      })(newVal);
-    }, true);
-
-    // 기록 월 리스트를 받아온다.
-    $http.get('/api/month')
-      .success(function(data) {
-        $scope.yearmonth = data.month;
-      })
-      .error(function(data, status) {
-        $location.url('/login');
-      });
-
-    // 지출 이력을 받아온다.
-    $http.get('/api/expense/' + $routeParams.yearMonth)
-      .success(function(data) {
-        $scope.expense = data;
-        $scope.curMonth = $routeParams.yearMonth;
-
-      })
-      .error(function(data, status) {
-        $location.url('/login');
-      });
-
-
     $scope.new = function() {
       $http.get('/new');
     }
@@ -78,4 +44,87 @@ angular.module('moneyApp')
         comment: month
       });
     }
+
+    $scope.$watch('expense', function(newVal) {
+      if (!newVal) {
+        return;
+      }
+
+      // 총 지출액 계산
+      $scope.sum = (function(data) {
+        if (data) {
+          var sum = 0;
+          for (var i in data) {
+            sum += parseInt(data[i].amount, 10);
+          }
+          return sum;
+        }
+      })(newVal);
+
+      // 일별로 지출목록 변경
+      var i = 0,
+        expense = $scope.expense,
+        len = expense.length,
+        id,
+        date,
+        text,
+        amount,
+        result = [],
+        preDate,
+        dailyExpense;
+
+      for (; i < len; i += 1) {
+        id = expense[i].id;
+        date = expense[i].date;
+        text = expense[i].text;
+        amount = expense[i].amount;
+
+        if (preDate !== date) {
+          if (dailyExpense) {
+            result.push(dailyExpense);
+          }
+
+          dailyExpense = {
+            date: date,
+            expense: [],
+            sum: 0
+          };
+        }
+
+        dailyExpense.expense.push({
+            id: id,
+            text: text,
+            amount: amount
+          });
+        dailyExpense.sum += amount;
+
+        preDate = date;
+      }
+
+      result.push(dailyExpense);
+      $scope.expense2 = result;
+
+      console.log(result);
+    }, true);
+
+    // 기록 월 리스트를 받아온다.
+    $http.get('/api/month')
+      .success(function(data) {
+        $scope.yearmonth = data.month;
+      })
+      .error(function(data, status) {
+        $location.url('/login');
+      });
+
+    // 지출 이력을 받아온다.
+    $http.get('/api/expense/' + $routeParams.yearMonth)
+      .success(function(data) {
+        $scope.expense = data;
+        $scope.curMonth = $routeParams.yearMonth;
+
+      })
+      .error(function(data, status) {
+        $location.url('/login');
+      });
+
   });

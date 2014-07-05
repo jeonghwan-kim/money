@@ -16,20 +16,20 @@
         a.btn.btn-success.btn-lg.btn-block(ng-href="/new")
           span.glyphicon.glyphicon-plus-sign
           | &ensp;지출 입력
-      table.table
+      table.table.table-hover(ng-repeat="dailyExpense in expense2")
         thead
           tr
-            th 일시
-            th 지출 내용
-            th.text-right 금액
-            th.edit
-          tr(ng-repeat="item in expense | orderBy: ['-date', '-id']")
-            td.date {{item.date | date:'M/d'}}
+            th {{dailyExpense.date}}
+            th.text-right {{dailyExpense.sum | number}}
+            th
+        tbody
+          tr(ng-repeat="item in dailyExpense.expense")
             td {{item.text}}
             td.text-right {{item.amount | number}}
             td.text-right.edit
-              a.text-muted(ng-href="/edit/{{item.id}}/?date={{item.date}}&text={{item.text}}&amount={{item.amount}}")
+              a.text-muted(ng-href="/edit/{{item.id}}/?date={{dailyExpense.date}}&text={{item.text}}&amount={{item.amount}}")
                 .glyphicon.glyphicon-info-sign
+
     //- 월 목록
     .col-sm-2
       .bs-docs-sidebar(ng-if="yearmonth")
