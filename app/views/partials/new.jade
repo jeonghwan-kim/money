@@ -14,12 +14,10 @@
         small: em.text-danger(ng-bind="msg")
       hr.brand-gray-light
       .form-group
-        .btn-group.btn-group-justified
-          .btn-group
-            a.btn.btn-default.btn-lg(ng-click="cancel()")
-              span.glyphicon.glyphicon-arrow-left
-              | &ensp;취소
-          .btn-group
-            button.btn.btn-success.btn-lg(type="submit" ng-disabled="!text || !validAmount")
-              span.glyphicon.glyphicon-ok
-              | &ensp;저장
+        button.btn.btn-success.btn-lg.btn-block(type="submit" ng-disabled="!text || !validAmount")
+          span.glyphicon.glyphicon-ok
+          | &ensp;저장
+      .form-group
+        a.btn.btn-default.btn-lg.btn-block(ng-click="cancel()")
+          span.glyphicon.glyphicon-arrow-left
+          | &ensp;취소
