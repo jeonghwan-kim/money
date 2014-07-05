@@ -13,18 +13,18 @@
           span(style="font-size:50%") 총 지출:&ensp;
           | {{sum | number}}
           span(style="font-size:50%") &ensp;원
-        a.btn.btn-primary.btn-lg.btn-block(ng-href="/new")
+        a.btn.btn-success.btn-lg.btn-block(ng-href="/new")
           span.glyphicon.glyphicon-plus-sign
           | &ensp;지출 입력
       table.table
         thead
           tr
-            th 날짜
+            th 일시
             th 지출 내용
             th.text-right 금액
             th.edit
           tr(ng-repeat="item in expense | orderBy: ['-date', '-id']")
-            td.date {{item.date | date:'yyyy-MM-dd'}}
+            td.date {{item.date | date:'M/d'}}
             td {{item.text}}
             td.text-right {{item.amount | number}}
             td.text-right.edit
@@ -36,7 +36,7 @@
         ul.nav.bs-docs-sidenav
           li(ng-repeat="month in yearmonth" ng-class="{active: month==curMonth}")
             a(ng-href="/expense/{{month}}" ng-bind="month" ng-click="logMonthly(month)")
-      .form-group
-        a.btn.btn-danger.btn-lg.btn-block(ng-click="signout()")
+        hr.brand-gray-light
+        a.btn.btn-danger(ng-click="signout()")
           span.glyphicon.glyphicon-off
           | &ensp;로그아웃

@@ -56,4 +56,26 @@ angular.module('moneyApp')
         });
     };
 
+    $scope.$watch('amount', function(newVal, oldVal) {
+      var tmp;
+
+      if (!newVal) {
+        $scope.msg = "";
+        $scope.validAmount = false;
+        return;
+      }
+
+      tmp = parseInt(newVal, 10);
+      if (tmp < 1) {
+        $scope.validAmount = false;
+        $scope.msg = "지출 금액을 입력하세요";
+      } else if (!tmp) {
+        $scope.validAmount = false;
+        $scope.msg = "금액은 숫자로 입력하세요.";
+      } else {
+        $scope.validAmount = true;
+        $scope.msg = "";
+      }
+    });
+
   });

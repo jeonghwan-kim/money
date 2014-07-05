@@ -5,6 +5,7 @@ angular.module('moneyApp')
 
     $scope.date = new Date().toYYYYMMDD();
     $scope.msg = "";
+    $scope.validAmount = false;
 
     $scope.cancel = function() {
       $location.url('/expense/' + $scope.date.substr(0, 7));
@@ -18,11 +19,6 @@ angular.module('moneyApp')
           text: $scope.text,
           amount: amount
         };
-
-      if (!amount) {
-        $scope.msg = "금액란은 숫자만 입력하세요."
-        return;
-      }
 
       $http.post(url, param)
         .success(function(data, status, headers, config) {
@@ -38,5 +34,27 @@ angular.module('moneyApp')
           $location.url('/');
         });
     };
+
+    $scope.$watch('amount', function(newVal, oldVal) {
+      var tmp;
+
+      if (!newVal) {
+        $scope.msg = "";
+        $scope.validAmount = false;
+        return;
+      }
+
+      tmp = parseInt(newVal, 10);
+      if (tmp < 1) {
+        $scope.validAmount = false;
+        $scope.msg = "지출 금액을 입력하세요";
+      } else if (!tmp) {
+        $scope.validAmount = false;
+        $scope.msg = "금액은 숫자로 입력하세요.";
+      } else {
+        $scope.validAmount = true;
+        $scope.msg = "";
+      }
+    });
 
   });

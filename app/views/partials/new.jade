@@ -11,7 +11,7 @@
       .form-group
         input.form-control.input-lg(type="text" ng-model="date" placeholder="날짜" required)
       .form-group
-        input.form-control.input-lg(type="text" ng-model="text" placeholder="내용" required autofocus)
+        input.form-control.input-lg(type="text" ng-model="text" placeholder="내용" required focus-me)
       .form-group
         input.form-control.input-lg(type="text" ng-model="amount" placeholder="금액" required)
         small: em.text-danger(ng-bind="msg")
@@ -19,10 +19,10 @@
       .form-group
         .btn-group.btn-group-justified
           .btn-group
-            button.btn.btn-default.btn-lg(ng-click="cancel()")
+            a.btn.btn-default.btn-lg(ng-click="cancel()")
               span.glyphicon.glyphicon-arrow-left
               | &ensp;취소
           .btn-group
-            button.btn.btn-success.btn-lg(type="submit")
+            button.btn.btn-success.btn-lg(type="submit" ng-disabled="!text || !validAmount")
               span.glyphicon.glyphicon-ok
               | &ensp;저장
