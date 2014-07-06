@@ -3,10 +3,10 @@
   .row
     .col-sm-10
       .jumbotron
-        h3.text-muted
+        h4.text-muted
           span.glyphicon.glyphicon-calendar
           | &ensp;{{curMonth}} 지출
-        h1
+        h2
           span(style="font-size:50%") 총 지출:&ensp;
           | {{sum | number}}
           span(style="font-size:50%") &ensp;원
@@ -31,3 +31,7 @@
         ul.nav.bs-docs-sidenav
           li(ng-repeat="month in yearmonth" ng-class="{active: month==curMonth}")
             a(ng-href="/expense/{{month}}" ng-bind="month" ng-click="logMonthly(month)")
+      hr
+      .signout.form-group
+        button.btn.btn-danger.btn-sm(ng-click="signout()" ng-if="expense")
+          | 로그아웃
