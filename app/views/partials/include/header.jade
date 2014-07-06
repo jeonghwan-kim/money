@@ -1,4 +1,8 @@
-h2.title
-  a(href="/")
-    | OMG
-    span(style="font-size:90%") &ensp;가계부
+div(style="position:relative")
+  h2.title
+    a(href="/")
+      | OMG
+      span(style="font-size:90%") &ensp;가계부
+  div(style="position:absolute;right:10px;top:15px")
+    a.btn.btn-primary(href="" ng-click="signout()" ng-if="expense")
+      | 로그아웃

@@ -13,7 +13,7 @@
         a.btn.btn-success.btn-lg.btn-block(ng-href="/new")
           span.glyphicon.glyphicon-plus-sign
           | &ensp;지출 입력
-      table.table.table-hover(ng-repeat="dailyExpense in expense2")
+      table.table.table-hover(ng-repeat="dailyExpense in expense")
         thead
           tr
             th {{dailyExpense.date}} ({{dailyExpense.date|date:"EEEE"}})
@@ -31,7 +31,3 @@
         ul.nav.bs-docs-sidenav
           li(ng-repeat="month in yearmonth" ng-class="{active: month==curMonth}")
             a(ng-href="/expense/{{month}}" ng-bind="month" ng-click="logMonthly(month)")
-        hr.brand-gray-light
-        a.btn.btn-danger(ng-click="signout()")
-          span.glyphicon.glyphicon-off
-          | &ensp;로그아웃
