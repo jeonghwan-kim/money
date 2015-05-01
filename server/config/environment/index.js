@@ -41,6 +41,15 @@ var all = {
     }
   },
 
+  // Mysql
+  mysql: {
+    "username": "root",
+    "password": "root",
+    "database": "money2",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+
 };
 
 // Export the config object based on the NODE_ENV
