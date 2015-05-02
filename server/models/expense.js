@@ -1,15 +1,15 @@
 'use strict';
 
 module.exports = function(sequelize, DataTypes) {
-  var User = sequelize.define('User', {
-    email: {
-      type: DataTypes.STRING,
+  var Expense = sequelize.define('Expense', {
+    amount: {
+      type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
-        isEmail: true
+        isInt: true
       }
     },
-    pass: {
+    text: {
       type: DataTypes.STRING,
       allowNull: false
     }
@@ -17,9 +17,9 @@ module.exports = function(sequelize, DataTypes) {
     classMethods: {
       associate: function(models) {
         // associations can be defined here
-        User.hasMany(models.Expense)
+
       }
     }
   });
-  return User;
+  return Expense;
 };

@@ -20,7 +20,7 @@ exports = module.exports = function (app) {
       attributes: ['id', 'email', 'createdAt', 'updatedAt']
     }).then(function (user) {
       if (user) {
-        console.log(tag, 'found user: ', user);
+        console.log(tag, 'found user');
         done(null, {user: user});
       } else {
         console.log(tag, 'fail to find user');
@@ -31,13 +31,13 @@ exports = module.exports = function (app) {
 
   // 인증 성공후 세션에 데이터 저장시 호출됨
   passport.serializeUser(function (user, done) {
-    console.log(tag, 'serializeUser()', user);
+    console.log(tag, 'serializeUser()');
     done(null, user);
   });
 
   // 세션에 저장된 데이터 조회시 호출됨
   passport.deserializeUser(function (user, done) {
-    console.log(tag, 'deserializeUser()', user);
+    console.log(tag, 'deserializeUser()');
     done(null, user);
   });
 };
