@@ -2,6 +2,7 @@
 
 var _ = require('lodash');
 var models = require('../../models');
+var cryptoHelper = require('../../components/cryptoHelper');
 
 // Get list of users
 exports.index = function (req, res) {
@@ -13,8 +14,13 @@ exports.index = function (req, res) {
 // Create new user
 exports.create = function (req, res) {
   models.User.create({
-    name: req.body.name
+    email: req.body.email,
+    pass: cryptoHelper.md5(req.body.pass)
+
   }).then(function (user) {
     res.json(user);
+
+  }).catch(function (err) {
+    res.json(err);
   });
 };

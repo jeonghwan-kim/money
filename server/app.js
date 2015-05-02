@@ -18,7 +18,7 @@ require('./config/express')(app);
 require('./routes')(app);
 
 // Sync Database
-models.sequelize.sync().then(function () {
+models.sequelize.sync({force:false}).then(function () {
 
   // Start server
   server.listen(config.port, config.ip, function () {
