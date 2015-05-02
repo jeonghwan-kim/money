@@ -9,7 +9,7 @@ exports.index = function(req, res) {
 
 // Login
 exports.login = function(req, res) {
-  res.json({login: true});
+  res.status(201).json(req.user);
 };
 
 // Logout
@@ -17,6 +17,3 @@ exports.logout = function(req, res) {
   req.logout();
   res.json({logout: true});
 };
-
-
-
