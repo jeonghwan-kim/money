@@ -2,7 +2,7 @@
 
 var _ = require('lodash');
 var models = require('../../models');
-var cryptoHelper = require('../../components/cryptoHelper');
+var cryptoHelper = require('../../components/crypto-helper');
 
 // Get list of users
 exports.index = function (req, res) {
