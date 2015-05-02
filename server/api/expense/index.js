@@ -8,5 +8,6 @@ var router = express.Router();
 
 router.get('/', ensureAuth, controller.query);
 router.post('/', ensureAuth, controller.create);
+router.put('/', ensureAuth, controller.update);
 
 module.exports = router;

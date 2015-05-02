@@ -24,5 +24,17 @@ exports.create = function(req, res) {
     text: req.body.text
   }).then(function(expense) {
     res.status(201).json({expense: expense})
-  })
+  });
+};
+
+// New expense
+exports.update = function(req, res) {
+  Expense.find(req.body.expenseId).then(function (expense) {
+    expense.updateAttributes({
+      amount: req.body.amount || expense.amount,
+      text: req.body.text || expense.text
+    }).then(function (expense) {
+      res.json({expense: expense});
+    });
+  });
 };
