@@ -3,7 +3,7 @@
 angular.module 'moneyApp'
 .controller 'NavbarCtrl', ($scope, $location) ->
   $scope.menu = [
-    title: 'Home'
+    title: '월별 현황'
     link: '/'
   ]
   $scope.isCollapsed = true
