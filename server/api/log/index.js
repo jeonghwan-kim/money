@@ -6,7 +6,7 @@ var ensureAuth = require('../auth/ensure-auth');
 
 var router = express.Router();
 
-router.get('/', ensureAuth, controller.query);
-router.post('/', ensureAuth, controller.create);
+router.get('/', controller.query);
+router.post('/', controller.create);
 
 module.exports = router;

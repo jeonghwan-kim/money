@@ -13,6 +13,7 @@ exports.query = function (req, res) {
   } else {
     // find all logs
     Log.findAll({
+      order: 'createdAt DESC',
       limit: req.query.limit || 50,
       offset: req.query.offset || 0
     }).then(function (logs) {
@@ -23,9 +24,11 @@ exports.query = function (req, res) {
 
 // New log
 exports.create = function (req, res) {
+  var userId = _.get(req, 'user.user.id', null);
+
   Log.create({
     log: req.body.log,
-    UserId: req.user.user.id
+    UserId: userId
   }).then(function (log) {
     res.status(201).json({insertedLog: log});
   });
