@@ -1,22 +1,31 @@
 'use strict'
 
 angular.module 'moneyApp'
-.controller 'RegisterCtrl', ($scope, $log) ->
+.controller 'RegisterCtrl', ($scope, $log, $http, $location) ->
   tag = 'RegisterCtrl'
+
   $scope.register = ->
     $log.log tag, 'register()'
     $log.log tag, 'form.$invalid:', $scope.form.$invalid
     $scope.trySubmit = true
-    $log.log tag, 'input values are enough', $scope.user if $scope.form.$valid
-    # call api
-    # ...
+    return $scope.user if $scope.form.$invalid
+
+    $scope.helpMsg = '요청중...'
+    $http.post '/api/users', {email: $scope.user.email, pass: $scope.user.pass}
+    .success (data) ->
+      $log.info tag, data
+      $scope.helpMsg = '등록완료'
+      $location.url('/login?tryEmail=' + data.email);
+    .error (error) ->
+      $log.error tag, error
+      $scope.helpMsg = '등록실패'
 
   $scope.showError = (form, validator, trySubmit) ->
-    $log.log tag, 'showError()'
-    $log.log tag, 'trySubmit:', trySubmit
-    $log.log tag, 'form.$error[validator]', form.$error[validator]
-    result = trySubmit && form.$error[validator]
-    $log.log tag, 'result: ', result
+    $log.debug tag, 'showError()'
+    $log.debug tag, 'trySubmit:', trySubmit
+    $log.debug tag, 'form.$error[validator]', form.$error[validator]
+    result = trySubmit && form.$error && form.$error[validator]
+    $log.debug tag, 'result: ', result
     result
 
 

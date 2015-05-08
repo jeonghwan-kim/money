@@ -5,7 +5,7 @@ div.container
   form(name="form")
     div.form-group
       label(for="name") 이메일
-      input.form-control(name="email" type="email" required="true" ng-trim="true" placeholder="이메일")
+      input.form-control(name="email" type="email" ng-model="email" required="true" ng-trim="true" placeholder="이메일")
     div.form-group
       label(for="pass") 비밀번호
       input.form-control(name="pass" type="password" required="true" ng-trim="true" placeholder="비밀번호")
