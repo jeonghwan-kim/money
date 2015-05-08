@@ -5,9 +5,9 @@ div.container
   form(name="form" novalidate)
     div.form-group
       label(for="name") 이메일
-      input.form-control(name="email" ng-model="user.email" type="email" required="true" ng-trim="true" placeholder="등록할 이메일을 입력하세요")
+      input.form-control(name="email" ng-model="user.email" type="email" required="true" email-validator ng-trim="true" placeholder="등록할 이메일을 입력하세요")
       small(ng-show="showError(form.email, 'required', trySubmit)"): i.text-danger 필수입력입니다
-      small(ng-show="showError(form.email, 'email', trySubmit)"): i.text-danger 올바른 이메일 주소를 입력하세
+      small(ng-show="showError(form.email, 'email', trySubmit)"): i.text-danger 올바른 이메일 주소를 입력하세요
     div.form-group
       label(for="pass") 비밀번호
       input.form-control(name="pass" ng-model="user.pass" type="password" required="true" ng-minlength="6" ng-trim="true" placeholder="사용할 비밀번호를 입력하세요")
@@ -23,6 +23,6 @@ div.container
       span.glyphicon.glyphicon-chevron-right
       | 로그인
 
-  pre {{form.email|json}}
-  pre {{form.pass|json}}
+  pre {{form.email.$error|json}}
+  pre {{form.pass.$error|json}}
   pre {{user|json}}

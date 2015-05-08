@@ -4,6 +4,8 @@ angular.module 'moneyApp'
 .controller 'RegisterCtrl', ($scope, $log, $http, $location) ->
   tag = 'RegisterCtrl'
 
+  $scope.checkEmail
+
   $scope.register = ->
     $log.log tag, 'register()'
     $log.log tag, 'form.$invalid:', $scope.form.$invalid
@@ -22,10 +24,7 @@ angular.module 'moneyApp'
 
   $scope.showError = (form, validator, trySubmit) ->
     $log.debug tag, 'showError()'
-    $log.debug tag, 'trySubmit:', trySubmit
     $log.debug tag, 'form.$error[validator]', form.$error[validator]
     result = trySubmit && form.$error && form.$error[validator]
     $log.debug tag, 'result: ', result
     result
-
-
