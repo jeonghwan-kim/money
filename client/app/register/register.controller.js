@@ -22,7 +22,11 @@
         return $location.url('/login?tryEmail=' + data.email);
       }).error(function(error) {
         $log.error(tag, error);
-        return $scope.helpMsg = '등록실패';
+        if (error.name === 'SequelizeUniqueConstraintError') {
+          return $scope.helpMsg = '이미 등록된 이메일';
+        } else {
+          return $scope.helpMsg = '등록실패';
+        }
       });
     };
     return $scope.showError = function(form, validator, trySubmit) {

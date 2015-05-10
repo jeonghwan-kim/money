@@ -20,7 +20,10 @@ angular.module 'moneyApp'
       $location.url('/login?tryEmail=' + data.email);
     .error (error) ->
       $log.error tag, error
-      $scope.helpMsg = '등록실패'
+      if error.name == 'SequelizeUniqueConstraintError'
+        $scope.helpMsg = '이미 등록된 이메일'
+      else
+        $scope.helpMsg = '등록실패'
 
   $scope.showError = (form, validator, trySubmit) ->
     $log.debug tag, 'showError()'
