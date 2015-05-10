@@ -2,15 +2,19 @@ div(ng-include='"components/navbar/navbar.html"')
 div.container
   h1.page-header
     | 로그인
-  form(name="form")
+  form(name="form" novalidate)
     div.form-group
       label(for="name") 이메일
-      input.form-control(name="email" type="email" ng-model="email" required="true" ng-trim="true" placeholder="이메일")
+      input.form-control(name="email" type="email" ng-model="email" required="true" email-validator ng-trim="true" placeholder="이메일")
+      small(ng-show="showError(form.email, 'required', trySubmit)"): i.text-danger 필수입력입니다
+      small(ng-show="showError(form.email, 'email', trySubmit)"): i.text-danger 올바른 이메일 주소를 입력하세요
     div.form-group
       label(for="pass") 비밀번호
-      input.form-control(name="pass" type="password" required="true" ng-trim="true" placeholder="비밀번호")
+      input.form-control(name="pass" type="password" ng-model="pass" required="true" ng-minlength="6" ng-trim="true" placeholder="비밀번호")
+      small(ng-show="showError(form.pass, 'required', trySubmit)"): i.text-danger 필수입력입니다
+      small(ng-show="showError(form.pass, 'minlength', trySubmit)"): i.text-danger 6자글자 이상 입력하세요
     div.form-group
-      intpu.btn.btn-success(type="submit") 로그인
+      button.btn.btn-success(type="submit" ng-click="login(email, pass)") 로그인
   hr
   p
     | 처음 오셨나요?&ensp;
@@ -22,3 +26,4 @@ div.container
     a(ng-href="/forgot-password")
       span.glyphicon.glyphicon-chevron-right
       | 비밀번호 분실
+  pre {{helpMsg|json}}

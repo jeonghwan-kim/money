@@ -14,7 +14,7 @@ div.container
       small(ng-show="showError(form.pass, 'required', trySubmit)"): i.text-danger 필수입력입니다
       small(ng-show="showError(form.pass, 'minlength', trySubmit)"): i.text-danger 6자글자 이상 입력하세요
     div.form-group
-      button.btn.btn-success(ng-click="register()") 회원가입
+      button.btn.btn-success(type="submit" ng-click="register()") 회원가입
       p(ng-bind="helpMsg")
   hr
   p
