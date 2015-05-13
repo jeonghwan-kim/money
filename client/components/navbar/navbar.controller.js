@@ -9,8 +9,11 @@
       }
     ];
     $scope.isCollapsed = true;
-    return $scope.isActive = function(route) {
+    $scope.isActive = function(route) {
       return route === $location.path();
+    };
+    return $scope.user = {
+      email: 'ej88ej@gmail.com'
     };
   });
 

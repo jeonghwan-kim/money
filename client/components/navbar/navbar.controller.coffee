@@ -10,3 +10,6 @@ angular.module 'moneyApp'
 
   $scope.isActive = (route) ->
     route is $location.path()
+
+  $scope.user =
+    email: 'ej88ej@gmail.com'

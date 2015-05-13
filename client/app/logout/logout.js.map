@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "logout.js",
+  "sourceRoot": "",
+  "sources": [
+    "logout.coffee"
+  ],
+  "names": [],
+  "mappings": ";AAAA;AAAA,EAAA,YAAA,CAAA;AAAA,EAEA,OAAO,CAAC,MAAR,CAAe,UAAf,CACA,CAAC,MADD,CACQ,SAAC,cAAD,GAAA;WACN,cAAc,CAAC,KAAf,CAAqB,QAArB,EACE;AAAA,MAAA,GAAA,EAAK,SAAL;AAAA,MACA,WAAA,EAAa,wBADb;AAAA,MAEA,UAAA,EAAY,YAFZ;KADF,EADM;EAAA,CADR,CAFA,CAAA;AAAA"
+}
