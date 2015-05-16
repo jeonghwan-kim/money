@@ -18,4 +18,8 @@ div.navbar.navbar-default.navbar-static-top(ng-controller='NavbarCtrl')
         li(ng-if="!user.email")
           a(ng-href='/login') 로그인
         li(ng-if="user.email")
-          a(ng-href="#" ng-click='logout()') 로그아웃
+          a(ng-href="#" ng-click='logout()')
+            | 로그아웃
+            span(ng-show="tryLogout")
+              | &ensp;
+              span.fa.fa-spinner.fa-spin
