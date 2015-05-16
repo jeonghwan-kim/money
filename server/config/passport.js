@@ -37,7 +37,7 @@ exports = module.exports = function (app) {
 
   // 세션에 저장된 데이터 조회시 호출됨
   passport.deserializeUser(function (user, done) {
-    console.log(tag, 'deserializeUser()');
+    console.log(tag, 'deserializeUser()', user);
     done(null, user);
   });
 };
