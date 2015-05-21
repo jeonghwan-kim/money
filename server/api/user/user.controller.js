@@ -5,9 +5,22 @@ var models = require('../../models');
 var cryptoHelper = require('../../components/crypto-helper');
 
 // Get list of users
-exports.index = function (req, res) {
+exports.query = function (req, res) {
   models.User.findAll().then(function (users) {
     res.json({users: users});
+  });
+};
+
+// Get the user
+exports.find = function (req, res) {
+  models.User.find({
+    attributes: ['id', 'name', 'email', 'createdAt', 'updatedAt'],
+    where: {id: req.params.uid}
+  }).then(function (user) {
+    res.json({user: user});
+  }).catch(function (err) {
+    console.error(err);
+    req.status(403);
   });
 };
 
@@ -15,7 +28,8 @@ exports.index = function (req, res) {
 exports.create = function (req, res) {
   models.User.create({
     email: req.body.email,
-    pass: cryptoHelper.md5(req.body.pass)
+    pass: cryptoHelper.md5(req.body.pass),
+    name: req.body.name || ''
 
   }).then(function (user) {
     res.json(user);
