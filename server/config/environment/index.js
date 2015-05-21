@@ -2,6 +2,7 @@
 
 var path = require('path');
 var _ = require('lodash');
+var dbConfig = require('../config.json')[process.env.NODE_ENV];
 
 function requiredProcessEnv(name) {
   if(!process.env[name]) {
@@ -43,11 +44,11 @@ var all = {
 
   // Mysql
   mysql: {
-    "username": "root",
-    "password": "root",
-    "database": "money2",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+    username: dbConfig.username,
+    password: dbConfig.password,
+    database: dbConfig.database,
+    host: dbConfig.host,
+    dialect: dbConfig.dialect
   }
 
 };
