@@ -8,12 +8,19 @@ var joiValidate = require('express-joi').joiValidate;
 var router = express.Router();
 
 var schema = {
-  uid: Joi.types.Number().required()
+  find: {
+    uid: Joi.types.Number().required()
+  },
+  update: {
+    uid: Joi.types.Number().required(),
+    name: Joi.types.String().required()
+  }
 };
 
 router.get('/', controller.query);
-router.get('/:uid', joiValidate(schema, {strict: true}), controller.find);
+router.get('/:uid', joiValidate(schema.find, {strict: true}), controller.find);
 router.post('/', controller.create);
+router.put('/:uid', joiValidate(schema.update, {strict: true}), controller.update);
 
 
 module.exports = router;

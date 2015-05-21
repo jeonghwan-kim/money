@@ -16,8 +16,10 @@ exports.find = function (req, res) {
   models.User.find({
     attributes: ['id', 'name', 'email', 'createdAt', 'updatedAt'],
     where: {id: req.params.uid}
+
   }).then(function (user) {
     res.json({user: user});
+
   }).catch(function (err) {
     console.error(err);
     req.status(403);
@@ -33,6 +35,27 @@ exports.create = function (req, res) {
 
   }).then(function (user) {
     res.json(user);
+
+  }).catch(function (err) {
+    res.status(400).json(err);
+  });
+};
+
+// Update the user
+exports.update = function (req, res) {
+  models.User.find({
+    where: {id: req.params.uid}
+
+  }).then(function (user) {
+    user.updateAttributes({
+      name: req.body.name
+
+    }).then(function (data) {
+      res.json(data);
+
+    }).catch(function (err) {
+      res.status(400).json(err);
+    })
 
   }).catch(function (err) {
     res.status(400).json(err);
