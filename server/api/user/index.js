@@ -22,5 +22,4 @@ router.get('/:uid', joiValidate(schema.find, {strict: true}), controller.find);
 router.post('/', controller.create);
 router.put('/:uid', joiValidate(schema.update, {strict: true}), controller.update);
 
-
 module.exports = router;
