@@ -19,7 +19,7 @@ require('./config/passport')(app);
 require('./routes')(app);
 
 // Sync Database
-models.sequelize.sync({force: false}).then(function () {
+models.sequelize.sync().then(function () {
 
   // Start server
   server.listen(config.port, config.ip, function () {

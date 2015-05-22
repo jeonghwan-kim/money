@@ -61,3 +61,17 @@ exports.update = function (req, res) {
     res.status(400).json(err);
   });
 };
+
+// Remove user
+exports.remove = function (req, res) {
+  var uid = req.params.uid;
+
+  models.User.destroy({where: {id: req.params.uid}})
+      .then(function (affectedRows) {
+        if (affectedRows) {
+          res.json('userId: ' + req.params.uid + ' is removed');
+        } else {
+          res.status(404).json();
+        }
+      });
+};
