@@ -17,7 +17,7 @@ exports = module.exports = function (app) {
     var pass2 = cryptoHelper.md5(password);
     User.find({
       where: {email: username, pass: pass2},
-      attributes: ['email', 'createdAt', 'updatedAt']
+      attributes: ['id', 'email', 'createdAt', 'updatedAt']
     }).then(function (user) {
       if (user) {
         console.log(tag, 'found user');

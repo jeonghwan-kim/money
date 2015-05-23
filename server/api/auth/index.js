@@ -6,7 +6,6 @@ var controller = require('./auth.controller');
 var ensureAuth = require('./ensure-auth');
 var Joi = require('express-joi').Joi;
 var joiValidate = require('express-joi').joiValidate;
-//var joiValidate = require('../../components/express-joi').joiValidate;
 var router = express.Router();
 
 var schema = {

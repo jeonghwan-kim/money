@@ -6,6 +6,9 @@ var Expense = models.Expense;
 
 // Get list of expenses
 exports.query = function (req, res) {
+  console.log(req.query.year);
+  console.log(req.query.month);
+
   Expense.findAll({
     where: {UserId: req.user.user.id},
     order: 'createdAt DESC',
@@ -21,9 +24,13 @@ exports.create = function (req, res) {
   Expense.create({
     UserId: req.user.user.id,
     amount: req.body.amount,
-    text: req.body.text
+    text: req.body.text,
+    date: new Date(req.body.date + ' 00:00:00')
   }).then(function (expense) {
     res.status(201).json({expense: expense})
+  }).catch(function (error) {
+    console.error(error);
+    res.status(500);
   });
 };
 
