@@ -13,6 +13,7 @@ angular.module 'moneyApp'
 
     return if $scope.form.$invalid
 
+    $scope.helpMsg = '로그인 중...'
     $http.post '/api/auth', {username: email, password: pass}
     .success (data) ->
       $log.info(tag, 'login success', data)
