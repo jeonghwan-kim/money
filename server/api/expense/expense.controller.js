@@ -3,12 +3,15 @@
 var _ = require('lodash');
 var models = require('../../models');
 var Expense = models.Expense;
+var Sequelize = require('sequelize');
 
 // Get list of expenses
 exports.query = function (req, res) {
-  var year = req.query.year
+  var year = req.query.year;
   var month = (function (month) {
-    if (month < 10) {month = '0' + month}
+    if (month < 10) {
+      month = '0' + month
+    }
     return month;
   })(req.query.month);
 
@@ -25,6 +28,17 @@ exports.query = function (req, res) {
   }).then(function (expenses) {
     res.json({expense: expenses});
   });
+};
+
+// Get Months list
+exports.getMonths = function (req, res) {
+  var sql = 'SELECT distinct(left(date, 7)) as month FROM Expenses order by month desc';
+  models.sequelize.query(sql).spread(function (results, metadata) {
+    res.json({months: results})
+  }).catch(function (error) {
+    console.error(error);
+    res.status(500).send();
+  })
 };
 
 // New expense

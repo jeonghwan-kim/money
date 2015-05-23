@@ -23,6 +23,7 @@ var schema = {
 
 
 router.get('/', joiValidate(schema.find, {strict: true}), ensureAuth, controller.query);
+router.get('/months', ensureAuth, controller.getMonths);
 router.post('/', joiValidate(schema.create, {strict: true}), controller.create);
 router.put('/', ensureAuth, controller.update);
 router.delete('/', ensureAuth, controller.remove);
