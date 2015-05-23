@@ -27,7 +27,7 @@ exports.resetPassword = function (req, res) {
 
   models.User.findOne({where: {email: req.body.email}}).then(function (user) {
     if (!user) {
-      res.status(404).send();
+      return res.status(404).send();
     }
 
     user.updateAttributes({pass: newPassword2}).then(function (affectedCount) {
@@ -43,5 +43,6 @@ exports.resetPassword = function (req, res) {
         res.status(404).send();
       }
     })
-  })
+  });
+
 };

@@ -14,7 +14,10 @@ module.exports = function(app) {
   app.use('/api/auth', require('./api/auth'));
   app.use('/api/users', require('./api/user'));
   app.use('/api/things', require('./api/thing'));
-  
+
+  // If parameters are invalid return 1 400
+  app.use(errors[400]);
+
   // All undefined asset or api routes should return a 404
   app.route('/:url(api|auth|components|app|bower_components|assets)/*')
    .get(errors[404]);

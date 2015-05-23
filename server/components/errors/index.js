@@ -18,3 +18,12 @@ module.exports[404] = function pageNotFound(req, res) {
     res.render(viewFilePath);
   });
 };
+
+module.exports[400] = function parameterError(err, req, res, next) {
+  if (err) {
+    console.error(err);
+    res.status(400).json(err.message);
+  } else {
+    next();
+  }
+};
