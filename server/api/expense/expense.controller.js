@@ -6,11 +6,19 @@ var Expense = models.Expense;
 
 // Get list of expenses
 exports.query = function (req, res) {
-  console.log(req.query.year);
-  console.log(req.query.month);
+  var year = req.query.year
+  var month = (function (month) {
+    if (month < 10) {month = '0' + month}
+    return month;
+  })(req.query.month);
+
+  var where = {UserId: req.user.user.id};
+  if (year && month) {
+    where.date = {$like: year + '-' + month + '%'}
+  }
 
   Expense.findAll({
-    where: {UserId: req.user.user.id},
+    where: where,
     order: 'createdAt DESC',
     limit: req.query.limit || 50,
     offset: req.query.offset || 0
