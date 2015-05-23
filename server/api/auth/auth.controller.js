@@ -3,6 +3,7 @@
 var _ = require('lodash');
 var models = require('../../models');
 var email = require('../../components/email');
+var cryptoHelper = require('../../components/crypto-helper');
 
 // Get auth info saved in session memory
 exports.index = function (req, res) {
@@ -22,8 +23,8 @@ exports.logout = function (req, res) {
 
 // Reset password
 exports.resetPassword = function (req, res) {
-  var newPassword = new Date().getTime().toString().substring(8, 12);
-  var newPassword2 = require('crypto').createHash('md5').update(newPassword).digest('hex');
+  var newPassword = new Date().getTime().toString().substring(6, 12);
+  var newPassword2 = cryptoHelper.md5(newPassword);
 
   models.User.findOne({where: {email: req.body.email}}).then(function (user) {
     if (!user) {
