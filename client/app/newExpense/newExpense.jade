@@ -1,0 +1,21 @@
+div(ng-include='"components/navbar/navbar.html"')
+div.container
+  h1.page-header
+    | 지출 입력
+  form(name="form" novalidate)
+    div.form-group
+      label(for="date") 날짜
+      input.form-control(name="date" ng-model="expense.date" type="text" required="true" ng-trim="true" placeholder="" autofocus)
+      p(ng-show="showError(form.date, 'required', trySubmit)") 필수입력입니다
+    div.form-group
+      label(for="text") 내용
+      input.form-control(name="text" ng-model="expense.text" type="text" required="true" ng-trim="true" placeholder="")
+      p(ng-show="showError(form.text, 'required', trySubmit)") 필수입력입니다
+    div.form-group
+      label(for="amount") 금액
+      input.form-control(name="amount" ng-model="expense.amount" type="number" required="true" ng-trim="true" placeholder="")
+      p(ng-show="showError(form.amount, 'required', trySubmit)") 필수입력입니다
+    div.form-group
+      button.btn.btn-success(type="submit" ng-click="save()" ng-disabled="form.$invalid") 저장
+      a.btn.btn-default(herf="/") 취소
+      p(ng-bind="helpMsg")
