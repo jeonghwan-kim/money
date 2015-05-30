@@ -2,7 +2,7 @@ div(ng-include='"components/navbar/navbar.html"')
 
 header#banner.hero-unit
   .container
-    h4 {{year}}년{{month}}월
+    select.form-control(ng-options="month.month for month in months" ng-model="date")
     h3 총지출: {{sum|number}}원
 
 table.table
