@@ -26,7 +26,7 @@ exports.query = function (req, res) {
     limit: req.query.limit || 50,
     offset: req.query.offset || 0
   }).then(function (expenses) {
-    res.json({expense: expenses});
+    res.json({expenses: expenses});
   });
 };
 

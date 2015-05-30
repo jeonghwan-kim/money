@@ -1,0 +1,17 @@
+div(ng-include='"components/navbar/navbar.html"')
+
+header#banner.hero-unit
+  .container
+    h4 {{year}}년{{month}}월
+    h3 총지출: {{sum|number}}원
+
+table.table
+  thead
+    tr
+      th(ng-repeat="name in names" ng-bind="name")
+  tbody
+    tr(ng-repeat="expense in expenses")
+      td(ng-bind="expense.date | date:'yyyy/MM/dd'")
+      td(ng-bind="expense.text")
+      td(ng-bind="expense.amount | number")
+      td: a(href="/editExpense/{{expense.id}}"): i.glyphicon.glyphicon-info-sign
