@@ -1,19 +1,18 @@
 'use strict'
 
 angular.module 'moneyApp'
-.controller 'NavbarCtrl', ($scope, $location, $http, $log, $state, $stateParams) ->
+.controller 'NavbarCtrl', ($scope, $location, $http, $log, $state, $stateParams, Auth) ->
   tag = 'NavbarCtrl'
 
-  $http.get '/api/auth'
-  .success (data) ->
-    $scope.user = data.user
-  .error (error) ->
-    $log.warn tag, error
-
   $scope.menu = [
-    title: '월별 현황'
-    link: '/'
+    {title: '홈', link: '/'}
+    {title: '지출현황', link: '/expenses/0000/00'}
+    {title: '지출입력', link: '/newExpense'}
   ]
+
+  Auth.get().then (user) ->
+    $scope.user = user
+
 
   $scope.isCollapsed = true
 

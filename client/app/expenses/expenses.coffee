@@ -6,3 +6,6 @@ angular.module 'moneyApp'
     url: '/expenses/:year/:month'
     templateUrl: 'app/expenses/expenses.html'
     controller: 'ExpensesCtrl'
+    resolve:
+      user: (Auth) ->
+        Auth.get()

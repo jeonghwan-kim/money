@@ -10,6 +10,11 @@ angular.module 'moneyApp'
     text: $stateParams.text
     amount: parseInt $stateParams.amount, 10
 
+  year = expense.date.getFullYear()
+  month = ((date) ->
+    month = date.getMonth() + 1
+    if month < 10 then '0' + month else month
+  )(expense.date)
 
   $scope.showError = (form, validator) ->
     form.$error && form.$error[validator]
@@ -20,7 +25,7 @@ angular.module 'moneyApp'
     $http.put '/api/expenses', $scope.expense
     .success (date) ->
       $log.debug tag, date
-#      $state.go 'expenses'
+      $state.go 'expenses', {year: year, month: month}
     .error (error) ->
       $log.error tag, error
 
@@ -31,9 +36,9 @@ angular.module 'moneyApp'
     $http.delete "/api/expenses/#{ expense.expenseId }"
     .success (data) ->
       $log.debug tag, data
-#      $state.go 'expense'
+      $state.go 'expenses', {year: year, month: month}
     .error (error) ->
       $log.error tag, error
 
   $scope.cancel = ->
-    $state.go 'expenses', {year: 2015, month: 5}
+    $state.go 'expenses', {year: year, month: month}

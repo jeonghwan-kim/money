@@ -5,7 +5,7 @@ div.container
   form(name="form" novalidate)
     div.form-group
       label(for="date") 날짜
-      input.form-control(name="date" ng-model="expense.date" type="text" required="true" ng-trim="true" placeholder="" autofocus)
+      input.form-control(name="date" ng-model="expense.date" type="date" required="true" ng-trim="true" placeholder="" autofocus)
       p(ng-show="showError(form.date, 'required', trySubmit)") 필수입력입니다
     div.form-group
       label(for="text") 내용
@@ -17,5 +17,5 @@ div.container
       p(ng-show="showError(form.amount, 'required', trySubmit)") 필수입력입니다
     div.form-group
       button.btn.btn-success(type="submit" ng-click="save()" ng-disabled="form.$invalid") 저장
-      a.btn.btn-default(herf="/") 취소
+      a.btn.btn-default(href="/") 취소
       p(ng-bind="helpMsg")

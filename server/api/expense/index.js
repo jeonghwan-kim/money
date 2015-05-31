@@ -13,13 +13,13 @@ var schema = {
     month: Joi.number().integer().min(1).max(12).optional()
   },
   create: {
-    date: Joi.string().regex(/^\d{4}-\d{2}-\d{2}$/).required(),
+    date: Joi.string().required(),
     amount: Joi.number().integer().min(1).required(),
     text: Joi.string().required()
   },
   update: {
     expenseId: Joi.number().integer().min(1).required(),
-    date: Joi.string().regex(/^\d{4}-\d{2}-\d{2}$/).required(),
+    date: Joi.string().required(),
     amount: Joi.number().integer().min(1).required(),
     text: Joi.string().required()
   },

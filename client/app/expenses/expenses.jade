@@ -4,6 +4,7 @@ header#banner.hero-unit
   .container
     select.form-control(ng-options="month.month for month in months" ng-model="date")
     h3 총지출: {{sum|number}}원
+    a.btn.btn-success(href="/newExpense") 지출입력
 
 table.table
   thead

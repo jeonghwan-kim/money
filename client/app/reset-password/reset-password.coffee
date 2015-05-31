@@ -6,3 +6,6 @@ angular.module 'moneyApp'
     url: '/reset-password'
     templateUrl: 'app/reset-password/reset-password.html'
     controller: 'ResetPasswordCtrl'
+    resolve:
+      user: (Auth) ->
+        Auth.get()

@@ -15,15 +15,12 @@ div.navbar.navbar-default.navbar-static-top(ng-controller='NavbarCtrl')
       ul.nav.navbar-nav.navbar-right
         li
           a(ng-bind="user.email")
-        li(ng-if="!user.email")
-          a(ng-href='/login') 로그인
-        li(ng-if="user.email")
+        li
           a(ng-href="#" ng-click='logout()')
             | 로그아웃
             span(ng-show="tryLogout")
               | &ensp;
               span.fa.fa-spinner.fa-spin
-        li(ng-if="user.email")
+        li
           a(ng-href="/reset-password")
             | 비밀번호 변경
-

@@ -7,14 +7,20 @@ angular.module 'moneyApp'
   $scope.names = ['날짜', '내용', '금액', '']
 
   $log.debug tag, $stateParams
+  date = $stateParams.year + '-' + $stateParams.month
 
   $http.get "/api/expenses/months"
   .success (data) ->
-    months = $scope.months = data.months
-    date = $scope.date = $scope.months[0]
+    $scope.months = data.months
+    idx = _.findIndex $scope.months, (month) ->
+      month.month == date
+
+    $log.debug tag, idx, $scope.months, date
+    $scope.date = if idx > -1 then $scope.months[idx] else $scope.months[0]
 
   .error (error) ->
     $log.error tag, error
+
 
   $scope.$watch 'date', (newDate) ->
     return if !newDate

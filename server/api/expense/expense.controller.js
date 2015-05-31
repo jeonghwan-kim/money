@@ -46,7 +46,7 @@ exports.create = function (req, res) {
     UserId: req.user.user.id,
     amount: req.body.amount,
     text: req.body.text,
-    date: new Date(req.body.date + ' 00:00:00')
+    date: req.body.date
   }).then(function (expense) {
     res.status(201).json({expense: expense})
   }).catch(function (error) {

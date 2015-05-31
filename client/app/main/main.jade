@@ -2,25 +2,15 @@ div(ng-include='"components/navbar/navbar.html"')
 
 header#banner.hero-unit
   .container
-    h1 제목
-    p.lead 부제목
+    h1 가계부
+    p.lead {{user.email}}
     img(src='assets/images/yeoman.png', alt='I\'m Yeoman')
 
 .container
   .row
     .col-lg-12
-      h1.page-header Features:
+      h5.page-header 메뉴
       ul.nav.nav-tabs.nav-stacked.col-md-4.col-lg-4.col-sm-6(ng-repeat='thing in awesomeThings')
         li
-          a(href='#', tooltip='{{thing.info}}')
+          a(href='{{thing.link}}', tooltip='{{thing.name}}')
             | {{thing.name}}
-
-  a(href="/expenses/0000/00") Go
-footer.footer
-  .container
-    p
-      | Angular Fullstack v2.0.13
-      = ' | '
-      a(href='https://twitter.com/tyhenkel') @tyhenkel
-      = ' | '
-      a(href='https://github.com/DaftMonk/generator-angular-fullstack/issues?state=open') Issues
