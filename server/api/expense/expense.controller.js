@@ -3,7 +3,6 @@
 var _ = require('lodash');
 var models = require('../../models');
 var Expense = models.Expense;
-var Sequelize = require('sequelize');
 
 // Get list of expenses
 exports.query = function (req, res) {
@@ -60,8 +59,9 @@ exports.create = function (req, res) {
 exports.update = function (req, res) {
   Expense.find(req.body.expenseId).then(function (expense) {
     expense.updateAttributes({
-      amount: req.body.amount || expense.amount,
-      text: req.body.text || expense.text
+      date: req.body.date || expense.date,
+      text: req.body.text || expense.text,
+      amount: req.body.amount || expense.amount
     }).then(function (expense) {
       res.json({expense: expense});
     });
@@ -70,7 +70,12 @@ exports.update = function (req, res) {
 
 // Remove expense
 exports.remove = function (req, res) {
-  Expense.find(req.body.expenseId).then(function (expense) {
+  console.log(req.params);
+  console.log(req.query);
+  Expense.find(req.params.expenseId).then(function (expense) {
+    if (!expense) {
+      return res.status(404).send();
+    }
     expense.destroy().then(function (data) {
       res.json({delted: data});
     });

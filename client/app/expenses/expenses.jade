@@ -14,4 +14,6 @@ table.table
       td(ng-bind="expense.date | date:'yyyy/MM/dd'")
       td(ng-bind="expense.text")
       td(ng-bind="expense.amount | number")
-      td: a(href="/editExpense/{{expense.id}}"): i.glyphicon.glyphicon-info-sign
+      td
+        a(href="/expenses/edit/{{expense.id}}/{{expense.date}}/{{expense.text}}/{{expense.amount}}")
+          i.glyphicon.glyphicon-info-sign

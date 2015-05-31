@@ -6,6 +6,8 @@ angular.module 'moneyApp'
 
   $scope.names = ['날짜', '내용', '금액', '']
 
+  $log.debug tag, $stateParams
+
   $http.get "/api/expenses/months"
   .success (data) ->
     months = $scope.months = data.months
