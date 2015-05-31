@@ -9,4 +9,4 @@ angular.module 'moneyApp'
     controller: 'MainCtrl'
     resolve:
       user: (Auth) ->
-        Auth.get()
+        Auth.get({redirect: true})

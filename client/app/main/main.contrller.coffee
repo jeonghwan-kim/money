@@ -7,7 +7,7 @@ angular.module 'moneyApp'
   $log.debug tag, user
   $scope.awesomeThings = [
     {name: '지출현황', link: '/expenses/0000/00'}
-    {name: '지출입력', link: '/newExpenses'}
+    {name: '지출입력', link: '/newExpense'}
   ]
 
 

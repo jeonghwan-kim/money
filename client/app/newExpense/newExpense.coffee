@@ -8,4 +8,4 @@ angular.module 'moneyApp'
     controller: 'NewexpenseCtrl'
     resolve:
       user: (Auth) ->
-        Auth.get()
+        Auth.get({redirect: true})

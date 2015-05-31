@@ -13,7 +13,6 @@ angular.module 'moneyApp'
   Auth.get().then (user) ->
     $scope.user = user
 
-
   $scope.isCollapsed = true
 
   $scope.isActive = (route) ->
