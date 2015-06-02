@@ -8,8 +8,9 @@ angular.module 'moneyApp'
   $scope.save = ->
     $scope.trySubmit = true
     return if $scope.form.$invalid
-    $log.debug $scope.expense
-    $http.post '/api/expenses', $scope.expense
+    payload = _.clone $scope.expense
+    payload.date = moment(payload.date).format('YYYY-MM-DD')
+    $http.post '/api/expenses', payload
     .success (date) ->
       $log.debug tag, date
     .error (error) ->

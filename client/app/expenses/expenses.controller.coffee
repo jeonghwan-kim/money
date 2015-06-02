@@ -6,8 +6,20 @@ angular.module 'moneyApp'
 
   $scope.names = ['날짜', '내용', '금액', '']
 
-  $log.debug tag, $stateParams
   date = $stateParams.year + '-' + $stateParams.month
+
+  parseExpense = (expenses) ->
+    tmp = {}
+    expenses.forEach (expense) ->
+      if tmp.hasOwnProperty(expense.date)
+        tmp[expense.date].expenses.push expense
+        tmp[expense.date].sum += expense.amount
+      else
+        tmp[expense.date] =
+          date: moment(expense.date).format('YYYY-MM-DD')
+          expenses: [expense]
+          sum: expense.amount
+    tmp
 
   $http.get "/api/expenses/months"
   .success (data) ->
@@ -15,9 +27,7 @@ angular.module 'moneyApp'
     idx = _.findIndex $scope.months, (month) ->
       month.month == date
 
-    $log.debug tag, idx, $scope.months, date
     $scope.date = if idx > -1 then $scope.months[idx] else $scope.months[0]
-
   .error (error) ->
     $log.error tag, error
 
@@ -30,9 +40,11 @@ angular.module 'moneyApp'
 
     $http.get "/api/expenses?year=#{ year }&month=#{ month }"
     .success (data) ->
-      expenses = $scope.expenses = data.expenses
-      $scope.sum = _.sum expenses, (item) ->
-        item.amount
+      $scope.sum = _.sum data.expenses, (expense) ->
+        expense.amount
+
+      $log.debug tag, data
+      expenses = $scope.expenses = parseExpense data.expenses
     .error (error) ->
       $log.error tag, error
 
