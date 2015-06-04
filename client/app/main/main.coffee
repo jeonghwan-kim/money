@@ -7,6 +7,3 @@ angular.module 'moneyApp'
     url: '/'
     templateUrl: 'app/main/main.html'
     controller: 'MainCtrl'
-    resolve:
-      user: (Auth) ->
-        Auth.get({redirect: true})

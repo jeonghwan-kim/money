@@ -2,13 +2,13 @@
 
 var express = require('express');
 var controller = require('./expense.controller');
-var ensureAuth = require('../auth/ensure-auth');
 var Joi = require('express-joi').Joi;
 var joiValidate = require('express-joi').joiValidate;
+var auth = require('../../auth/auth.service');
 var router = express.Router();
 
 var schema = {
-  find: {
+  index: {
     year: Joi.number().integer().min(2000).optional(),
     month: Joi.number().integer().min(1).max(12).optional()
   },
@@ -18,21 +18,21 @@ var schema = {
     text: Joi.string().required()
   },
   update: {
-    expenseId: Joi.number().integer().min(1).required(),
+    id: Joi.number().integer().min(1).required(),
     date: Joi.string().required(),
     amount: Joi.number().integer().min(1).required(),
     text: Joi.string().required()
   },
-  remove: {
-    expenseId: Joi.number().integer().min(1).required()
+  destroy: {
+    id: Joi.number().integer().min(1).required()
   }
 };
 
-
-router.get('/', joiValidate(schema.find, {strict: true}), ensureAuth, controller.query);
-router.get('/months', ensureAuth, controller.getMonths);
-router.post('/', joiValidate(schema.create, {strict: true}), controller.create);
-router.put('/', joiValidate(schema.update, {strict: true}), ensureAuth, controller.update);
-router.delete('/:expenseId', joiValidate(schema.remove, {strict: true}), ensureAuth, controller.remove);
+router.get('/', auth.isAuthenticated(), joiValidate(schema.index, {strict: false}), controller.index);
+router.get('/months', auth.isAuthenticated(), controller.getMonths);
+router.post('/', auth.isAuthenticated(), joiValidate(schema.create, {strict: false}), controller.create);
+router.get('/:id', auth.isAuthenticated(), controller.show);
+router.put('/:id', auth.isAuthenticated(), joiValidate(schema.update, {strict: false}), controller.update);
+router.delete('/:id', auth.isAuthenticated(), joiValidate(schema.destroy, {strict: false}), controller.destroy);
 
 module.exports = router;

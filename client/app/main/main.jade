@@ -6,11 +6,3 @@ header#banner.hero-unit
     p.lead {{user.email}}
     img(src='assets/images/yeoman.png', alt='I\'m Yeoman')
 
-.container
-  .row
-    .col-lg-12
-      h5.page-header 메뉴
-      ul.nav.nav-tabs.nav-stacked.col-md-4.col-lg-4.col-sm-6(ng-repeat='thing in awesomeThings')
-        li
-          a(href='{{thing.link}}', tooltip='{{thing.name}}')
-            | {{thing.name}}

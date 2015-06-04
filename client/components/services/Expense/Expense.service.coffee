@@ -4,6 +4,11 @@ angular.module 'moneyApp'
 .service 'Expense', ($resource) ->
   # AngularJS will instantiate a singleton by calling 'new' on this function
 
-  tag = 'Service:Expense'
 
-  $resource '/api/expense'
+  $resource '/api/expenses/:id?month=:month&year=:year',
+      id: '@id'
+      month: '@month'
+      year: '@year'
+    ,
+      update:
+        method: 'PUT'

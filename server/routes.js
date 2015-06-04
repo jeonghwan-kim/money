@@ -11,11 +11,11 @@ module.exports = function(app) {
   // Insert routes below
   app.use('/api/logs', require('./api/log'));
   app.use('/api/expenses', require('./api/expense'));
-  app.use('/api/auth', require('./api/auth'));
   app.use('/api/users', require('./api/user'));
-  app.use('/api/things', require('./api/thing'));
 
-  // If parameters are invalid return 1 400
+  app.use('/auth', require('./auth'));
+
+  // If parameters are invalid return 400
   app.use(errors[400]);
 
   // All undefined asset or api routes should return a 404

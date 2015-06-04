@@ -16,13 +16,18 @@ module.exports = function(sequelize, DataTypes) {
         isEmail: true
       }
     },
-    pass: {
+    password: {
       type: DataTypes.STRING,
       allowNull: false
     },
     name: {
       type: DataTypes.STRING,
       allowNull: false
+    },
+    role: {
+      type: DataTypes.ENUM('user', 'admin'),
+      allowNull: false,
+      defaultValue: 'user'
     }
   }, {
     classMethods: {
