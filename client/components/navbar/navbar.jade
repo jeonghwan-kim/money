@@ -1,15 +1,19 @@
 div(ng-controller="NavbarCtrl")
-  header
-    //nav.top-nav
-      div.container
-        div.nav-wrapper: a.page-title(href="#") 가계부
+  header(role="navigation")
     div.container
-      a.button-collapse.top-nav.waves-effect.waves-light.circle(href="/" data-activates="nav-mobile")
+      a.button-collapse.top-nav.waves-effect.waves-light.circle(href="#" data-activates="nav-mobile")
         i.mdi-navigation-menu
-    ul#nav-mobile.side-nav.fixed
+    ul#nav-mobile.side-nav
       li.logo
         a#logo-container.brand-logo(href="/") 가계부
       include submenus
 
   script.
-    $('.button-collapse').sideNav()
+    (function ($) {
+      $(function () {
+        $('.button-collapse').sideNav({
+          edge: 'left',
+          closeOnClick: true
+        });
+      }); // end of document ready
+    })(jQuery); // end of jQuery name space

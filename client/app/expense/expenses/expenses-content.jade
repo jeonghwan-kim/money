@@ -2,7 +2,7 @@ div(ng-repeat="dayExpenses in expenses")
   div.collection.with-header
     div.collection-header
       div.row
-        div.col.s7: strong {{dayExpenses.date}}({{dayExpenses.date|date:"EEEE"}})
+        div.col.s7: strong {{dayExpenses.date}}({{dayExpenses.date|date:"EEE"}})
         div.col.s3: div.right-align: strong(ng-bind="dayExpenses.sum | number")
         div.col.s2
     div.collection-item(ng-repeat="expense in dayExpenses.expenses")

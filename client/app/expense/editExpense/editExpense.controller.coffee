@@ -20,7 +20,6 @@ angular.module 'moneyApp'
       console.error err
 
   $scope.delete = ->
-    return if !$window.confirm '정말 삭제할까요?'
     Expense.remove id: $stateParams.expenseId
     .$promise
     .then () ->

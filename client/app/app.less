@@ -9,9 +9,10 @@
 header {
   height: 0;
 }
+
 header, main, footer {
   padding-left: 240px;
-  @media only screen and (max-width : 992px) {
+  @media only screen and (max-width: 992px) {
     padding-left: 0;
   }
 }
@@ -20,8 +21,15 @@ header, main, footer {
   background-color: #ee6e73;
   color: white;
 }
+
 main .section .header {
   margin-top: 50px;
+}
+
+.container {
+  @media only screen and (max-width: 992px) {
+    width: 100%;
+  }
 }
 
 // injector
