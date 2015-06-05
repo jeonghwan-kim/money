@@ -2,11 +2,7 @@
 
 angular.module 'moneyApp'
 .controller 'NavbarCtrl', ($scope, $location, $http, $log, $state, $stateParams, Auth) ->
-  $scope.menu = [
-    {title: '홈', link: '/'}
-  ]
 
-  $scope.isCollapsed = true
   $scope.isLoggedIn = Auth.isLoggedIn
   $scope.isAdmin = Auth.isAdmin
   $scope.getCurrentUser = Auth.getCurrentUser
@@ -17,3 +13,4 @@ angular.module 'moneyApp'
   $scope.logout = ->
     Auth.logout()
     $location.path '/login'
+

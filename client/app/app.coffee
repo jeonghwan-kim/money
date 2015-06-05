@@ -4,8 +4,7 @@ angular.module 'moneyApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
-  'ui.router',
-  'ui.bootstrap'
+  'ui.router'
 ]
 .config ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) ->
   $urlRouterProvider

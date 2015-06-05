@@ -1,24 +1,5 @@
 div(ng-include='"components/navbar/navbar.html"')
 div.container
-  h1.page-header
-    | 회원가입
-  form(name="form" novalidate)
-    div.form-group
-      label(for="name") 이메일
-      input.form-control(name="email" ng-model="user.email" type="email" required="true" email-validator ng-trim="true" placeholder="등록할 이메일을 입력하세요")
-      small(ng-show="showError(form.email, 'required', trySubmit)"): i.text-danger 필수입력입니다
-      small(ng-show="showError(form.email, 'email', trySubmit)"): i.text-danger 올바른 이메일 주소를 입력하세요
-    div.form-group
-      label(for="pass") 비밀번호
-      input.form-control(name="pass" ng-model="user.pass" type="password" required="true" ng-minlength="6" ng-trim="true" placeholder="사용할 비밀번호를 입력하세요")
-      small(ng-show="showError(form.pass, 'required', trySubmit)"): i.text-danger 필수입력입니다
-      small(ng-show="showError(form.pass, 'minlength', trySubmit)"): i.text-danger 6자글자 이상 입력하세요
-    div.form-group
-      button.btn.btn-success(type="submit" ng-click="register()") 회원가입
-      p(ng-bind="helpMsg")
-  hr
-  p
-    | 로그인으로 돌아가기&ensp;
-    a(ng-href="/login")
-      span.glyphicon.glyphicon-chevron-right
-      | 로그인
+  h3.header.center 회원가입
+  include register-form
+include footer.html
