@@ -16,7 +16,7 @@ div.row
         blockquote(ng-show="(form.prePassword.$error.minlength || form.newPassword1.$error.minlength || form.newPassword2.$error.minlength) && submitted")
           | 비밀번호는 6글자 이상 입력하세요.
         blockquote(ng-bind="errors.other")
-      div.form-group
+      div.col.s12
         button.btn.waves-effect.waves-light(type="submit") 비밀번호 변경
 
   div.col.s12.l6(ng-show="finished")

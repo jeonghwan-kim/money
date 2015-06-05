@@ -2,7 +2,7 @@ div.row
   form.col.s12(name="form" ng-submit="register(form)" novalidate)
     div.row
       div.col.s12.input-field
-        input.validate(name="email" ng-model="user.email" type="email" required="true" email-validator ng-trim="true")
+        input.validate(name="email" ng-model="user.email" type="email" required="true" email-validator ng-trim="true" autofocus)
         label(for="email") 이메일
       div.col.s12.input-field
         input.validate(name="password" ng-model="user.password" type="password" required="true" ng-minlength="6")
