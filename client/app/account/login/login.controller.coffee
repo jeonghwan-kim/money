@@ -15,6 +15,6 @@ angular.module 'moneyApp'
       email: $scope.user.email
       password: $scope.user.password
     .then ->
-      $location.path '/reset-password' # tmp
+      $location.path '/'
     .catch (err) ->
       $scope.errors.other = err.message

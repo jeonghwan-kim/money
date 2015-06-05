@@ -14,10 +14,18 @@ angular.module 'moneyApp', [
   $locationProvider.html5Mode true
   $httpProvider.interceptors.push 'authInterceptor'
 
+  $stateProvider
+  .state 'main',
+    url: '/'
+    templateUrl: 'app/expense/expenses/expenses.html'
+    controller: 'ExpensesCtrl'
+    authenticate: true
+
 .factory 'authInterceptor', ($rootScope, $q, $cookieStore, $location) ->
   # Add authorization token to headers
   request: (config) ->
     config.headers = config.headers || {}
+    # https://tools.ietf.org/html/rfc6750#page-5
     config.headers.Authorization = 'Bearer ' + $cookieStore.get('token') if $cookieStore.get('token')
     config
 
@@ -35,6 +43,7 @@ angular.module 'moneyApp', [
   # Redirect to login if route requires auth and you're not logged in
   $rootScope.$on '$stateChangeStart', (event, next) ->
     Auth.isLoggedInAsync (loggedIn) ->
-      $location.path '/login' if next.authenticate && !loggedIn
-    null
-  null
+      if next.authenticate && !loggedIn
+        event.preventDefault()
+        $location.path '/login'
+
