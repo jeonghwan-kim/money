@@ -3,22 +3,16 @@
 angular.module 'moneyApp'
 .controller 'EditexpenseCtrl', ($scope, $stateParams, $state, $window, Expense) ->
   expense = $scope.expense =
-    date: new Date $stateParams.date
+    date: moment($stateParams.date).format 'YYYY-MM-DD'
     text: $stateParams.text
     amount: parseInt $stateParams.amount, 10
 
-  year = expense.date.getFullYear()
-  month = ((date) ->
-    month = date.getMonth() + 1
-    if month < 10 then '0' + month else month
-  )(expense.date)
+  year = moment(expense.date).format 'YYYY'
+  month = moment(expense.date).format 'MM'
 
-  $scope.showError = (form, validator) ->
-    form.$error && form.$error[validator]
-
-  $scope.save = ->
-    return if $scope.form.$invalid
-    Expense.update({id: $stateParams.expenseId}, expense)
+  $scope.save = (form) ->
+    return if form.$invalid
+    Expense.update id: $stateParams.expenseId, expense
     .$promise
     .then () ->
       $state.go 'expenses', {year: year, month: month}
