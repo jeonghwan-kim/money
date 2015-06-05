@@ -1,24 +1,21 @@
 'use strict'
 
 angular.module 'moneyApp'
-.controller 'RegisterCtrl', ($scope, $http, $location) ->
+.controller 'RegisterCtrl', ($scope, $http) ->
 
-  $scope.checkEmail
+  $scope.user = {}
+  $scope.errors = {}
 
-  $scope.register = ->
-    $scope.trySubmit = true
-    return $scope.user if $scope.form.$invalid
+  $scope.register = (form) ->
+    $scope.submitted = true
+    return if form.$invalid
 
-    $scope.helpMsg = '요청중...'
-    $http.post '/api/users', {email: $scope.user.email, pass: $scope.user.pass}
+    $http.post '/api/users', {email: form.email.$modelValue, password: form.password.$modelValue}
     .success (data) ->
-      $scope.helpMsg = '등록완료'
-      $location.url('/login?tryEmail=' + data.email);
+      $scope.registerd = true
     .error (error) ->
-      if error.name == 'SequelizeUniqueConstraintError'
-        $scope.helpMsg = '이미 등록된 이메일'
+      if error.name is 'SequelizeUniqueConstraintError'
+        $scope.errors.other = '이미 등록된 이메일입니다.'
       else
-        $scope.helpMsg = '등록실패'
+        $scope.errors.other = '등록에 실패하였습니다.'
 
-  $scope.showError = (form, validator, trySubmit) ->
-    trySubmit && form.$error && form.$error[validator]

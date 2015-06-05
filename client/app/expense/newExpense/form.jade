@@ -1,0 +1,22 @@
+div.row
+  form.col.s12(name="form" ng-submit="save(form)" novalidate)
+    div.row
+      div.col.s12.input-field
+        div(datepicker ng-model="expense.date")
+        //input.datepicker(name="date" ng-model="expense.date" type="date" required="true")
+      div.col.s12.input-field
+        input.validate(name="text" ng-model="expense.text" type="text" required="true" ng-trim="true")
+        label(for="text") 내용
+      div.col.s12.input-field
+        input.validate(name="amount" ng-model="expense.amount" type="number" required="true")
+        label(for="amount") 금액
+
+      div.col.s12
+        blockquote(ng-show="(form.date.$error.required || form.text.$error.required || form.amount.$error.required) && submitted")
+          | 모든 필드를 입력하세요
+        blockquote(ng-bind="errors.other")
+
+      div.col.s12
+        button.btn.waves-effect.waves-light(type="submit" ng-class="{disabled: try || form.$invalid}") 비밀번호 초기화
+        a.btn.waves-effect.waves-light(href="/") 취소
+pre {{expense|json}}

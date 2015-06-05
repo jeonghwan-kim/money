@@ -1,0 +1,22 @@
+div.row
+  form.col.s12(name="form" ng-submit="login(form)" novalidate)
+    div.row
+      div.col.s12.input-field
+        input.validate(type="email" name="email" class="form-control" ng-model="user.email" ng-trim="true" required email-validator autofocus)
+        label(for="email") 이메일
+      div.col.s12.input-field
+        input.validate(type="password" name="password" class="form-control" ng-model="user.password" ng-minlength="6" required)
+        label(for="password") 비밀번호
+      div.col.s12
+        blockquote(ng-show="(form.email.$error.required || form.password.$error.required) && submitted")
+          | 이메일과 비밀번호를 입력하세요
+        blockquote(ng-show="form.email.$error.email && submitted")
+          | 이메일 주소 형식에 맞게 입력하세요
+        blockquote(ng-show="form.password.$error.minlength && submitted")
+          | 비밀번호는 6글자 이상 입력하세요
+      div.col.s12(ng-show="try")
+        p 로그인 중...
+        div.progress
+          div.indeterminate
+      div.col.s12
+        button.btn.waves-effect.waves-light(type="submit") 로그인

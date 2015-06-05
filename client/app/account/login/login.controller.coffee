@@ -11,10 +11,12 @@ angular.module 'moneyApp'
     $scope.errors = {}
     return if $scope.form.$invalid
 
+    $scope.try = true
     Auth.login
       email: $scope.user.email
       password: $scope.user.password
     .then ->
+      delete $scope.try
       $location.path '/'
     .catch (err) ->
       $scope.errors.other = err.message

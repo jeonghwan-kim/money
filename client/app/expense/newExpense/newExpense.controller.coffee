@@ -1,21 +1,22 @@
 'use strict'
 
 angular.module 'moneyApp'
-.controller 'NewexpenseCtrl', ($scope, $log, $http) ->
-  tag = 'NewexpenseCtrl'
+.controller 'NewexpenseCtrl', ($scope, $http, $state) ->
 
   $scope.expense = {}
-  $scope.save = ->
-    $scope.trySubmit = true
-    return if $scope.form.$invalid
+  $scope.errors = {}
+
+  $scope.save = (form) ->
+    $scope.sumitted = true
+    return if form.$invalid
+
     payload = _.clone $scope.expense
     payload.date = moment(payload.date).format('YYYY-MM-DD')
     $http.post '/api/expenses', payload
-    .success (date) ->
-      $log.debug tag, date
+    .success () ->
+      year = monent($scope.expense.date).format 'YYYY'
+      month = monent($scope.expense.date).format 'MM'
+      $state.go('expenses', {year: year, month: month})
     .error (error) ->
-      $log.error tag, error
+      $scope.errors.other = '입력실패'
 
-
-  $scope.showError = (form, validator, trySubmit) ->
-    trySubmit && form.$error && form.$error[validator]

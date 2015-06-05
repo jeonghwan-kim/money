@@ -1,22 +1,14 @@
 div(ng-include='"components/navbar/navbar.html"')
-
-header#banner.hero-unit
-  .container
-    select.form-control(ng-options="month for month in months" ng-model="selectedDate")
-    h3 총지출: {{sum|number}}원
-    a.btn.btn-success(href="/newExpense") 지출입력
-
-div.container
-  table.table(ng-repeat="dayExpenses in expenses")
-    thead
-      tr
-        th {{dayExpenses.date}} ({{dayExpenses.date|date:"EEEE"}})
-        th(ng-bind="dayExpenses.sum | number")
-        th
-    tbody
-      tr(ng-repeat="expense in dayExpenses.expenses")
-        td(ng-bind="expense.text")
-        td(ng-bind="expense.amount | number")
-        td
-          a(href="/expenses/edit/{{expense.id}}/{{expense.date}}/{{expense.text}}/{{expense.amount}}")
-            i.glyphicon.glyphicon-info-sign
+main.expenses
+  div#index-banner.section
+    div.container
+      div.row
+        div.col.s12
+          h2.header.center-on-small-only 지출 현황
+          h5.light.red-text.text-lighten-4.center-on-small-only
+  div.container
+    div.row
+      div.col.s12
+        include expenses-header
+        include expenses-content
+include footer

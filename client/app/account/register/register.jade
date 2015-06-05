@@ -1,5 +1,16 @@
 div(ng-include='"components/navbar/navbar.html"')
-div.container
-  h3.header.center 회원가입
-  include register-form
-include footer.html
+
+main.register
+  div#index-banner.section
+    div.container
+      div.row
+        div.col.s12
+          h2.header.center-on-small-only 회원가입
+          h4.light.red-text.text-lighten-4.center-on-small-only
+  div.container
+    div.row
+      div.col.s12.m9.l10
+        div.section
+          include register-form
+include footer
+

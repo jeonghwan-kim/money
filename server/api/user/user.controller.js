@@ -33,7 +33,7 @@ exports.me = function (req, res) {
 exports.create = function (req, res) {
   models.User.create({
     email: req.body.email,
-    pass: cryptoHelper.md5(req.body.pass),
+    password: cryptoHelper.md5(req.body.password),
     name: req.body.name || ''
   })
       .then(function (user) {
@@ -48,7 +48,7 @@ exports.create = function (req, res) {
 exports.update = function (req, res) {
   var updateValues = {
     name: req.body.name,
-    pass: cryptoHelper.md5(req.body.password)
+    password: cryptoHelper.md5(req.body.password)
   };
   updateValues = _.omit(updateValues, function (value, key, list) {
     return value === undefined;

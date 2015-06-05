@@ -1,0 +1,26 @@
+div.row
+  form.col.s12(name="form" ng-submit="resetPassword(form)" novalidate)
+    div.row
+      div.col.s12.input-field
+        input.validate(name="email" ng-model="email" type="email" required="true" email-validator ng-trim="true")
+        label(for="name") 이메일
+      div.col.s12
+        blockquote(ng-show="form.email.$error.required && submitted")
+          | 이메일을 입력하세요
+        blockquote(ng-show="form.email.$error.email && submitted")
+          | 이메일 주소 형식에 맞게 입력하세요
+        blockquote(ng-bind="errors.other")
+      div.col.s12
+        button.btn.waves-effect.waves-light(type="submit" ng-class="{disabled: try}") 비밀번호 초기화
+      div.col.s12(ng-show="try")
+        p 초기화 중...
+        div.progress
+          div.indeterminate
+
+  div.col.s12.l6(ng-show="finished")
+    div.card.blue-grey.darken-1
+      div.card-content.white-text
+        span.card-title 완료
+        p 비밀번호가 초기화 되었습니다. 이메일을 확인해 주세요
+      div.card-action
+        a(href="/login") 로그인

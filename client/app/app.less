@@ -6,15 +6,22 @@
  * App-wide Styles
  */
 
-.browsehappy {
-  margin: 0.2em 0;
-  background: #ccc;
-  color: #000;
-  padding: 0.2em 0;
+header {
+  height: 0;
+}
+header, main, footer {
+  padding-left: 240px;
+  @media only screen and (max-width : 992px) {
+    padding-left: 0;
+  }
 }
 
-.btn-left {
-  margin-right: 5px;
+#index-banner {
+  background-color: #ee6e73;
+  color: white;
+}
+main .section .header {
+  margin-top: 50px;
 }
 
 // injector
@@ -25,5 +32,6 @@
 @import 'expense/editExpense/editExpense.less';
 @import 'expense/expenses/expenses.less';
 @import 'expense/newExpense/newExpense.less';
+@import 'directives/datepicker/datepicker.less';
 @import 'navbar/navbar.less';
 // endinjector

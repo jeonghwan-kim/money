@@ -45,5 +45,4 @@ exports.resetPassword = function (req, res) {
       }
     })
   });
-
 };

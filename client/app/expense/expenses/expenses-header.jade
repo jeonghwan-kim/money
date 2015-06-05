@@ -1,0 +1,6 @@
+div.input-field
+  select.browser-default(ng-options="month for month in months" ng-model="selectedDate")
+label 일자을 선택하세요
+h5.header 총지출: {{sum|number}}원
+div.fixed-action-btn
+  a.btn-floating.btn-large.waves-effect.waves-light.red(href="/newExpense"): i.mdi-content-add

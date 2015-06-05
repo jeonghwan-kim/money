@@ -37,7 +37,6 @@ angular.module 'moneyApp'
       cb false
 
   isLoggedIn = ->
-    console.log 'isLoggedIn', currentUser.hasOwnProperty 'role'
     currentUser.hasOwnProperty 'role'
 
   getCurrentUser = ->

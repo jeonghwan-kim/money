@@ -1,0 +1,28 @@
+div.row
+  form.col.s12(name="form" ng-submit="resetPassword(form)" novalidate)
+    div.row
+      div.col.s12.input-field
+        input.validate(name="prePassword" ng-model="prePassword" type="password" required="true" ng-minlength="6")
+        label(for="prePassword") 기존 비빌번호
+      div.col.s12.input-field
+        input.validate(name="newPassword1" ng-model="newPassword1" type="password" required="true" ng-minlength="6")
+        label(for="newPassword1") 신규 비빌번호
+      div.col.s12.input-field
+        input.validate(name="newPassword2" ng-model="newPassword2" type="password" required="true" ng-minlength="6")
+        label(for="newPassword2") 신규 비밀번호 재입력
+      div.col.s12
+        blockquote(ng-show="(form.prePassword.$error.required || form.newPassword1.$error.required || form.newPassword2.$error.required) && submitted")
+          | 모든 필드를 입력하세요.
+        blockquote(ng-show="(form.prePassword.$error.minlength || form.newPassword1.$error.minlength || form.newPassword2.$error.minlength) && submitted")
+          | 비밀번호는 6글자 이상 입력하세요.
+        blockquote(ng-bind="errors.other")
+      div.form-group
+        button.btn.waves-effect.waves-light(type="submit") 비밀번호 변경
+
+  div.col.s12.l6(ng-show="finished")
+    div.card.blue-grey.darken-1
+      div.card-content.white-text
+        span.card-title 완료
+        p 비밀번호가 변경되었습니다. 다시 로그인 해보세요.
+      div.card-action
+        a(href="/login") 로그인
