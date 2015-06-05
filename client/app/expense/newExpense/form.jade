@@ -3,7 +3,6 @@ div.row
     div.row
       div.col.s12.input-field
         div(datepicker ng-model="expense.date")
-        //input.datepicker(name="date" ng-model="expense.date" type="date" required="true")
       div.col.s12.input-field
         input.validate(name="text" ng-model="expense.text" type="text" required="true" ng-trim="true")
         label(for="text") 내용
@@ -17,6 +16,6 @@ div.row
         blockquote(ng-bind="errors.other")
 
       div.col.s12
-        button.btn.waves-effect.waves-light(type="submit" ng-class="{disabled: try || form.$invalid}") 비밀번호 초기화
-        a.btn.waves-effect.waves-light(href="/") 취소
+        button.btn.waves-effect.waves-light(type="submit" ng-class="{disabled: try || form.$invalid}") 저장
+        a.btn.waves-effect.waves-light(href="/" style="margin-left:5px;") 취소
 pre {{expense|json}}

@@ -3,7 +3,8 @@
 angular.module 'moneyApp'
 .controller 'NewexpenseCtrl', ($scope, $http, $state) ->
 
-  $scope.expense = {}
+  $scope.expense =
+    date: moment(new Date()).format 'YYYY-MM-DD'
   $scope.errors = {}
 
   $scope.save = (form) ->
@@ -14,8 +15,8 @@ angular.module 'moneyApp'
     payload.date = moment(payload.date).format('YYYY-MM-DD')
     $http.post '/api/expenses', payload
     .success () ->
-      year = monent($scope.expense.date).format 'YYYY'
-      month = monent($scope.expense.date).format 'MM'
+      year = moment($scope.expense.date).format 'YYYY'
+      month = moment($scope.expense.date).format 'MM'
       $state.go('expenses', {year: year, month: month})
     .error (error) ->
       $scope.errors.other = '입력실패'

@@ -9,10 +9,11 @@ angular.module 'moneyApp'
     input = element.find('.datepicker').eq(0).pickadate({
       format: 'yyyy-mm-dd'
     })
-    picker = input.pickadate('picker')
+    picker = input.pickadate 'picker'
+    picker.set 'select', ctrl.$modelValue, format: 'yyyy-mm-dd'
     picker.on
       set: (data) ->
-        date = moment(data.select).format('YYYY-MM-DD')
+        date = moment(data.select).format 'YYYY-MM-DD'
         ctrl.$setViewValue date
         picker.close();
 
