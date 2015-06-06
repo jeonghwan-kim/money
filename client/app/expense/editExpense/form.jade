@@ -4,7 +4,7 @@ div.row
       div.col.s12.input-field
         div.active(datepicker ng-model="expense.date")
       div.col.s12.input-field
-        input.validate(name="text" ng-model="expense.text" type="text" required="true" ng-trim="true")
+        input.validate(type="text" name="text" ng-model="expense.text" required="true" ng-trim="true")
         label.active(for="text") 내용
       div.col.s12.input-field
         input.validate(name="amount" ng-model="expense.amount" type="number" required="true")

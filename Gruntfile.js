@@ -181,7 +181,8 @@ module.exports = function (grunt) {
             '<%= yeoman.dist %>/*',
             '!<%= yeoman.dist %>/.git*',
             '!<%= yeoman.dist %>/.openshift',
-            '!<%= yeoman.dist %>/Procfile'
+            '!<%= yeoman.dist %>/Procfile',
+            '!<%= yeoman.dist %>/node_modules'
           ]
         }]
       },
@@ -335,7 +336,7 @@ module.exports = function (grunt) {
           collapseWhitespace: true,
           removeAttributeQuotes: true,
           removeEmptyAttributes: true,
-          removeRedundantAttributes: true,
+          removeRedundantAttributes: false,
           removeScriptTypeAttributes: true,
           removeStyleLinkTypeAttributes: true
         },
@@ -386,8 +387,14 @@ module.exports = function (grunt) {
           dest: '<%= yeoman.dist %>',
           src: [
             'package.json',
-            'server/**/*'
+            'server/**/*',
+            'run.sh'
           ]
+        }, {
+          expand: true,
+          cwd: '<%= yeoman.client %>/bower_components/materialize/',
+          dest: '<%= yeoman.dist %>/public',
+          src: ['font/**/*']
         }]
       },
       styles: {
