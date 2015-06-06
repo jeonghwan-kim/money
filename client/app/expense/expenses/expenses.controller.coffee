@@ -4,6 +4,8 @@ angular.module 'moneyApp'
 .controller 'ExpensesCtrl', ($scope, $http, $state, $stateParams, Month, Expense) ->
   $scope.names = ['날짜', '내용', '금액', '']
 
+  console.log 'here'
+
   requestDate = $stateParams.year + '-' + $stateParams.month
   Month.get().then (months) ->
     idx = _.findIndex months, (month) ->

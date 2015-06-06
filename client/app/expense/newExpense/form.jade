@@ -11,8 +11,10 @@ div.row
         label(for="amount") 금액
 
       div.col.s12
-        blockquote(ng-show="(form.date.$error.required || form.text.$error.required || form.amount.$error.required) && submitted")
+        blockquote(ng-show="form.date.$error.required || form.text.$error.required || form.amount.$error.required")
           | 모든 필드를 입력하세요
+        blockquote(ng-show="form.amount.$error.number")
+          | 금액은 숫자만 입력하세요
         blockquote(ng-bind="errors.other")
 
       div.col.s12

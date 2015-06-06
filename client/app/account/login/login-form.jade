@@ -14,6 +14,7 @@ div.row
           | 이메일 주소 형식에 맞게 입력하세요
         blockquote(ng-show="form.password.$error.minlength && submitted")
           | 비밀번호는 6글자 이상 입력하세요
+        blockquote(ng-bind="errors.other")
       div.col.s12(ng-show="try")
         p 로그인 중...
         div.progress

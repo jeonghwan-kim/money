@@ -13,13 +13,6 @@ angular.module 'moneyApp', [
   $locationProvider.html5Mode true
   $httpProvider.interceptors.push 'authInterceptor'
 
-  $stateProvider
-  .state 'main',
-    url: '/'
-    templateUrl: 'app/expense/expenses/expenses.html'
-    controller: 'ExpensesCtrl'
-    authenticate: true
-
 .factory 'authInterceptor', ($rootScope, $q, $cookieStore, $location) ->
   # Add authorization token to headers
   request: (config) ->
@@ -43,6 +36,12 @@ angular.module 'moneyApp', [
   $rootScope.$on '$stateChangeStart', (event, next) ->
     Auth.isLoggedInAsync (loggedIn) ->
       if next.authenticate && !loggedIn
-        event.preventDefault()
         $location.path '/login'
 
+.config ($stateProvider) ->
+  $stateProvider
+  .state 'main',
+    url: '/'
+    templateUrl: 'app/expense/expenses/expenses.html'
+    controller: 'ExpensesCtrl'
+    authenticate: true

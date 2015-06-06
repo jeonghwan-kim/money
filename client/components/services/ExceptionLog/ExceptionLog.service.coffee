@@ -6,7 +6,6 @@ angular.module 'moneyApp'
   # Service logic
   # ...
   tag = 'ExceptionLog.service'
-  $log.info tag
 
   error = (exception, cause) ->
     $log.error.apply $log, arguments
