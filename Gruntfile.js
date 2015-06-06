@@ -613,7 +613,25 @@ module.exports = function (grunt) {
         }
       }
     },
+
+
+    rsync: {
+      options: {
+        args: ['-zvr', '--delete'],
+        exclude: ['.git*', 'node_modules'],
+        recursive: true
+      },
+      prod: {
+        options: {
+          src: ['dist/public', 'dist/server', 'dist/package.json', 'dist/run.sh'],
+          dest: '/home/ubuntu/money2',
+          host: 'ubuntu@54.65.49.30',
+          remove: true
+        }
+      }
+    }
   });
+
 
   // Used for delaying livereload until after server has restarted
   grunt.registerTask('wait', function () {
