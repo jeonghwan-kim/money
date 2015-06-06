@@ -1,11 +1,11 @@
 div(ng-controller="NavbarCtrl")
   header(role="navigation")
     div.container
-      a.button-collapse.top-nav.waves-effect.waves-light.circle(href="#" data-activates="nav-mobile")
+      a.button-collapse.top-nav.full(href="#" data-activates="nav-mobile")
         i.mdi-navigation-menu
     ul#nav-mobile.side-nav.fixed
       li.logo
-        a#logo-container.brand-logo(href="/register") 가계부
+        a#logo-container.brand-logo(href="/") 가계부
       li.bold(ng-hide="isLoggedIn()" ng-class="{active: isActive('/register')}")
         a.waves-effect.waves-teal(href="/register") 회원가입
       li.bold(ng-hide="isLoggedIn()" ng-class="{active: isActive('/login')}")
@@ -19,8 +19,13 @@ div(ng-controller="NavbarCtrl")
     (function ($) {
       $(function () {
         $('.button-collapse').sideNav({
-          edge: 'left',
-          closeOnClick: true
+          edge: 'left'
         });
+
+        $('#nav-mobile > li > a').each(function () {
+          $(this).on('click', function () {
+            $('.button-collapse').sideNav('hide')
+          })
+        })
       }); // end of document ready
     })(jQuery); // end of jQuery name space
