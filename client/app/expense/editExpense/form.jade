@@ -19,17 +19,13 @@ div.row
       div.col.s12
         button.btn.waves-effect.waves-light(type="submit" ng-class="{disabled: form.$invalid}") 저장
         button.btn.waves-effect.waves-light(type="button" ng-click="cancel()" style="margin-left:5px") 취소
-        button.btn.waves-effect.waves-light.modal-trigger(type="button" data-target="modal1" style="margin-left:5px") 삭제
+        button.btn.waves-effect.waves-light(type="button" modal-trigger data-target="modal-delete-expense" style="margin-left:5px") 삭제
 
-  div#modal1.modal
+  div#modal-delete-expense.modal
     div.modal-content
       h4 삭제
       p 지출 이력을 삭제할까요?
     div.modal-footer
       a.modal-action.modal-close.waves-effect.waves-red.btn-flat(href="#!") 아니오
       a.modal-action.modal-close.waves-effect.waves-green.btn-flat(href="" ng-click="delete()") 네
-  script.
-    $(document).ready(function(){
-      // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-      $('.modal-trigger').leanModal();
-    });
+

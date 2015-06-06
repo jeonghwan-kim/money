@@ -13,19 +13,28 @@ div(ng-controller="NavbarCtrl")
       li.bold(ng-show="isLoggedIn()" ng-class="{active: isActive('/reset-password')}")
         a.waves-effect.waves-teal(href="/reset-password") 비번변경
       li.bold(ng-show="isLoggedIn()" ng-class="{active: isActive('/logout')}")
-        a.waves-effect.waves-teal(href="" ng-click="logout()") 로그아웃
+        //a.waves-effect.waves-teal(href="" ng-click="logout()") 로그아웃
+        a.waves-effect.waves-teal(href="" modal-trigger data-target="modal-logout") 로그아웃
 
-  script.
-    (function ($) {
-      $(function () {
-        $('.button-collapse').sideNav({
-          edge: 'left'
-        });
+  div#modal-logout.modal
+    div.modal-content
+      h4 로그아웃
+      p 로그아웃 하시겠습니까?
+    div.modal-footer
+      a.modal-action.modal-close.waves-effect.waves-red.btn-flat(href="#!") 아니오
+      a.modal-action.modal-close.waves-effect.waves-green.btn-flat(href="" ng-click="logout()") 네
 
-        $('#nav-mobile > li > a').each(function () {
-          $(this).on('click', function () {
-            $('.button-collapse').sideNav('hide')
-          })
+script.
+  (function ($) {
+    $(function () {
+      $('.button-collapse').sideNav({
+        edge: 'left'
+      });
+
+      $('#nav-mobile > li > a').each(function () {
+        $(this).on('click', function () {
+          $('.button-collapse').sideNav('hide')
         })
-      }); // end of document ready
-    })(jQuery); // end of jQuery name space
+      });
+    }); // end of document ready
+  })(jQuery); // end of jQuery name space
