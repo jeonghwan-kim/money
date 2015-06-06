@@ -1,5 +1,5 @@
 div(ng-controller="NavbarCtrl")
-  header(role="navigation")
+  header(role="navigation" side-nav)
     div.container
       a.button-collapse.top-nav.full(href="#" data-activates="nav-mobile")
         i.mdi-navigation-menu
@@ -24,17 +24,3 @@ div(ng-controller="NavbarCtrl")
       a.modal-action.modal-close.waves-effect.waves-red.btn-flat(href="#!") 아니오
       a.modal-action.modal-close.waves-effect.waves-green.btn-flat(href="" ng-click="logout()") 네
 
-script.
-  (function ($) {
-    $(function () {
-      $('.button-collapse').sideNav({
-        edge: 'left'
-      });
-
-      $('#nav-mobile > li > a').each(function () {
-        $(this).on('click', function () {
-          $('.button-collapse').sideNav('hide')
-        })
-      });
-    }); // end of document ready
-  })(jQuery); // end of jQuery name space
