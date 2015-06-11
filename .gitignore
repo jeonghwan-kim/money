@@ -1,3 +1,5 @@
+server/config/email.json
+
 node_modules
 public
 .tmp

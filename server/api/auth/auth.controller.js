@@ -33,7 +33,7 @@ exports.resetPassword = function (req, res) {
 
     user.updateAttributes({pass: newPassword2}).then(function (affectedCount) {
       if (affectedCount) {
-        email('Reset Password: ' + newPassword, '', user.email).then(function (info) {
+        email.send('Reset Password: ' + newPassword, '', user.email).then(function (info) {
           console.log(info);
           res.json(info);
         }, function (error) {

@@ -3,6 +3,7 @@
 var path = require('path');
 var _ = require('lodash');
 var dbConfig = require('../config.json')[process.env.NODE_ENV];
+var email = require('../email.json');
 
 function requiredProcessEnv(name) {
   if(!process.env[name]) {
@@ -49,6 +50,12 @@ var all = {
     database: dbConfig.database,
     host: dbConfig.host,
     dialect: dbConfig.dialect
+  },
+
+  email: {
+    service: email.service,
+    senderAddress: email.senderAddress,
+    password: email.password
   }
 
 };
