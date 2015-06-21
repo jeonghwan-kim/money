@@ -13,6 +13,6 @@ module.exports = {
 
   // Access Token options
   accessToken: {
-    expiresInMinutes: 1 // 1 minutes
+    expiresInMinutes: 60 // 60 minutes
   }
 };
