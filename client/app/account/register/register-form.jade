@@ -3,10 +3,10 @@ div.row
     div.row
       div.col.s12.input-field
         input.validate(name="email" ng-model="user.email" type="email" required="true" email-validator ng-trim="true" autofocus)
-        label(for="email") 이메일
+        label.active(for="email") 이메일
       div.col.s12.input-field
         input.validate(name="password" ng-model="user.password" type="password" required="true" ng-minlength="6")
-        label(for="password") 비밀번호
+        label.active(for="password") 비밀번호
       div.col.s12
         blockquote(ng-show="(form.email.$error.required || form.password.$error.required) && submitted")
           | 이메일과 비밀번호를 입력하세요
@@ -16,7 +16,7 @@ div.row
           | 비밀번호는 6글자 이상 입력하세요
         blockquote(ng-bind="errors.other")
       div.col.s12
-        button.btn.waves-effect.waves-light(type="submit") 회원가입
+        button.btn.waves-effect.waves-light.btn-large(type="submit") 회원가입
   div.col.s12.l6(ng-show="registerd")
     div.card.blue-grey.darken-1
       div.card-content.white-text

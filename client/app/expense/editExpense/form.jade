@@ -17,9 +17,9 @@ div.row
           | 금액은 숫자만 입력하세요
 
       div.col.s12
-        button.btn.waves-effect.waves-light(type="submit" ng-class="{disabled: form.$invalid}") 저장
-        button.btn.waves-effect.waves-light(type="button" ng-click="cancel()" style="margin-left:5px") 취소
-        button.btn.waves-effect.waves-light(type="button" modal-trigger data-target="modal-delete-expense" style="margin-left:5px") 삭제
+        button.btn.waves-effect.waves-light.btn-large(type="submit" ng-class="{disabled: form.$invalid}") 저장
+        button.btn.waves-effect.waves-light.btn-large(type="button" ng-click="cancel()" style="margin-left:5px") 취소
+        button.btn.waves-effect.waves-light.btn-large(type="button" modal-trigger data-target="modal-delete-expense" style="margin-left:5px") 삭제
 
   div#modal-delete-expense.modal
     div.modal-content
