@@ -9,5 +9,10 @@ module.exports = {
     uri: 'mongodb://localhost/money-dev'
   },
 
-  seedDB: true
+  seedDB: true,
+
+  // Access Token options
+  accessToken: {
+    expiresInMinutes: 1 // 1 minutes
+  }
 };
