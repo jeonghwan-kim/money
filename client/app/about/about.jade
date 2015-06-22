@@ -1,0 +1,16 @@
+div(ng-include='"components/navbar/navbar.html"')
+
+main.expenses
+    div.section.grey
+        div.container
+            div.row
+                div.col.s12
+                    h2.header.center-on-small-only.white-text About
+                    h5.light.red-text.text-lighten-4.center-on-small-only
+    div.container.section
+        div.row
+            div.col.s12
+                div(ng-repeat="version in versions | orderBy:'-version'")
+                    h5 v.{{version.version}}
+                    ul: li(ng-repeat="update in version.updates") {{update}}
+include footer

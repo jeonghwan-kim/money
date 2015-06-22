@@ -13,8 +13,9 @@ div(ng-controller="NavbarCtrl")
       li.bold(ng-show="isLoggedIn()" ng-class="{active: isActive('/reset-password')}")
         a.waves-effect.waves-teal(href="/reset-password") 비번변경
       li.bold(ng-show="isLoggedIn()" ng-class="{active: isActive('/logout')}")
-        //a.waves-effect.waves-teal(href="" ng-click="logout()") 로그아웃
         a.waves-effect.waves-teal(href="" modal-trigger data-target="modal-logout") 로그아웃
+      li.bold(ng-class="{active: isActive('/about')}")
+        a.waves-effect.waves-teal(href="/about") About
 
   div#modal-logout.modal
     div.modal-content
