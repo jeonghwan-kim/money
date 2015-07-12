@@ -13,6 +13,7 @@ angular.module 'moneyApp'
     picker.set 'select', ctrl.$modelValue, format: 'yyyy-mm-dd'
     picker.on
       set: (data) ->
+        return if data.hasOwnProperty 'highlight'
         date = moment(data.select).format 'YYYY-MM-DD'
         ctrl.$setViewValue date
         picker.close();
