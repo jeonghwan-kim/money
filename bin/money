@@ -1,0 +1,28 @@
+#! /bin/sh
+
+### BEGIN INIT INFO
+# Provides:          money
+# Required-Start:    $remote_fs $syslog
+# Required-Stop:     $remote_fs $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Start daemon at boot time
+# Description:       Enable service provided by daemon.
+### END INIT INFO
+PROJECT_PATH=/home/ubuntu/money2
+FOREVER_PATH=${PROJECT_PATH}/node_modules/forever/bin
+
+start() {
+    rm /root/.forever/money.log
+    NODE_ENV=production PORT=8500 ${FOREVER_PATH}/forever start --uid money ${PROJECT_PATH}/server/app.js
+}
+
+stop() {
+    ${FOREVER_PATH}/forever stop money
+}
+
+case "$1" in
+    start|stop) $1;;
+    restart) stop; start;;
+	*) echo "Run as $0 <start|stop|restart>"; exit 1;;
+esac

@@ -388,7 +388,7 @@ module.exports = function (grunt) {
           src: [
             'package.json',
             'server/**/*',
-            'run.sh'
+            'bin/**/*'
           ]
         }, {
           expand: true,
@@ -623,7 +623,7 @@ module.exports = function (grunt) {
       },
       prod: {
         options: {
-          src: ['dist/public', 'dist/server', 'dist/package.json', 'dist/run.sh'],
+          src: ['dist/public', 'dist/server', 'dist/package.json', 'dist/bin'],
           dest: '/home/ubuntu/money2',
           host: 'ubuntu@54.65.49.30',
           remove: true
