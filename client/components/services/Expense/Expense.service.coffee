@@ -5,7 +5,7 @@ angular.module 'moneyApp'
   # AngularJS will instantiate a singleton by calling 'new' on this function
 
 
-  $resource '/api/expenses/:id?month=:month&year=:year',
+  $resource '/api/expenses/:id?month=:month&year=:year&limit=9999',
       id: '@id'
       month: '@month'
       year: '@year'
