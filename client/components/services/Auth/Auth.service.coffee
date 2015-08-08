@@ -1,12 +1,13 @@
 'use strict'
 
 angular.module 'moneyApp'
-.factory 'Auth', ($location, $rootScope, $http, User, $cookieStore, $q) ->
+.factory 'Auth', ($location, $rootScope, $http, User, $cookies, $q, Constants) ->
+  console.log $cookies
   currentUser = {}
-  currentUser = User.get() if $cookieStore.get 'token'
+  currentUser = User.get() if $cookies.get 'token'
 
   logout = ->
-    $cookieStore.remove 'token'
+    $cookies.remove 'token'
     currentUser = {}
 
   login = (user) ->
@@ -16,7 +17,7 @@ angular.module 'moneyApp'
       email: user.email,
       password: user.password
     .success (data) ->
-      $cookieStore.put 'token', data.token
+      $cookies.put 'token', data.token, {expires: Constants.cookieExpires()}
       currentUser = User.get()
       deferred.resolve data
     .error (err) ->
