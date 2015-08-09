@@ -2,7 +2,6 @@
 
 angular.module 'moneyApp'
 .factory 'Auth', ($location, $rootScope, $http, User, $cookies, $q, Constants) ->
-  console.log $cookies
   currentUser = {}
   currentUser = User.get() if $cookies.get 'token'
 

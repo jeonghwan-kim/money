@@ -13,12 +13,12 @@ angular.module 'moneyApp', [
   $locationProvider.html5Mode true
   $httpProvider.interceptors.push 'authInterceptor'
 
-.factory 'authInterceptor', ($rootScope, $q, $cookieStore, $location) ->
+.factory 'authInterceptor', ($rootScope, $q, $cookies, $location) ->
   # Add authorization token to headers
   request: (config) ->
     config.headers = config.headers || {}
     # https://tools.ietf.org/html/rfc6750#page-5
-    config.headers.Authorization = 'Bearer ' + $cookieStore.get('token') if $cookieStore.get('token')
+    config.headers.Authorization = 'Bearer ' + $cookies.get('token') if $cookies.get('token')
     config
 
   # Intercept 401s and redirect you to login
@@ -26,7 +26,7 @@ angular.module 'moneyApp', [
     if response.status == 401
       $location.path('/login')
       # remove any stale tokens
-      $cookieStore.remove 'token'
+      $cookies.remove 'token'
       $q.reject response
     else
       $q.reject response
