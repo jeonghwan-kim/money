@@ -15,6 +15,11 @@ module.exports = function(app) {
 
   app.use('/auth', require('./auth'));
 
+  var path = require('path');
+  app.get('/storage/:type/:file', function (req, res) {
+    res.sendfile(path.join(__dirname, '../../money-storage/' + req.params.type + '/' + req.params.file));
+  });
+
   // If parameters are invalid return 400
   app.use(errors[400]);
 
