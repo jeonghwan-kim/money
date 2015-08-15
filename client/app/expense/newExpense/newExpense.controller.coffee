@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module 'moneyApp'
-.controller 'NewexpenseCtrl', ($scope, $http, $state) ->
+.controller 'NewexpenseCtrl', ($scope, $http, $state, FileUploader) ->
 
   $scope.expense =
     date: moment(new Date()).format 'YYYY-MM-DD'
@@ -21,3 +21,11 @@ angular.module 'moneyApp'
     .error (error) ->
       $scope.errors.other = '입력실패'
 
+
+  $scope.uploader = new FileUploader
+    url: '/api/images'
+
+  $scope.uploader.onBeforeUploadItem = (item) ->
+    data = angular.element('canvas')[0].toDataURL()
+    console.log data
+#    console.log(canvas[0].toDataURL())
