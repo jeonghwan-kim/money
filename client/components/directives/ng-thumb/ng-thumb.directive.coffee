@@ -26,8 +26,8 @@ angular.module 'moneyApp'
     reader.onload = (event) ->
       img = new Image()
       img.onload = () ->
-        width = params.width || this.width / this.height * params.height
-        height = params.height || this.height / this.width * params.width
+        width = 300
+        height = 300
         canvas.attr({ width: width, height: height })
         canvas[0].getContext('2d').drawImage(this, 0, 0, width, height)
       img.src = event.target.result
