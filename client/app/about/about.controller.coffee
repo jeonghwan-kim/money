@@ -43,4 +43,14 @@ angular.module 'moneyApp'
       '오타수정',
       '토큰 만료시간 설정'
     ]
+  }, {
+    version: '2.1.2',
+    updates: [
+      'datepicker 클릭 이벤트 버그 수정'
+    ]
+  }, {
+    version: '2.1.3',
+    updates: [
+      '비용 데이터 리밋 갯수 변경'
+    ]
   }]
