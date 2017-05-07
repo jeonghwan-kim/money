@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="euc-kr"?>
+<expense>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<entry><id>13</id><date>2012-11-26</date><item>식비</item><text>계란, 우유</text><money>5700</money></entry>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<entry><id>28</id><date>2012-11-27</date><item>식비</item><text>닭 빵</text><money>10000</money></entry>
+	
+	<entry><id>30</id><date>2012-11-28</date><item/><text>이발</text><money>14000</money></entry>
+	<entry><id>31</id><date>2012-11-29</date><item>식비</item><text>식빵</text><money>2200</money></entry>
+	<entry><id>32</id><date>2012-11-29</date><item>식비</item><text>음료</text><money>5200</money></entry>
+<entry><id>33</id><date>2012-11-25</date><item>식비</item><text>초밥</text><money>70000</money></entry></expense>

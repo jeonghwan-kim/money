@@ -2,8 +2,8 @@
 
 var path = require('path');
 var _ = require('lodash');
-var dbConfig = require('../config.json')[process.env.NODE_ENV];
-var email = require('../email.json');
+var dbConfig =
+// var email = require('../email.json');
 
 function requiredProcessEnv(name) {
   if(!process.env[name]) {
@@ -44,19 +44,13 @@ var all = {
   },
 
   // Mysql
-  mysql: {
-    username: dbConfig.username,
-    password: dbConfig.password,
-    database: dbConfig.database,
-    host: dbConfig.host,
-    dialect: dbConfig.dialect
-  },
+  database: require('../config.json').database[process.env.NODE_ENV]
 
-  email: {
-    service: email.service,
-    senderAddress: email.senderAddress,
-    password: email.password
-  }
+  // email: {
+  //   service: email.service,
+  //   senderAddress: email.senderAddress,
+  //   password: email.password
+  // }
 
 };
 

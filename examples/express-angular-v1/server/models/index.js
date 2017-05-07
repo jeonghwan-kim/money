@@ -5,11 +5,10 @@ var fs = require('fs');
 var path = require('path');
 var Sequelize = require('sequelize');
 var basename = path.basename(module.filename);
-var mysqlCfg = require('../config/environment').mysql;
-var sequelize = new Sequelize(mysqlCfg.database, mysqlCfg.username, mysqlCfg.password, mysqlCfg);
+var config = require('../config/environment');
+// var sequelize = new Sequelize(mysqlCfg.database, mysqlCfg.username, mysqlCfg.password, mysqlCfg);
+var sequelize = new Sequelize(config.database);
 var db = {};
-
-console.info(tag, 'MODELS ARE INITICATED. mysqlCfg:', mysqlCfg);
 
 fs
     .readdirSync(__dirname)

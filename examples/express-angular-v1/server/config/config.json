@@ -1,0 +1,17 @@
+{
+  "database": {
+    "development": {
+      "database": "money",
+      "storage": "db.dev.sqlite",
+      "dialect": "sqlite"
+    },
+    "production": {
+      "username": "money-user",
+      "password": "money-password",
+      "database": "money",
+      "host": "localhost",
+      "dialect": "mysql"
+    }
+  }
+
+}

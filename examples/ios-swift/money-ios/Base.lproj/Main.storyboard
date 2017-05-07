@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="wJO-r5-XKi">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--Main-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="money_ios" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zmm-f4-ZSX">
+                                <rect key="frame" x="253" y="309" width="95" height="65"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="44"/>
+                                <state key="normal" title="View"/>
+                                <connections>
+                                    <segue destination="Bae-PW-E1L" kind="show" id="1fg-KW-5ld"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cNG-fE-L1t">
+                                <rect key="frame" x="0.0" y="300" width="600" height="1"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="8Bc-e8-6kc"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NTr-Dk-IqS">
+                                <rect key="frame" x="246" y="227" width="109" height="65"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="44"/>
+                                <state key="normal" title="Insert"/>
+                                <connections>
+                                    <segue destination="3iA-oq-ERG" kind="show" id="pP6-Vs-ebo"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="cNG-fE-L1t" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="6p3-hW-nKX"/>
+                            <constraint firstItem="cNG-fE-L1t" firstAttribute="top" secondItem="NTr-Dk-IqS" secondAttribute="bottom" constant="8" symbolic="YES" id="Co6-ag-xSE"/>
+                            <constraint firstItem="NTr-Dk-IqS" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="HYl-PH-y05"/>
+                            <constraint firstItem="cNG-fE-L1t" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" symbolic="YES" id="Kfw-GC-Fsm"/>
+                            <constraint firstItem="Zmm-f4-ZSX" firstAttribute="top" secondItem="cNG-fE-L1t" secondAttribute="bottom" constant="8" symbolic="YES" id="QYx-cq-MLg"/>
+                            <constraint firstItem="NTr-Dk-IqS" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ReF-BX-e9E"/>
+                            <constraint firstItem="cNG-fE-L1t" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="iNg-RF-w6L"/>
+                            <constraint firstItem="Zmm-f4-ZSX" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="o4S-YU-liv"/>
+                            <constraint firstItem="cNG-fE-L1t" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="s3I-Df-qFc"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Kfw-GC-Fsm"/>
+                                <exclude reference="HYl-PH-y05"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" title="Main" id="Bnq-kk-0fs"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1137" y="453"/>
+        </scene>
+        <!--Insert Expense-->
+        <scene sceneID="Ih3-tQ-9vu">
+            <objects>
+                <viewController id="3iA-oq-ERG" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="8Eo-us-Olt"/>
+                        <viewControllerLayoutGuide type="bottom" id="KT5-s8-syP"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="nXZ-Cv-O4r">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="지출 입력 페이지" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LoO-w6-0ze">
+                                <rect key="frame" x="20" y="72" width="112" height="28"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Insert Expense" id="QEp-Ts-Dba"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="99G-zd-NGa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1975" y="217"/>
+        </scene>
+        <!--View Expense-->
+        <scene sceneID="EOs-Ia-K4e">
+            <objects>
+                <viewController id="Bae-PW-E1L" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dhu-fH-0Mg"/>
+                        <viewControllerLayoutGuide type="bottom" id="Q71-59-PCe"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="hIq-G3-7XL">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="지출현황 페이지" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z1Q-B1-nWP">
+                                <rect key="frame" x="20" y="72" width="140" height="45"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="View Expense" id="sRd-7q-gxS"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qrl-cN-QuM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1975" y="866"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="nSc-yt-m13">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wJO-r5-XKi" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="DU0-wB-ldE">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="5cN-4n-OuT"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wm9-ms-vHt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="325" y="453"/>
+        </scene>
+    </scenes>
+</document>

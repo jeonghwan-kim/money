@@ -1,11 +1,2 @@
-server/config/email.json
-
 node_modules
-public
-.tmp
-.idea
-client/bower_components
-dist
-/server/config/local.env.js
-
-server/config/config.json
+.DS_Store
