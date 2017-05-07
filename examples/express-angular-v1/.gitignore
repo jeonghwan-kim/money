@@ -1,0 +1,4 @@
+npm-debug.log
+*.sqlite
+.tmp
+client/bower_components/

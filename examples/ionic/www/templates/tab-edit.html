@@ -1,0 +1,19 @@
+^<ion-view view-title="Edit">
+  <ion-content>
+    <div class="list">
+      <form name="addForm" ng-submit="edit()">
+        <label class="item item-input item-floating-label">
+          <input type="text" name="text" ng-model="expense.text" required placeholder="메모" autofocus>
+        </label>
+        <label class="item item-input item-floating-label">
+          <input type="number" name="amount" ng-model="expense.amount" required placeholder="금액">
+        </label>
+        <div class="padding">
+          <button class="button button-block button-outline button-positive" type="submit">Submit</button>
+        </div>
+      </form>
+
+      <pre>{{expense}}</pre>
+    </div>
+  </ion-content>
+</ion-view>
