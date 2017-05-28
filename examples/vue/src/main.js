@@ -1,18 +1,16 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-// import App from './App.vue'
+import Home from './Home.vue'
+import Add from './Add.vue'
 
 Vue.use(VueRouter)
-
-const Home = { template: '<div>home</div>' }
-const Foo = { template: '<div>foo</div>' }
 
 const router = new VueRouter({
   mode: 'history',
   base: __dirname,
   routes: [
     {path: '/', component: Home},
-    {path: '/foo', component: Foo}
+    {path: '/add', component: Add}
   ]
 })
 new Vue({
