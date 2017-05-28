@@ -5,8 +5,9 @@ let data = [
 ]
 const delay = 400
 
-export const query = () => {
-  return new Promise(res => setTimeout(_=> res(data), delay))
+export const query = month => {
+  const ret = data.filter(d => d.date.toISOString().toString().substring(0, 7) === month)
+  return new Promise(res => setTimeout(_=> res(ret), delay))
 }
 
 export const create = (expense) => {
@@ -23,4 +24,13 @@ export const create = (expense) => {
 export const destroy = id => {
   data = data.filter(d => d.id !== id)
   return new Promise(res => setTimeout(_=> res(data), delay))
+}
+
+export const monthList = _=> {
+  const ret = data
+    .map(d => d.date.toISOString().substring(0, 7))
+    .reduce((arr, d) => arr.includes(d) ? arr : arr.concat(d), [])
+    .sort((a, b) => new Date(b) - new Date(a))
+
+  return new Promise(res => setTimeout(_=> res(ret), delay))
 }

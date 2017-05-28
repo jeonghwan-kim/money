@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import * as resource from './resource.service'
+import * as service from './service'
 
 export default {
   name: 'add',
@@ -26,7 +26,7 @@ export default {
       const userInput = this.validate()
       if (!userInput) return
 
-      resource.create(userInput).then(d => console.log(d))
+      service.create(userInput).then(d => console.log(d))
       this.$router.push('/')
     },
     validate() {

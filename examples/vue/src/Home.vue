@@ -1,6 +1,9 @@
 <template>
 <div id="home">
   <h2>지출목록</h2>
+  <select v-model="selectedMonth" @change="onChangeMonth">
+    <option v-for="month in monthList">{{month}}</option>
+  </select>
   <p>총 지출: {{sum}}</p>
   <ul>
     <li v-for="item in expenses">
@@ -15,17 +18,23 @@
 
 <script>
 import * as filters from './filters'
-import * as resource from './resource.service'
+import * as service from './service'
 
 export default {
   name: 'home',
   data () {
     return {
+      selectedMonth: null,
       expenses: [],
+      monthList: []
     }
   },
   created() {
-    resource.query().then(data => this.expenses = data)
+    service.monthList().then(data => {
+      this.monthList = data
+      this.selectedMonth = this.monthList[0]
+    }).then(_=> service.query(this.selectedMonth))
+      .then(data => this.expenses = data)
   },
   computed: {
     sum() {
@@ -35,7 +44,11 @@ export default {
   filters,
   methods: {
     onRemove(id) {
-      resource.destroy(id).then(data => this.expenses = data)
+      service.destroy(id).then(data => this.expenses = data)
+    },
+    onChangeMonth() {
+      service.query(this.selectedMonth)
+        .then(d => this.expenses = d)
     }
   },
 }
