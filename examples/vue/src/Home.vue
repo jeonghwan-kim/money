@@ -1,40 +1,43 @@
 <template>
 <div id="home">
   <h2>지출목록</h2>
+  <p>총 지출: {{sum}}</p>
   <ul>
     <li v-for="item in expenses">
-      {{item.id}},
       {{item.date | date}},
       {{item.text}},
       {{item.amount | currency}}
+      <button type="button" @click="onRemove(item.id)">X</button>
     </li>
   </ul>
 </div>
 </template>
 
 <script>
-const expenses = [
-  {id: 1, date: new Date(2017, 4, 1), text: '점심', amount: 7000},
-  {id: 2, date: new Date(2017, 4, 1), text: '저녁', amount: 8000},
-  {id: 3, date: new Date(2017, 4, 2), text: '아침', amount: 4000},
-]
+import * as filters from './filters'
+import * as resource from './resource.service'
+
 export default {
   name: 'home',
   data () {
     return {
-      expenses,
-      msg: 'ddd'
+      expenses: [],
     }
   },
-  filters: {
-    date: d => {
-      if (d && d instanceof Date)
-        return d.toISOString().substring(0, 10);
-    },
-    currency: num => {
-      return num
+  created() {
+    resource.query().then(data => this.expenses = data)
+  },
+  computed: {
+    sum() {
+      return this.expenses.reduce((sum, item) => sum + item.amount, 0)
     }
-  }
+  },
+  filters,
+  methods: {
+    onRemove(id) {
+      resource.destroy(id).then(data => this.expenses = data)
+    }
+  },
 }
 </script>
 
