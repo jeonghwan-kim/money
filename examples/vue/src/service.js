@@ -11,6 +11,13 @@ export const query = month => {
 }
 
 export const create = (expense) => {
+  if (!expense.text) {
+    return Promise.reject(new Error('text is required'))
+  }
+  if (!expense.amount) {
+    return Promise.reject(new Error('amount is required'))
+  }
+
   const newExpense = Object.assign({}, expense, {
     id: data.reduce((maxId, item) => item.id > maxId ? item.id : maxId, 0) + 1,
   })
